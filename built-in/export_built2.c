@@ -1,8 +1,8 @@
 #include "../minishell.h"
 
-/*
-? print a string from modefication the parametre string
-*/
+/******************************************************
+*  *  make a string from 2D char arr that has '=' *
+******************************************************/
 
 char	*with_equal(char *str, char **spl_str)
 {
@@ -25,6 +25,10 @@ char	*with_equal(char *str, char **spl_str)
 	return (out);
 }
 
+/******************************************************
+* *  make a string from 2D char arr that hasn't '=' *
+******************************************************/
+
 char	*without_equal(int i, char *arr, char **spl_str)
 {
 	char	*tmp;
@@ -42,6 +46,10 @@ char	*without_equal(int i, char *arr, char **spl_str)
 	ft_free(spl_str);
 	return (out);
 }
+
+/******************************************************
+*	* split variables from values if there's one *
+******************************************************/
 
 char	**make_env(int i, char *lst)
 {
@@ -69,7 +77,11 @@ char	**make_env(int i, char *lst)
 	return (str_spl);
 }
 
-void	assemebly_str(char *lst, int fd)
+/******************************************************
+*			*  print after process check *
+******************************************************/
+
+void	assemebly_str(char *lst, int fd, int flag)
 {
 	char	*out;
 	char	*arr;
@@ -82,24 +94,24 @@ void	assemebly_str(char *lst, int fd)
 	i = many_eq(lst);
 	str_spl = make_env(i, lst);
 	if (str_spl[0] && str_spl[1])
-	{
 		out = with_equal(arr, str_spl);
-	}
 	else if (str_spl[0] && str_spl[1] == NULL)
-	{
 		out = without_equal(i, arr, str_spl);
+	if (flag == 1)
+	{
+		write(fd, out, ft_strlen(out));
+		write(fd, "\n", 1);
 	}
-	write(fd, out, ft_strlen(out));
-	write(fd, "\n", 1);
+	else
+		printf("%s\n", out);
 	free(out);
-	out = NULL;
 }
 
-/*
-? a loop that passing content of expo_env to function above
-*/
+/******************************************************
+*				*  loop for every *
+******************************************************/
 
-void	fix_list(t_list *notComp, int fd)
+void	fix_list(t_list *notComp, int fd, int flag)
 {
 	t_list	*tmp;
 	int		i;
@@ -110,7 +122,7 @@ void	fix_list(t_list *notComp, int fd)
 	tmp = notComp;
 	while (i < ft_lstsize(notComp))
 	{
-		assemebly_str(tmp->content, fd);
+		assemebly_str(tmp->content, fd, flag);
 		tmp = tmp->next;
 		i++;
 	}

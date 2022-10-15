@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void	exp_sorting(t_list *en, int fd)
+void	exp_sorting(t_list *en, int fd, int flag)
 {
 	t_list	*tmp;
 	char	*str;
@@ -25,7 +25,7 @@ void	exp_sorting(t_list *en, int fd)
 		}
 		i++;
 	}
-	fix_list(en, fd);
+	fix_list(en, fd, flag);
 }
 
 void	sel_env(char *s, t_list **en)
@@ -143,7 +143,7 @@ void	valid_exp(t_mcmd *command, int i)
 		not_many_eq(command, i);
 }
 
-void	export_new(t_mcmd *command, int i, int s)
+void	export_new(t_mcmd *command, int i, int s, int flag)
 {
 	if (s == 1 || s == 4)
 	{
@@ -161,12 +161,12 @@ void	export_new(t_mcmd *command, int i, int s)
 	}
 	else if (s == 3)
 	{
-		exp_sorting(command->exp_en, command->fd[1]);
+		exp_sorting(command->exp_en, command->out, flag);
 		g_status = 0;
 	}
 }
 
-void	new_export(t_mcmd *command)
+void	new_export(t_mcmd *command, int flag)
 {
 	int	i;
 	int	ac;
@@ -187,37 +187,13 @@ void	new_export(t_mcmd *command)
 				break ;
 			}
 			else
-				export_new(command, i, s);
-			// else if (s == 1 || s == 4)
-			// {
-			// 	if (s == 1)
-			// 		printf("export: `%s': not a valid identifier\n",
-			// 			command->av[i]);
-			// 	else
-			// 		printf("%s: event not found\n", command->av[i]);
-			// 	g_status = 1;
-			// }
-			// else if (s == 0)
-			// {
-			// 	valid_exp(command, i);
-			// 	g_status = 0;
-			// }
-			// else if (s == 3)
-			// {
-			// 	exp_sorting(command->exp_en, command->fd[1]);
-			// 	g_status = 0;
-			// }
+				export_new(command, i, s, flag);
 			i++;
 		}
 	}
 	else if ((ac == 1) && !ft_strcmp(command->av[0], "export"))
 	{
-		exp_sorting(command->exp_en, command->fd[1]);
+		exp_sorting(command->exp_en, command->out, flag);
 		g_status = 0;
-	}
-	else
-	{
-		printf("`%s': command not found\n", command->av[i]);
-		g_status = 127;
 	}
 }

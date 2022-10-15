@@ -1,7 +1,7 @@
 #include "../minishell.h"
 
 /******************************************************
-*		*this is one is when in the first time*
+*		* this is one is when in the first time *
 ******************************************************/
 
 t_list	*ft_env(char **en)
@@ -27,7 +27,7 @@ t_list	*ft_env(char **en)
 	return (tmp_en);
 }
 /******************************************************
-*	*this only work for if i put export command*
+*	* this only work for if i put export command *
 ******************************************************/
 
 void	my_env(t_mcmd *command)
@@ -42,7 +42,7 @@ void	my_env(t_mcmd *command)
 }
 
 /******************************************************
-*	*this only work for if i put export command*
+*	* this only work for if i put export command *
 ******************************************************/
 
 void	exp_envp(t_list *list, int fd, int flag)

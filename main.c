@@ -1,9 +1,8 @@
 #include "minishell.h"
 
 /************************************************************************
-* 							  saving a home  							*
+*		 		*			path home back-up			*
 ************************************************************************/
-
 void	save_home(t_mcmd *command)
 {
 	int		i;
@@ -17,7 +16,7 @@ void	save_home(t_mcmd *command)
 }
 
 /************************************************************************
-* 			check a string if it's already there						*
+* 		*			check is variable is already in env			*
 ************************************************************************/
 
 int	check_env(t_list *en, char *s)
@@ -49,7 +48,7 @@ int	check_env(t_list *en, char *s)
 }
 
 /************************************************************************
-* 				adding OLDPWD if there isn't one						*
+* 		*			adding OLDPWD if there isn't one			*
 ************************************************************************/
 
 void	init_minishell(t_mcmd *command, char **envp)
@@ -64,6 +63,10 @@ void	init_minishell(t_mcmd *command, char **envp)
 	}
 	save_home(command);
 }
+
+/************************************************************************
+* 		*			wildcard + parsing + execusion			*
+************************************************************************/
 
 void	mini_action(t_mish ms, t_mcmd command)
 {
@@ -82,6 +85,10 @@ void	mini_action(t_mish ms, t_mcmd command)
 	p_free(&command);
 	free(ms.line);
 }
+
+/************************************************************************
+* 		*			main minishell handling inputs			*
+************************************************************************/
 
 int	main(int argc, char *argv[], char *envp[])
 {

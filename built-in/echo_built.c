@@ -1,5 +1,9 @@
 #include "../minishell.h"
 
+/******************************************************
+*			*	check if there's option		*
+******************************************************/
+
 int	check_option(char *str)
 {
 	if (!str)
@@ -25,6 +29,10 @@ int	check_option(char *str)
 	return (1);
 }
 
+/******************************************************
+*				*  echo print  *
+******************************************************/
+
 void	print_echo(char *str, int flag, int fd, int type)
 {
 	if (type == 1)
@@ -45,6 +53,10 @@ void	print_echo(char *str, int flag, int fd, int type)
 			printf("%s\n", str);
 	}
 }
+
+/******************************************************
+*			*  process with option  *
+******************************************************/
 
 void	with_option(int fd, char *str[], int i, int flag)
 {
@@ -67,6 +79,10 @@ void	with_option(int fd, char *str[], int i, int flag)
 	print_echo(s1, flag, fd, 1);
 	free(s1);
 }
+
+/******************************************************
+*  			*  process without option  *
+******************************************************/
 
 void	without_option(int fd, char *str[], int i, int flag)
 {
@@ -93,6 +109,10 @@ void	without_option(int fd, char *str[], int i, int flag)
 	print_echo(s1, flag, fd, 0);
 	free(s1);
 }
+
+/******************************************************
+*  				*  main echo function  *
+******************************************************/
 
 void	my_echo(char *str[], int fd, int flag)
 {

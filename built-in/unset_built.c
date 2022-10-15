@@ -1,9 +1,8 @@
 #include "../minishell.h"
 
-/*
-*	return the position of the variable in the env, exp_en or export
-*	if  there's no return 0
-*/
+/******************************************************
+*  * give the position of that preticular variables *
+******************************************************/
 
 int	check_var(char *str, t_list *en)
 {
@@ -31,9 +30,9 @@ int	check_var(char *str, t_list *en)
 	return (0);
 }
 
-/*
-*	free the position of the variable if there's 
-*/
+/******************************************************
+*			*	remove variable in env	*
+******************************************************/
 
 t_list	*my_unset(int ac, char **av, t_list *en)
 {
@@ -68,6 +67,10 @@ t_list	*my_unset(int ac, char **av, t_list *en)
 	}
 	return (en);
 }
+
+/******************************************************
+*			*	main of unset	*
+******************************************************/
 
 void	init_unset(t_mcmd *command)
 {

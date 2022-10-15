@@ -2,7 +2,7 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
-# include "minishell_parsing/parser.h"
+# include "parsing/parser.h"
 # include <stdio.h>
 # include <string.h>
 # include <signal.h>
@@ -59,7 +59,7 @@ typedef struct s_mcmd
 void	rl_replace_line(const char *text, int clear_undo);
 
 /**************************************************************************
-*				*      before action    *
+*						*      before action    *
 ***************************************************************************/
 
 void	init_minishell(t_mcmd *command, char **envp);
@@ -82,13 +82,13 @@ void	my_env(t_mcmd *command);
 //	export
 char	*with_equal(char *str, char **spl_str);
 char	*without_equal(int i, char *arr, char **spl_str);
-void	assemebly_str(char *lst, int fd);
-void	fix_list(t_list *notComp, int fd);
+void	assemebly_str(char *lst, int fd, int flag);
+void	fix_list(t_list *notComp, int fd, int flag);
 int		check_eq(char *str);
 int		many_eq(char *str);
 char	**make_env(int i, char *lst);
-void	exp_sorting(t_list *en, int fd);
-void	new_export(t_mcmd *command);
+void	exp_sorting(t_list *en, int fd, int flag);
+void	new_export(t_mcmd *command, int fd);
 void	sel_env(char *s, t_list **en);
 int		check_av(char *av);
 int		char_valid(char c);
@@ -151,11 +151,8 @@ int		check_char(char c1, char c2);
 void	ft_free(char **str);
 void	list_free(t_list *command);
 
-// void	handle_signal(int signum);
 void	free_two(char **str, int i);
 void	sig_handler(int sig);
-// void	void_sig(int sig);
-void	void_sig2(int sig);
 
 int		ft_strcmp(char *s1, char *s2);
 

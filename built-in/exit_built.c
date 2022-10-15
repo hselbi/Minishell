@@ -1,5 +1,9 @@
 #include "../minishell.h"
 
+/******************************************************
+*			*  a string has a digit  *
+******************************************************/
+
 int	is_digit(char *str)
 {
 	int	i;
@@ -14,6 +18,9 @@ int	is_digit(char *str)
 	return (1);
 }
 
+/******************************************************
+*			*  process exit with args  *
+******************************************************/
 void	exit_args(int ac, char *av[], int status)
 {
 	if (ac == 3 && is_digit(av[1]))
@@ -34,6 +41,10 @@ void	exit_args(int ac, char *av[], int status)
 		g_status = 1;
 	}
 }
+
+/******************************************************
+*			*	main of exit	*
+******************************************************/
 
 void	my_exit(int ac, char **av)
 {

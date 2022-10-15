@@ -108,7 +108,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 		if (!(command->path) && !is_built(command->spl_str[0]))
 		{
 			free(command->path);
-			puts("Error: Command not found\n");
+			puts("Error: Command not found");
 			exit(127);
 		}
 		else if (!ft_builtin(command, 0))

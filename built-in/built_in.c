@@ -19,7 +19,7 @@ int	buildin_cmd(t_mcmd *command, int i, int fd)
 {
 	if (!ft_strcmp(command->av[0], "export"))
 	{
-		new_export(command);
+		new_export(command, fd);
 		return (1);
 	}
 	else if (!is_valid(command->av[0], "ENV"))
