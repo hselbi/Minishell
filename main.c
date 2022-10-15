@@ -49,22 +49,6 @@ int	check_env(t_list *en, char *s)
 }
 
 /************************************************************************
-* 					check a spaces in a string							*
-************************************************************************/
-
-int	spaces_check(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == ' ')
-		i++;
-	if (i == (int)ft_strlen(str))
-		return (1);
-	return (0);
-}
-
-/************************************************************************
 * 				adding OLDPWD if there isn't one						*
 ************************************************************************/
 
@@ -81,23 +65,22 @@ void	init_minishell(t_mcmd *command, char **envp)
 	save_home(command);
 }
 
-char	**ft_envcpy(char *en[])
+void	mini_action(t_mish ms, t_mcmd command)
 {
-	char	**cpyen;
-	int		i;
+	t_pars	tmp;
 
-	i = 0;
-	while (en[i])
-		i++;
-	cpyen = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (en[i])
+	ms.line = wc_handle(ms.line);
+	befor_make_struct(ms.line, &command.pars);
+	args_pars(command.pars);
+	tmp = command.pars;
+	while (tmp.args_array)
 	{
-		cpyen[i] = ft_strdup(en[i]);
-		i++;
+		command.ac++;
+		tmp.args_array = tmp.args_array->next;
 	}
-	cpyen[i] = 0;
-	return (cpyen);
+	ft_exec(&command);
+	p_free(&command);
+	free(ms.line);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -105,7 +88,6 @@ int	main(int argc, char *argv[], char *envp[])
 	t_mish	ms;
 	t_mcmd	command;
 	t_pars	pars;
-	t_pars	tmp;
 	int		i;
 
 	(void)argv;
@@ -135,21 +117,8 @@ int	main(int argc, char *argv[], char *envp[])
 			continue ;
 		}
 		if (ms.line)
-		{
-			befor_make_struct(ms.line, &command.pars);
-			args_pars(command.pars);
-			tmp = command.pars;
-			while (tmp.args_array)
-			{
-				command.ac++;
-				tmp.args_array = tmp.args_array->next;
-			}
-			ft_exec(&command);
-			p_free(&command);
-		}
-		free(ms.line);
-		// system("leaks minishell");
+			mini_action(ms, command);
+		system("leaks minishell");
 	}
-
 	return (0);
 }

@@ -203,19 +203,21 @@ void	print_struct(t_mcmd *commmad);
 void	lst_clear(t_mcmd **lst, void (*del)(void*));
 
 /**************************************************************************
-* 					*          wildcard		      *							  
+* 					*          wildcard		      *					
 ***************************************************************************/
 
-void	init_wild(t_pars *array_args);
-void	wild_take(char *str);
-char	*wild_path(char *s);
-int		is_asterisk(char c, char *str);
-int		s_count(char *s);
-size_t	ast_strlen(char *s, char c);
-void	add_arg(char *str, char *tmp);
-char	*free_strjoin(char const *s1, char const *s2);
-int		str_match(char *s1, char *s2, int i, int j);
-void	wild_on(char *str, char *s, int i, char **sp);
-int		is_strequ(char *s1, char *s2);
+int		size_dir(void);
+char	**files_tab(int len);
+char	*wc_handle(char *line);
+char	*ast_replace(char *line, int i);
+int		finish_finder(char *str, int i);
+int		start_finder(char *str, int i);
+int		suffix_check(char *str, char *su);
+char	*suffix(char *str);
+char	*prefix(char *str);
+char	*ft_strdup2(char *str);
+char	*strjoin_free(char *s1, char const *s2);
+char	*wc_parser(char *str, int i, char *out, char **arr);
+void	free_ast(char *pre, char *su, char **arr);
 
 #endif // MINISHELL_H

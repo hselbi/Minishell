@@ -34,3 +34,19 @@ int	isspaces(char *str)
 	}
 	return (1);
 }
+
+/************************************************************************
+* 					check a spaces in a string							*
+************************************************************************/
+
+int	spaces_check(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (i == (int)ft_strlen(str))
+		return (1);
+	return (0);
+}

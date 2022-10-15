@@ -10,7 +10,7 @@ BUILDIN = cd_built.c envir_built.c export_built.c export_built2.c export_built3.
 
 PATH_PRINT = $(addprefix print_for_debug/, print_env.c print_pars.c)
 
-WD = wildcard/wildcard.c wildcard/wildcard_utils.c
+WD = wildcard/wildcard.c wildcard/wildcard_utils1.c wildcard/wildcard_utils2.c
 
 # /************************************************************/
 SRC = main.c $(addprefix $(PATH_BUILTIN), $(BUILDIN)) $(PATH_PRINT) $(TOOLS) $(EXEC) $(WD)

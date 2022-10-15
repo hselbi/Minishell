@@ -49,10 +49,6 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 	}
 }
 
-
-/*
-if only 
-*/
 void	redirect(t_pars *arr, t_mcmd *command)
 {
 	if (arr->fd_input != 0)
@@ -88,7 +84,7 @@ void	fd_pipe(t_mcmd *command)
 int	ft_exec(t_mcmd *command)
 {
 	t_pars	cmd;
-	int	flag;
+	int		flag;
 
 	command->in = 0;
 	command->out = 1;
@@ -100,7 +96,8 @@ int	ft_exec(t_mcmd *command)
 		flag = 0;
 		command->av = cmd.args_array->args;
 		command->spl_str = cmd.args_array->args;
-		if (!command->av[0])
+		if (!command->av[0] || \
+			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 			return (0);
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
