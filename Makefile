@@ -8,7 +8,7 @@ PATH_BUILTIN = built-in/
 
 BUILDIN = cd_built.c envir_built.c export_built.c export_built2.c export_built3.c pwd_built.c unset_built.c echo_built.c exit_built.c built_in.c
 
-PATH_PRINT = $(addprefix print_for_debug/, print_env.c print_pars.c)
+PATH_PRINT = $(addprefix print_for_debug/, print_pars.c)
 
 WD = wildcard/wildcard.c wildcard/wildcard_utils1.c wildcard/wildcard_utils2.c
 
@@ -34,7 +34,7 @@ RFLAGS = -lreadline -I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readlin
 
 FLAGS = -Wall -Wextra -Werror
 
-FSA_ADD = -g -fsanitize=address
+FSA_ADD = -fsanitize=address -g
 
 # -fno-omit-frame-pointer : a nice stack traces in error messages
 
@@ -48,7 +48,7 @@ all: ${NAME}
 $(NAME): $(OBJ) $(SRC)
 	@$(MAKE) -C Libft
 	@$(MAKE) -C minishell_parsing
-	@$(CC) $(FLAG) $(RFLAGS) $(OBJ) $(LIBFT) $(PARSE) -o $(NAME)
+	@$(CC) $(FLAG) $(FSA_ADD) $(RFLAGS) $(OBJ) $(LIBFT) $(PARSE) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJ)

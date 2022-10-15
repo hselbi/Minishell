@@ -27,7 +27,7 @@ int	check_var(char *str, t_list *en)
 		free_two(s, 1);
 		tmp = tmp->next;
 	}
-	free_two(s, 1);
+	// free_two(s, 1);
 	return (0);
 }
 

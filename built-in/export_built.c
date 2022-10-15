@@ -60,19 +60,6 @@ void	sel_env(char *s, t_list **en)
 	free_two(str, 1);
 }
 
-int	char_valid(char c)
-{
-	if (c == '-')
-		return (2);
-	else if (c == '!')
-		return (4);
-	else if (ft_isdigit(c))
-		return (1);
-	else if (c == '#')
-		return (3);
-	return (0);
-}
-
 int	check_av(char *av)
 {
 	char	**str;
@@ -114,6 +101,20 @@ int	check_av(char *av)
 	return (0);
 }
 
+void	not_many_eq(t_mcmd *command, int i)
+{
+	int	j;
+	int	k;
+
+	k = check_var(command->av[i], command->en);
+	j = check_var(command->av[i], command->exp_en);
+	if (k)
+		sel_env(command->av[i], &command->exp_en);
+	if (j)
+		sel_env(command->av[i], &command->en);
+	ft_lstadd_back(&command->exp_en, ft_lstnew(command->av[i]));
+}
+
 void	valid_exp(t_mcmd *command, int i)
 {
 	char	**str;
@@ -139,14 +140,29 @@ void	valid_exp(t_mcmd *command, int i)
 		free(str);
 	}
 	else
+		not_many_eq(command, i);
+}
+
+void	export_new(t_mcmd *command, int i, int s)
+{
+	if (s == 1 || s == 4)
 	{
-		k = check_var(command->av[i], command->en);
-		j = check_var(command->av[i], command->exp_en);
-		if (k)
-			sel_env(command->av[i], &command->exp_en);
-		if (j)
-			sel_env(command->av[i], &command->en);
-		ft_lstadd_back(&command->exp_en, ft_lstnew(command->av[i]));
+		if (s == 1)
+			printf("export: `%s': not a valid identifier\n",
+				command->av[i]);
+		else
+			printf("%s: event not found\n", command->av[i]);
+		g_status = 1;
+	}
+	else if (s == 0)
+	{
+		valid_exp(command, i);
+		g_status = 0;
+	}
+	else if (s == 3)
+	{
+		exp_sorting(command->exp_en, command->fd[1]);
+		g_status = 0;
 	}
 }
 
@@ -170,25 +186,27 @@ void	new_export(t_mcmd *command)
 				printf("export: %s: invalid option\n", command->av[i]);
 				break ;
 			}
-			else if (s == 1 || s == 4)
-			{
-				if (s == 1)
-					printf("export: `%s': not a valid identifier\n",
-						command->av[i]);
-				else
-					printf("%s: event not found\n", command->av[i]);
-				g_status = 1;
-			}
-			else if (s == 0)
-			{
-				valid_exp(command, i);
-				g_status = 0;
-			}
-			else if (s == 3)
-			{
-				exp_sorting(command->exp_en, command->fd[1]);
-				g_status = 0;
-			}
+			else
+				export_new(command, i, s);
+			// else if (s == 1 || s == 4)
+			// {
+			// 	if (s == 1)
+			// 		printf("export: `%s': not a valid identifier\n",
+			// 			command->av[i]);
+			// 	else
+			// 		printf("%s: event not found\n", command->av[i]);
+			// 	g_status = 1;
+			// }
+			// else if (s == 0)
+			// {
+			// 	valid_exp(command, i);
+			// 	g_status = 0;
+			// }
+			// else if (s == 3)
+			// {
+			// 	exp_sorting(command->exp_en, command->fd[1]);
+			// 	g_status = 0;
+			// }
 			i++;
 		}
 	}

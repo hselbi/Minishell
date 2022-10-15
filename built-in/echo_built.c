@@ -25,6 +25,27 @@ int	check_option(char *str)
 	return (1);
 }
 
+void	print_echo(char *str, int flag, int fd, int type)
+{
+	if (type == 1)
+	{
+		if (flag == 1)
+			write(fd, str, ft_strlen(str));
+		else
+			printf("%s", str);
+	}
+	else
+	{
+		if (flag == 1)
+		{
+			write(fd, str, ft_strlen(str));
+			write(fd, "\n", 1);
+		}
+		else
+			printf("%s\n", str);
+	}
+}
+
 void	with_option(int fd, char *str[], int i, int flag)
 {
 	char	*s1;
@@ -43,12 +64,8 @@ void	with_option(int fd, char *str[], int i, int flag)
 		s2 = NULL;
 		i++;
 	}
-	if (flag == 1)
-		write(fd, s1, ft_strlen(s1));
-	else
-		printf("%s", s1);
+	print_echo(s1, flag, fd, 1);
 	free(s1);
-	s1 = NULL;
 }
 
 void	without_option(int fd, char *str[], int i, int flag)
@@ -73,15 +90,8 @@ void	without_option(int fd, char *str[], int i, int flag)
 		s2 = NULL;
 		i++;
 	}
-	if (flag == 1)
-	{
-		write(fd, s1, ft_strlen(s1));
-		write(fd, "\n", 1);
-	}
-	else
-		printf("%s\n", s1);
+	print_echo(s1, flag, fd, 0);
 	free(s1);
-	s1 = NULL;
 }
 
 void	my_echo(char *str[], int fd, int flag)

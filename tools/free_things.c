@@ -59,17 +59,24 @@ void	free_two(char **str, int i)
 {
 	if (i == 0)
 	{
-		free(str[0]);
-		str[0] = NULL;
-		free(str[1]);
-		str[1] = NULL;
-		free(str);
-		str = NULL;
+		if (str[0])
+		{
+			free(str[0]);
+			str[0] = NULL;
+			free(str[1]);
+			str[1] = NULL;
+			free(str);
+			str = NULL;
+		}
+		
 	}
 	else
 	{
-		free(str[0]);
-		free(str[1]);
-		free(str);
+		if (str[0])
+		{
+			free(str[0]);
+			free(str[1]);
+			free(str);
+		}
 	}
 }

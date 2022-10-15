@@ -12,32 +12,13 @@
 # include <sys/wait.h>
 # include <errno.h>
 # include <dirent.h>
-#include <termios.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 /**************************************************************************
 *				*      structures types    *
 ***************************************************************************/
-/*			for wildcard			*/
-
-typedef struct s_wild {
-	char			*str;
-	int				type;
-	struct s_wild	*next;
-	struct s_wild	*prev;
-}			t_wild;
-
-/*		i dont think that i need this one		*/
-
-typedef struct s_cmd
-{
-	struct s_cmd	*args;
-	char			*com;
-	int				ft_input;
-	int				ft_output;
-	struct s_cmd	*next;
-}	t_cmd;
 
 /* global variable for code status exit */
 /******************************/
@@ -46,17 +27,15 @@ int			g_status;
 
 /*		i dont think that i need this one		*/
 
-typedef struct s_mish //MIniSHell
+typedef struct s_mish
 {
-	int		ind;
 	char	*line;
-	t_list	*envi;
 
 }	t_mish;
 
 /*		main structs that need to pass everything		*/
 
-typedef struct s_mcmd //Minishell CoMmanD
+typedef struct s_mcmd
 {
 	t_list	*en;
 	t_list	*exp_en;
@@ -112,6 +91,7 @@ void	exp_sorting(t_list *en, int fd);
 void	new_export(t_mcmd *command);
 void	sel_env(char *s, t_list **en);
 int		check_av(char *av);
+int		char_valid(char c);
 
 //	exit
 void	my_exit(int ac, char **av);
@@ -120,9 +100,10 @@ int		is_digit(char *str);
 
 // echo
 void	my_echo(char *str[], int fd, int flag);
+int		check_option(char *str);
 void	without_option(int fd, char *str[], int i, int flag);
 void	with_option(int fd, char *str[], int i, int flag);
-int		check_option(char *str);
+void	print_echo(char *str, int flag, int fd, int type);
 
 // cd
 int		init_cd(t_mcmd *command, int i);

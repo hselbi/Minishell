@@ -1,6 +1,8 @@
 #include "../minishell.h"
 
-/*	check if there's "=" return pos	*/
+/**************************************************************************
+*			*          check if there's equality symbol		      *					  
+***************************************************************************/
 
 int	check_eq(char *str)
 {
@@ -18,7 +20,9 @@ int	check_eq(char *str)
 	return (0);
 }
 
-/*		check how many "="		*/
+/**************************************************************************
+*	*          check how many equalities symbol are there		      *					  
+***************************************************************************/
 
 int	many_eq(char *str)
 {
@@ -36,4 +40,21 @@ int	many_eq(char *str)
 		i++;
 	}
 	return (j);
+}
+
+/**************************************************************************
+*		*          check if it is forbidden character		      *					  
+***************************************************************************/
+
+int	char_valid(char c)
+{
+	if (c == '-')
+		return (2);
+	else if (c == '!')
+		return (4);
+	else if (ft_isdigit(c))
+		return (1);
+	else if (c == '#')
+		return (3);
+	return (0);
 }
