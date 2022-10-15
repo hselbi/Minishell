@@ -40,7 +40,3 @@ void	my_env(t_mcmd *command)
 		g_status = 1;
 	}
 }
-
-/******************************************************
-	this only work for if i put export command
-******************************************************/
