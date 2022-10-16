@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 20:41:56 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 21:34:25 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ void	make_struct_to_execute(t_pars *pars)
 		else if (sp[pars->index][0] == '<')
 			make_infile(sp, pars);
 		else
-			args[j++] = ft_strdupp(sp[pars->index++]);
+			args[j++] = sp[pars->index++];
 	}
 	args[j] = NULL;
 	crea_node = new_lst(args, pars);
 	back_lstadd(&pars->args_array, crea_node);
 	free(crea_node);
-	j = 0;
-	while (sp[j])
-		free(sp[j++]);
 	free(sp);
 }

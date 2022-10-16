@@ -28,25 +28,20 @@ void	ft_free(char **str)
 
 void	p_free(t_mcmd *command)
 {
-	int i;
+	int	i;
 
 	while (command->pars.args_array)
 	{
 		i = 0;
-		fprintf(stderr, "qqqqqqqqqqqq\n");
-		while(command->pars.args_array->args[i])
+		while (command->pars.args_array->args[i])
 		{
-			fprintf(stderr, "%p\n",command->pars.args_array->args[i]);
-			fprintf(stderr, "rrrrrrrrrrrrr\n");
 			free(command->pars.args_array->args[i]);
 			command->pars.args_array->args[i] = NULL;
 			i++;
 		}
-		fprintf(stderr, "aaaa\n");
 		free(command->pars.args_array->args);
 		command->pars.args_array->args = NULL;
 		command->pars.args_array = command->pars.args_array->next;
-		fprintf(stderr, "vvvvvvvvvvvv\n");
 	}
 	free(command->pars.args_array);
 	command->pars.args_array = NULL;

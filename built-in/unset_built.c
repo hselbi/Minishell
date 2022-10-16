@@ -16,11 +16,9 @@ int	check_var(char *str, t_list *en)
 		return (0);
 	while (tmp != 0)
 	{
-		printf("%d==>\n", i);
 		s = ft_split(tmp->content, '=');
 		if (!ft_strcmp(str, s[0]))
 		{
-			printf("%d==>\n", i);
 			free_two(s, 0);
 			return (i);
 		}

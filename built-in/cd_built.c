@@ -60,6 +60,10 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 	}
 }
 
+/******************************************************
+*  				*	get from my env		*
+******************************************************/
+
 char	*my_getenv(t_list *env, int i)
 {
 	char	*str;
@@ -82,6 +86,7 @@ char	*my_getenv(t_list *env, int i)
 	}
 	return (str);
 }
+
 
 /******************************************************
 *  			*	process of cd function	 *
@@ -117,9 +122,7 @@ void	my_cd(t_mcmd *command, int ac)
 	}
 	if (check_var("PWD", command->en))
 	{
-		printf("yesy1\n");
 		adding_oldpath(command, ori_path);
-		printf("yesy2\n");
 		adding_newpath(command, buffer);
 		// free_two(command->av, 0);
 	}
@@ -142,6 +145,5 @@ int	init_cd(t_mcmd *command, int i)
 		i++;
 	}
 	my_cd(command, ac);
-	fprintf(stderr, "fgsdfg\n");
 	return (1);
 }

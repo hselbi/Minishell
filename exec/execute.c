@@ -83,48 +83,47 @@ void	fd_pipe(t_mcmd *command)
 	}
 }
 
+void	close_fd(t_mcmd *command)
+{
+	if (command->out != 1 && close(command->out) == -1)
+		perror("fd: out");
+	if (command->in != 0 && close(command->in) == -1)
+		perror("fd: in");
+}
+
+void	init_exec(t_mcmd *command)
+{
+	command->in = 0;
+	command->out = 1;
+	command->index = 0;
+	command->pid = 0;
+}
+
 int	ft_exec(t_mcmd *command)
 {
 	t_pars	cmd;
 	int		flag;
 
-	command->in = 0;
-	command->out = 1;
-	command->index = 0;
-	command->pid = 0;
 	cmd = command->pars;
+	init_exec(command);
 	while (++command->index < command->ac)
 	{
 		flag = 0;
 		command->av = cmd.args_array->args;
 		command->spl_str = cmd.args_array->args;
-		fprintf(stderr, "test 0\n");
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 			return (0);
-		fprintf(stderr, "test 1\n");
 		fd_pipe(command);
-		fprintf(stderr, "test 2\n");
 		redirect(cmd.args_array, command);
 		if (command->index == 1 && is_built(command->av[0]))
 		{
-			fprintf(stderr, "test 3\n");
 			flag = 1;
 			ft_builtin(command, flag);
 		}
 		else
-		{
-			fprintf(stderr, "test 4\n");
-			printf("test\n");
 			exec(command, cmd.args_array->args[0], command->en);
-		}
-		fprintf(stderr, "test 5\n");
-		if (command->out != 1 && close(command->out) == -1)
-			perror("fd: out");
-		fprintf(stderr, "test 6\n");
-		if (command->in != 0 && close(command->in) == -1)
-			perror("fd: in");
-		fprintf(stderr, "test 7\n");
+		close_fd(command);
 		command->in = command->fd[0];
 		cmd.args_array = cmd.args_array->next;
 	}
