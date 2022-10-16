@@ -56,14 +56,14 @@ void	redirect(t_pars *arr, t_mcmd *command)
 		if (command->in != 0 && close(command->in) == -1)
 			perror("fd: in");
 		command->in = arr->fd_input;
-		// close(arr->fd_input);
+		close(arr->fd_input);
 	}
 	if (arr->fd_output != 1)
 	{
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		command->out = arr->fd_output;
-		// close(arr->fd_output);
+		close(arr->fd_output);
 	}
 }
 
@@ -109,7 +109,10 @@ int	ft_exec(t_mcmd *command)
 			ft_builtin(command, flag);
 		}
 		else
+		{
+			printf("test\n");
 			exec(command, cmd.args_array->args[0], command->en);
+		}
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		if (command->in != 0 && close(command->in) == -1)
