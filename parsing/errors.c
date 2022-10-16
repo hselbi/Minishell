@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:27:10 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:23:30 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 11:50:07 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	check_pipe_error(char *line)
 {
 	int	i;
 	int	trigger;
+	t_pars	*pars;
 
 	i = 0;
+	pars = NULL;
 	if (line[0] == '|')
-		return (error_pipe());
+		return (error_pipe(pars));
 	trigger = 0;
 	while (line[i])
 	{
@@ -39,7 +41,7 @@ int	check_pipe_error(char *line)
 			i++;
 	}
 	if (trigger == 5)
-		return (error_pipe());
+		return (error_pipe(pars));
 	return (0);
 }
 
@@ -86,13 +88,13 @@ int	check_right_red(char *line, t_pars *pars)
 	while (line[pars->i] && line[pars->i] <= 32)
 		pars->i++;
 	if (!line[pars->i])
-		return (error_newline());
+		return (error_newline(pars));
 	if (line[pars->i] == '<')
-		return (error_red());
+		return (error_red(pars));
 	else if (line[pars->i] == '|')
-		return (error_pipe());
+		return (error_pipe(pars));
 	else if (line[pars->i] == '>')
-		return (error_red());
+		return (error_red(pars));
 	return (0);
 }
 
@@ -106,13 +108,13 @@ int	check_left_red(char *line, t_pars *pars)
 	while (line[pars->i] && line[pars->i] <= 32)
 		pars->i++;
 	if (!line[pars->i])
-		return (error_newline());
+		return (error_newline(pars));
 	if (line[pars->i] == '>')
-		return (error_newline());
+		return (error_newline(pars));
 	else if (line[pars->i] == '|')
-		return (error_pipe());
+		return (error_pipe(pars));
 	else if (line[pars->i] == '<')
-		return (error_newline());
+		return (error_newline(pars));
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/13 19:45:55 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 15:26:41 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	child_here_doc(int *fd, t_pars *pars)
 	line = get_next_line(0);
 	while (cmp_limiter(pars->limiter, line))
 	{
+		if (pars->exp == 0)
+			line = check_dollar(line, pars);
 		write(fd[1], line, ft_strleng(line));
 		free(line);
 		line = get_next_line(0);
@@ -79,20 +81,24 @@ void	for_here_doc(char *cmd, t_pars *pars)
 	pars->limiter = NULL;
 	pars->i += 2;
 	pars->check = 0;
+	pars->exp = 0;
 	while (cmd[pars->i] <= 32)
 		pars->i++;
 	if (cmd[pars->i] == '<' || cmd[pars->i] == '>' || cmd[pars->i] == '|')
 		error_exit("syntax error near unexpected token", pars);
 	while (cmd[pars->i])
 	{
+		check_open_quote2(cmd, pars);
+		if (pars->check)
+			pars->exp = 5;
 		if (pars->check == 0 && (cmd[pars->i] == '<'
 				|| cmd[pars->i] == '>' || cmd[pars->i] == ' '))
 			break ;
-		check_open_quote2(cmd, pars);
 		if (cmd[pars->i])
 			limiter_maker(cmd, pars);
 	}
-	printf("limiter is %s\n", pars->limiter);
+	pars->limiter = ft_strjoinn(pars->limiter, space("\n"));
+	// printf("limiter is %s\n", pars->limiter);
 	if (!pars->limiter)
 		error_exit("syntax error near unexpected token `newline'", pars);
 	else

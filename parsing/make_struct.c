@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:21:53 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 15:44:09 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	make_struct_to_execute(t_pars *pars)
 	if (!pars->for_struct)
 		return ;
 	sp = ft_spliti(pars->for_struct, '	');
+	free(pars->for_struct);
 	cmd_nmb = count_commands(sp);
 	args = (char **)malloc(sizeof(char *) * (cmd_nmb + 1));
 	if (!args)
@@ -48,4 +49,6 @@ void	make_struct_to_execute(t_pars *pars)
 	args[j] = NULL;
 	crea_node = new_lst(args, pars);
 	back_lstadd(&pars->args_array, crea_node);
+	free(crea_node);
+	free(sp);
 }

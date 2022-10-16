@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:01:59 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:21:05 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 15:27:13 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,5 @@ void	take_word_2(char *commands, t_pars *pars, int i)
 		word[j++] = commands[pars->i];
 	pars->i++;
 	word[j] = '\0';
-		pars->for_struct = ft_strjoinn(pars->for_struct, word);
+	pars->for_struct = ft_strjoinn(pars->for_struct, word);
 }

@@ -30,7 +30,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-RFLAGS = -lreadline -I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readline -L /Users/hselbi/.brew/Cellar/readline/8.1.2/lib
+RFLAGS = -lreadline #-I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readline -L /Users/hselbi/.brew/Cellar/readline/8.1.2/lib
 
 FLAGS = -Wall -Wextra -Werror
 

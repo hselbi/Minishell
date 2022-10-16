@@ -20,7 +20,10 @@ void    args_pars(t_pars pars)
 		while (tmp->args_array->args[i])
 		{
 			if (!i)
+			{
+				printf("%p ==> ", tmp->args_array->args[i]);
 				printf("└──%s\n", tmp->args_array->args[i]);
+			}
 			else if (i + 1 == ac)
 				printf("   └── [%s]\n", tmp->args_array->args[i]);
 			else

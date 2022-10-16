@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 18:25:00 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:22:29 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 12:05:07 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_strdupl(char *s1)
 
 	if (!s1)
 		return (0);
-	s2 = malloc(sizeof(char) * ft_strleng(s1) + 1);
+	s2 = malloc(sizeof(char) * ft_strleng(s1) + 2);
 	if (!s2)
 		return (NULL);
 	i = 0;
@@ -68,6 +68,30 @@ char	*ft_strdupl(char *s1)
 		s2[i] = s1[i];
 		i++;
 	}
+	if (s1[i] == '\n')
+		s2[i++] = '\n';
+	s2[i] = '\0';
+	return (s2);
+}
+
+char	*ft_strdupp(char *s1)
+{
+	char	*s2;
+	int		i;
+
+	if (!s1)
+		return (0);
+	s2 = malloc(sizeof(char) * ft_strleng(s1) + 2);
+	if (!s2)
+		return (NULL);
+	i = 0;
+	while (s1[i] && s1[i] != '\n')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	if (s1[i] == '\n')
+		s2[i++] = '\n';
 	s2[i] = '\0';
 	return (s2);
 }

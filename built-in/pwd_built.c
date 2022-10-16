@@ -9,6 +9,7 @@ int	ft_pwd(t_mcmd *command, int fd)
 	char	buff[1024];
 	char	*s1;
 
+	fd = (int)fd;
 	s1 = "PWD";
 	getcwd(buff, sizeof(buff));
 	if (check_var(s1, command->en) > 0)
