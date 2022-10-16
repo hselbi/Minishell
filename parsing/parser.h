@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:30:26 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:21:17 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 10:53:05 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_pars
 	int				nodes_nmb;
 	int				index;
 	int				trigger;
+	int				exp;
 	char			*for_struct;
 	char			*file;
 	char			*limiter;

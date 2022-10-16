@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:22:58 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:23:10 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 10:51:47 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*expand_it(char	*to_expand, t_pars *pars, int trig)
 	while (pars->env)
 	{
 		cont = pars->env->content;
-		if (!cmp(cont, to_expand))
+		if (!cmp(cont, to_expand) && cont[ft_strleng(to_expand)] == '=')
 		{
 			begin = ft_strleng(to_expand) + 1;
 			end = ft_strleng(cont) - 1;
