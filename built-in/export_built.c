@@ -1,5 +1,9 @@
 #include "../minishell.h"
 
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
+
 void	exp_sorting(t_list *en, int fd, int flag)
 {
 	t_list	*tmp;
@@ -27,6 +31,10 @@ void	exp_sorting(t_list *en, int fd, int flag)
 	}
 	fix_list(en, fd, flag);
 }
+
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
 
 void	sel_env(char *s, t_list **en)
 {
@@ -59,6 +67,10 @@ void	sel_env(char *s, t_list **en)
 	free(tmp);
 	free_two(str, 1);
 }
+
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
 
 int	check_av(char *av)
 {
@@ -101,6 +113,10 @@ int	check_av(char *av)
 	return (0);
 }
 
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
+
 void	not_many_eq(t_mcmd *command, int i)
 {
 	int	j;
@@ -114,6 +130,10 @@ void	not_many_eq(t_mcmd *command, int i)
 		sel_env(command->av[i], &command->en);
 	ft_lstadd_back(&command->exp_en, ft_lstnew(command->av[i]));
 }
+
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
 
 void	valid_exp(t_mcmd *command, int i)
 {
@@ -143,6 +163,10 @@ void	valid_exp(t_mcmd *command, int i)
 		not_many_eq(command, i);
 }
 
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
+
 void	export_new(t_mcmd *command, int i, int s, int flag)
 {
 	if (s == 1 || s == 4)
@@ -165,6 +189,10 @@ void	export_new(t_mcmd *command, int i, int s, int flag)
 		g_status = 0;
 	}
 }
+
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
 
 void	new_export(t_mcmd *command, int flag)
 {

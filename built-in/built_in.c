@@ -1,5 +1,9 @@
 #include "../minishell.h"
 
+/******************************************************
+*  		*  compare lowercase with uppercase  *
+******************************************************/
+
 int	is_valid(char *check, char *mesure)
 {
 	int	i;
@@ -14,6 +18,10 @@ int	is_valid(char *check, char *mesure)
 	}
 	return (0);
 }
+
+/******************************************************
+*  				*  check built-in 1  *
+******************************************************/
 
 int	buildin_cmd(t_mcmd *command, int i, int fd)
 {
@@ -41,6 +49,10 @@ int	buildin_cmd(t_mcmd *command, int i, int fd)
 	}
 	return (0);
 }
+
+/******************************************************
+*  				* check built-in 2  *
+******************************************************/
 
 int	ft_builtin(t_mcmd *command, int fd)
 {

@@ -56,12 +56,14 @@ void	redirect(t_pars *arr, t_mcmd *command)
 		if (command->in != 0 && close(command->in) == -1)
 			perror("fd: in");
 		command->in = arr->fd_input;
+		// close(arr->fd_input);
 	}
-	else if (arr->fd_output != 1)
+	if (arr->fd_output != 1)
 	{
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		command->out = arr->fd_output;
+		// close(arr->fd_output);
 	}
 }
 

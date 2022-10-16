@@ -68,7 +68,6 @@ void	free_two(char **str, int i)
 			free(str);
 			str = NULL;
 		}
-		
 	}
 	else
 	{
