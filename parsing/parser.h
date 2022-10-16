@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:30:26 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 12:05:14 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:49:04 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,10 @@ void	befor_make_struct(char *line, t_pars *pars);
 
 void	error_exit(char *str, t_pars *pars);
 int		check_pipe_error(char *line);
-int		error_pipe(t_pars *pars);
-int		error_newline(t_pars *pars);
-int		error_red(t_pars *pars);
+int		error_pipe();
+int		error_newline();
+int		error_red();
+int		check_check(char *line, t_pars *pars);
 
 /* Outils functions */
 char	*space(char *str);

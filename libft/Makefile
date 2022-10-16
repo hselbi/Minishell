@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
+#    By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 11:45:14 by hselbi            #+#    #+#              #
-#    Updated: 2022/10/12 13:55:16 by hselbi           ###   ########.fr        #
+#    Updated: 2022/10/16 18:52:30 by aerrazik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =	libft.a
 
 CC = gcc
 
-FLAG = -Wall -Wextra -Werror  #-fsanitize=address -g
+FLAG = -Wall -Wextra -Werror  -g3 #-fsanitize=address -g
 
 SRCS = 	ft_atoi.c\
 		ft_bzero.c\

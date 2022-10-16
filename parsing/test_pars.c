@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 19:07:20 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 21:03:40 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 21:22:32 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ void	befor_make_struct(char *line, t_pars *pars)
 			i++;
 		}
 		if (pars->trigger)
-			break ;
-		if (check_error(cont, pars))
 			break ;
 		make_struct(cont, pars);
 		if (pars->check == 0)

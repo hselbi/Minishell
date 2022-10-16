@@ -64,6 +64,7 @@ int	ft_builtin(t_mcmd *command, int fd)
 	if (!is_valid(command->av[0], "CD"))
 	{
 		init_cd(command, 0);
+		fprintf(stderr, "---------fgsdfg\n");
 		return (1);
 	}
 	else if (!is_valid(command->av[0], "PWD"))
