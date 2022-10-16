@@ -51,7 +51,7 @@ char	*sp(const char *s, int e, int b)
 	return (sp);
 }
 
-char	**ft_split_with_pipe(char *s, char c)
+char	**ft_split_with_pipe(char *s, char c, t_pars *pars)
 {
 	t_sp splt;
 
@@ -72,7 +72,7 @@ char	**ft_split_with_pipe(char *s, char c)
 			splt.b = -1;
 			if (s[splt.i] && s[splt.i+1] == c)
 			{
-				write(2, "Error multiple consecutive pipes !\n", 35);
+				error_exit("Error multiple consecutive pipes !\n", pars);
 				break;
 			}
 		}

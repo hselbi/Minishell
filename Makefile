@@ -47,7 +47,7 @@ all: ${NAME}
 
 $(NAME): $(OBJ) $(SRC)
 	@$(MAKE) -C Libft
-	@$(CC) $(FLAG) $(FSA_ADD) $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(FLAG)  $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJ)

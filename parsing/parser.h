@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:30:26 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 10:53:05 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 12:05:14 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ void	befor_make_struct(char *line, t_pars *pars);
 
 void	error_exit(char *str, t_pars *pars);
 int		check_pipe_error(char *line);
-int		error_pipe(void);
-int		error_newline(void);
-int		error_red(void);
+int		error_pipe(t_pars *pars);
+int		error_newline(t_pars *pars);
+int		error_red(t_pars *pars);
 
 /* Outils functions */
 char	*space(char *str);
@@ -134,7 +134,7 @@ int		cmp(char *str1, char *str2);
 t_pars	*new_lst(char **args, t_pars *pars);
 void	back_lstadd(t_pars **alst, t_pars *new);
 t_pars	*last_lst(t_pars *lst);
-char	**ft_split_with_pipe(char *s, char c);
+char	**ft_split_with_pipe(char *s, char c, t_pars *pars);
 char	*ft_strjoin_pipe(char *s1, char *s2);
 char	*ft_strjoin_space(char *s1, char *s2);
 int		count_commands(char **sp);
@@ -145,6 +145,7 @@ int		check_right_red(char *line, t_pars *pars);
 int		check_stach_here_doc(char *line);
 int		check_hd(char *line, int i);
 int		check_first(char *line, t_pars *pars);
+char	*ft_strdupp(char *s1);
 
 /*********************/
 
