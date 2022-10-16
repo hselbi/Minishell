@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 19:07:20 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 12:02:42 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:55:22 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	befor_make_struct(char *line, t_pars *pars)
 			{
 				error_exit("syntax error near unexpected token ' or \" ", pars);
 				pars->trigger = 9;
+				if (cont)
+					free(cont);
 				break ;
 			}
 			check_open_quote(sp[i +1], pars);
@@ -91,8 +93,5 @@ void	befor_make_struct(char *line, t_pars *pars)
 			cont = sp[i +1];
 		i++;
 	}
-	i = 0;
-	while(sp[i])
-		free(sp[i++]);
 	free(sp);
 }

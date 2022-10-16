@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:37:55 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/11 22:20:35 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 15:53:25 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	make_struct(char *commands, t_pars	*pars)
 		else
 			others(commands, pars);
 	}
+	free(commands);
 	make_struct_to_execute(pars);
 }
 

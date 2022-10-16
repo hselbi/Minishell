@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:22:58 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 10:51:47 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:48:33 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*split_it(char *cont)
 		i++;
 	}
 	sp = ft_spliti(cont, ' ');
+	free(cont);
 	i = 0;
 	cont_rep = NULL;
 	while (sp[i])
@@ -34,6 +35,7 @@ char	*split_it(char *cont)
 		cont_rep = ft_strjoin_space(cont_rep, sp[i]);
 		i++;
 	}
+	free(sp);
 	return (cont_rep);
 }
 

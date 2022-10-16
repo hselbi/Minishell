@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 10:55:32 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:26:41 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	for_here_doc(char *cmd, t_pars *pars)
 			limiter_maker(cmd, pars);
 	}
 	pars->limiter = ft_strjoinn(pars->limiter, space("\n"));
-	printf("limiter is %s\n", pars->limiter);
+	// printf("limiter is %s\n", pars->limiter);
 	if (!pars->limiter)
 		error_exit("syntax error near unexpected token `newline'", pars);
 	else

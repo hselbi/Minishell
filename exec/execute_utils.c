@@ -39,7 +39,7 @@ void	is_cmd_path(char **path, char *cmd, char *en[])
 		{
 			printf("%s: No such file or directory\n", cmd);
 			ft_free(path);
-			exit(127);
+			exit(126);
 		}
 	}
 }
