@@ -28,22 +28,19 @@ void	ft_free(char **str)
 
 void	p_free(t_mcmd *command)
 {
-	int	i;
+	int i;
 
 	while (command->pars.args_array)
 	{
 		i = 0;
-		if (command->pars.args_array->args)
+		while (command->pars.args_array->args[i])
 		{
-			while (command->pars.args_array->args[i] != NULL)
-			{
-				free(command->pars.args_array->args[i]);
-				command->pars.args_array->args[i] = NULL;
-				i++;
-			}
-			free(command->pars.args_array->args);
-			command->pars.args_array->args = NULL;
+			free(command->pars.args_array->args[i]);
+			command->pars.args_array->args[i] = NULL;
+			i++;
 		}
+		free(command->pars.args_array->args);
+		command->pars.args_array->args = NULL;
 		command->pars.args_array = command->pars.args_array->next;
 	}
 	free(command->pars.args_array);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 11:59:08 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 15:26:13 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:42:07 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strjoin_pipe(char *s1, char *s2)
 		res[i++] = s2[j++];
 	res[i] = '\0';
 	free(s1);
-	free(s2);
+	// free(s2);
 	return (res);
 }
 

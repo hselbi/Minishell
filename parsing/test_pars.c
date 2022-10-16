@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_pars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 19:07:20 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 15:55:22 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:03:40 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,14 @@ void	befor_make_struct(char *line, t_pars *pars)
 		if (pars->trigger)
 			break ;
 		if (check_error(cont, pars))
-			break;
+			break ;
 		make_struct(cont, pars);
 		if (pars->check == 0)
 			cont = sp[i +1];
 		i++;
 	}
+	i = 0;
+	while (sp[i])
+		free(sp[i++]);
 	free(sp);
 }
