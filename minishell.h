@@ -13,6 +13,8 @@
 # include <errno.h>
 # include <dirent.h>
 # include <termios.h>
+# include <sys/stat.h>
+# include <time.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 

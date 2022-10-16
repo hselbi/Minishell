@@ -25,7 +25,7 @@ void    args_pars(t_pars pars)
 				printf("└──%s\n", tmp->args_array->args[i]);
 			}
 			else if (i + 1 == ac)
-				printf("   └── %s\n", tmp->args_array->args[i]);
+				printf("   └── [%s]\n", tmp->args_array->args[i]);
 			else
 				printf("   ├── %s\n", tmp->args_array->args[i]);
 			i++;
