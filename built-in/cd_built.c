@@ -63,12 +63,22 @@ char	*my_getenv(t_list *env, int i)
 {
 	char	*str;
 	t_list	*tmp;
+	char	**spl;
 
 	tmp = env;
-	while (i--)
+	while (i-- > 1)
 		tmp = tmp->next;
-	fprintf(stderr, " %s\n ", tmp->content + 5);
-	str = ft_strdup(tmp->content + 5);
+	spl = ft_split(tmp->content, ' ');
+	if (!spl[1])
+	{
+		str = ft_strdup(".");
+		free_two(spl, 1);
+	}
+	else
+	{
+		str = ft_strdup(tmp->content + 5);
+		free_two(spl, 1);
+	}
 	return (str);
 }
 
@@ -91,8 +101,7 @@ void	my_cd(t_mcmd *command, int ac)
 	else if (ac == 2)
 	{
 		i = check_var("HOME", command->en);
-		printf("%d\n", i);
-		if (i)
+		if (i > 0)
 			buf = my_getenv(command->en, i);
 		else
 			buf = NULL;
@@ -101,6 +110,7 @@ void	my_cd(t_mcmd *command, int ac)
 			g_status = 1;
 			printf("cd: HOME not set\n");
 		}
+		free(buf);
 		getcwd(buffer, sizeof(buffer));
 	}
 	if (check_var("PWD", command->en))

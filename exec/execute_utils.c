@@ -1,7 +1,7 @@
 #include "../minishell.h"
 
 /************************************************************************
-* 						check is a built-in								*
+* 	*						check is a built-in						*
 ************************************************************************/
 
 int	is_built(char *str)
@@ -23,15 +23,21 @@ int	is_built(char *str)
 	return (0);
 }
 
+/************************************************************************
+*			*			check cmd is a path				*
+************************************************************************/
+
 void	is_cmd_path(char **path, char *cmd, char *en[])
 {
-	if (cmd && !ft_strncmp(cmd, "/", 1))
+	struct stat	stats;
+
+	if (!stat(cmd, &stats))
 	{
-		if (!access(cmd, F_OK) || !access(cmd, X_OK))
+		if (S_ISREG(stats.st_mode))
 		{
 			if (execve(cmd, path, en) == -1)
 			{
-				puts("Error in exceve\n");
+				puts("Error in exceve");
 				exit(127);
 			}
 		}
@@ -39,10 +45,14 @@ void	is_cmd_path(char **path, char *cmd, char *en[])
 		{
 			printf("%s: No such file or directory\n", cmd);
 			ft_free(path);
-			exit(127);
+			exit(126);
 		}
 	}
 }
+
+/************************************************************************
+*			*			check cmd is a path				*
+************************************************************************/
 
 char	*correct_one(char **paths, char *cmd)
 {
@@ -64,6 +74,10 @@ char	*correct_one(char **paths, char *cmd)
 	return (0);
 }
 
+/************************************************************************
+*			*			making a path				*
+************************************************************************/
+
 char	*make_path(char *cmd, char *en[])
 {
 	char	*line;
@@ -76,7 +90,7 @@ char	*make_path(char *cmd, char *en[])
 		i++;
 	if (en[i] == NULL)
 	{
-		puts("Error: Path has been removed\n");
+		puts("Error: Path has been removed");
 		exit(127);
 	}
 	line = ft_strdup(en[i] + 5);
@@ -92,6 +106,10 @@ char	*make_path(char *cmd, char *en[])
 	return (result);
 }
 
+/************************************************************************
+*		*			starting action for execusion			*
+************************************************************************/
+
 void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 {
 	int	i;
@@ -100,7 +118,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 	(void)cmd;
 	while (command->spl_str[i++] != NULL)
 		command->ac_spl++;
-	if ((command->spl_str[0] && (!ft_strncmp(command->spl_str[0], "/", 1))))
+	if (!ft_strncmp(ft_strchr(command->spl_str[0], '/'), "/", 1))
 		is_cmd_path(command->spl_str, command->spl_str[0], en);
 	else
 	{
