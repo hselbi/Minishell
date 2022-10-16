@@ -11,6 +11,7 @@ void	adding_newpath(t_mcmd *command, char *new_path)
 	command->av[1] = ft_strjoin("PWD=", new_path);
 	command->av[2] = NULL;
 	new_export(command, 1);
+	fprintf(stderr, "%%%%hellos **\n");
 	// free_two(command->av, 0);
 }
 
@@ -25,7 +26,8 @@ void	adding_oldpath(t_mcmd *command, char *ori_path)
 	command->av[1] = ft_strjoin("OLDPWD=", ori_path);
 	command->av[2] = NULL;
 	new_export(command, 1);
-	free_two(command->av, 0);
+	printf("hellos **\n");
+	// free_two(command->av, 0);
 }
 
 /******************************************************
@@ -35,7 +37,7 @@ void	adding_oldpath(t_mcmd *command, char *ori_path)
 char	*cd_arg(t_mcmd *command, int i, char *buf)
 {
 	char	*s;
-
+	printf("hellos \n");
 	if (!ft_strcmp(command->av[i + 1], "."))
 	{
 		s = getcwd(NULL, 0);
@@ -96,6 +98,7 @@ void	my_cd(t_mcmd *command, int ac)
 	getcwd(buffer, sizeof(buffer));
 	buf = buffer;
 	ori_path = ft_strdup(buffer);
+	printf("%d\n", ac);
 	if (ac >= 3)
 		buf = cd_arg(command, 0, buf);
 	else if (ac == 2)
@@ -115,8 +118,11 @@ void	my_cd(t_mcmd *command, int ac)
 	}
 	if (check_var("PWD", command->en))
 	{
+		printf("yesy1\n");
 		adding_oldpath(command, ori_path);
+		printf("yesy2\n");
 		adding_newpath(command, buffer);
+		// free_two(command->av, 0);
 	}
 	free(ori_path);
 }
@@ -137,5 +143,6 @@ int	init_cd(t_mcmd *command, int i)
 		i++;
 	}
 	my_cd(command, ac);
+	fprintf(stderr, "fgsdfg\n");
 	return (1);
 }

@@ -116,7 +116,6 @@ int	ft_exec(t_mcmd *command)
 			perror("fd: in");
 		command->in = command->fd[0];
 		cmd.args_array = cmd.args_array->next;
-		printf("gellos \n");
 	}
 	ft_waitpid(command);
 	return (0);

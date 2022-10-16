@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:27:10 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 11:50:07 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:46:48 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	check_pipe_error(char *line)
 {
 	int	i;
 	int	trigger;
-	t_pars	*pars;
 
 	i = 0;
-	pars = NULL;
 	if (line[0] == '|')
-		return (error_pipe(pars));
+		return (error_pipe());
 	trigger = 0;
 	while (line[i])
 	{
@@ -41,7 +39,7 @@ int	check_pipe_error(char *line)
 			i++;
 	}
 	if (trigger == 5)
-		return (error_pipe(pars));
+		return (error_pipe());
 	return (0);
 }
 
@@ -88,13 +86,13 @@ int	check_right_red(char *line, t_pars *pars)
 	while (line[pars->i] && line[pars->i] <= 32)
 		pars->i++;
 	if (!line[pars->i])
-		return (error_newline(pars));
+		return (error_newline());
 	if (line[pars->i] == '<')
-		return (error_red(pars));
+		return (error_red());
 	else if (line[pars->i] == '|')
-		return (error_pipe(pars));
+		return (error_pipe());
 	else if (line[pars->i] == '>')
-		return (error_red(pars));
+		return (error_red());
 	return (0);
 }
 
@@ -108,13 +106,13 @@ int	check_left_red(char *line, t_pars *pars)
 	while (line[pars->i] && line[pars->i] <= 32)
 		pars->i++;
 	if (!line[pars->i])
-		return (error_newline(pars));
+		return (error_newline());
 	if (line[pars->i] == '>')
-		return (error_newline(pars));
+		return (error_newline());
 	else if (line[pars->i] == '|')
-		return (error_pipe(pars));
+		return (error_pipe());
 	else if (line[pars->i] == '<')
-		return (error_newline(pars));
+		return (error_newline());
 	return (0);
 }
 
@@ -149,4 +147,27 @@ int	check_error(char *line, t_pars *pars)
 		pars->i++;
 	}
 	return (0);
+}
+
+int	check_check(char *line, t_pars *pars)
+{
+	int	syntax_error;
+
+	syntax_error = check_error(line, pars);
+	pars->i = 0;
+	if (syntax_error)
+	{
+		while(line[pars->i])
+		{
+			if (line[pars->i] == '<' && line[pars->i + 1] == '<')
+			{
+				for_here_doc(line, pars);
+				close(pars->hold_input);
+			}
+			else
+				pars->i++;
+		}
+		return(5);
+	}
+	return(0);
 }

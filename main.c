@@ -73,7 +73,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 	t_pars	tmp;
 
 	ms.line = wc_handle(ms.line);
-	if (check_pipe_error(ms.line) == 0 && check_stach_here_doc(ms.line) == 0)
+	if (check_pipe_error(ms.line) == 0 && check_check(ms.line, &command.pars) == 0 && check_stach_here_doc(ms.line) == 0)
 	{
 		befor_make_struct(ms.line, &command.pars);
 		// args_pars(command.pars);
@@ -86,6 +86,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 		ft_exec(&command);
 		// printf("test 000\n");
 		p_free(&command);
+		fprintf(stderr, ">>>>>>>>>>>fgsdfg\n");
 	}
 	free(ms.line);
 }
