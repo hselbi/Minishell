@@ -99,8 +99,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 	(void)argv;
 	(void)argc;
-	pars.env = command.en;
 	init_minishell(&command, envp);
+	pars.env = command.en;
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
@@ -125,7 +125,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (ms.line)
 			mini_action(ms, command);
-		// system("leaks minishell");
+		system("leaks minishell");
 	}
 	return (0);
 }

@@ -59,6 +59,19 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 	}
 }
 
+char	*my_getenv(t_list *env, int i)
+{
+	char	*str;
+	t_list	*tmp;
+
+	tmp = env;
+	while (i--)
+		tmp = tmp->next;
+	fprintf(stderr, " %s\n ", tmp->content + 5);
+	str = ft_strdup(tmp->content + 5);
+	return (str);
+}
+
 /******************************************************
 *  			*	process of cd function	 *
 ******************************************************/
@@ -68,6 +81,7 @@ void	my_cd(t_mcmd *command, int ac)
 	char	buffer[1024];
 	char	*buf;
 	char	*ori_path;
+	int		i;
 
 	getcwd(buffer, sizeof(buffer));
 	buf = buffer;
@@ -76,8 +90,10 @@ void	my_cd(t_mcmd *command, int ac)
 		buf = cd_arg(command, 0, buf);
 	else if (ac == 2)
 	{
-		if (check_var("HOME", command->en))
-			buf = getenv("HOME");
+		i = check_var("HOME", command->en);
+		printf("%d\n", i);
+		if (i)
+			buf = my_getenv(command->en, i);
 		else
 			buf = NULL;
 		if (chdir(buf) == -1)
