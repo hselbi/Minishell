@@ -34,7 +34,7 @@ RFLAGS = -lreadline #-I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readli
 
 FLAGS = -Wall -Wextra -Werror
 
-FSA_ADD = -fsanitize=address -g
+FSA_ADD = #-fsanitize=address -g
 
 # -fno-omit-frame-pointer : a nice stack traces in error messages
 
@@ -47,7 +47,7 @@ all: ${NAME}
 
 $(NAME): $(OBJ) $(SRC)
 	@$(MAKE) -C Libft
-	@$(CC) $(FLAG) $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(FLAG) $(FSA_ADD) $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJ)

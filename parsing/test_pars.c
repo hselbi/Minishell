@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 19:07:20 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 20:13:50 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/17 00:15:32 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,38 +58,40 @@ int	count_commands(char **sp)
 
 void	befor_make_struct(char *line, t_pars *pars)
 {
-	char	**sp;
-	char	*cont;
-	int		i;
+	t_bfs	bfs;
 
-	sp = ft_split_with_pipe(line, '|', pars);
-	i = 0;
-	cont = sp[i];
+	bfs.sp = ft_split_with_pipe(line, '|', pars);
+	bfs.i = 0;
+	bfs.cont = bfs.sp[bfs.i];
 	pars->trigger = 0;
 	pars->check = 0;
-	while (sp[i])
+	while (bfs.sp[bfs.i])
 	{
-		check_open_quote(sp[i], pars);
+		check_open_quote(bfs.sp[bfs.i], pars);
 		while (pars->check != 0)
 		{
-			if (!sp[i +1])
+			if (!bfs.sp[bfs.i +1])
 			{
-				error_exit("syntax error near unexpected token ' or \" ", pars);
-				pars->trigger = 9;
-				if (cont)
-					free(cont);
+				free_cont(bfs.cont, pars);
 				break ;
 			}
-			check_open_quote(sp[i +1], pars);
-			cont = ft_strjoin_pipe(cont, sp[i +1]);
-			i++;
+			check_open_quote(bfs.sp[bfs.i +1], pars);
+			bfs.cont = ft_strjoin_pipe(bfs.cont, bfs.sp[++bfs.i]);
 		}
 		if (pars->trigger)
 			break ;
-		make_struct(cont, pars);
+		make_struct(bfs.cont, pars);
 		if (pars->check == 0)
-			cont = sp[i +1];
-		i++;
+			bfs.cont = bfs.sp[bfs.i +1];
+		bfs.i++;
 	}
-	free(sp);
+	free(bfs.sp);
+}
+
+void	free_cont(char *cont, t_pars *pars)
+{
+	error_exit("syntax error near unexpected token ' or \" ", pars);
+	pars->trigger = 9;
+	if (cont)
+		free(cont);
 }

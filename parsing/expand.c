@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:22:58 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 15:48:33 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:01:34 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*expand_it(char	*to_expand, t_pars *pars, int trig)
 	char	*cont;
 
 	i = 0;
+	if (!to_expand)
+		return (NULL);
 	if (!cmp(to_expand, "?"))
 		return (ft_iitoa(g_status));
 	while (pars->env)
@@ -101,7 +103,7 @@ char	*check_dollar(char *word, t_pars *pars)
 	int		i;
 	int		begin;
 	char	*expanded;
-	char	*dollar_expanded;
+	char	*dlr_exp;
 
 	i = 0;
 	expanded = NULL;
@@ -119,13 +121,15 @@ char	*check_dollar(char *word, t_pars *pars)
 			{
 				while (!ft_isalnum_dyali(word[i]) && word[i])
 					i++;
-				dollar_expanded = expand_it(make_word(word, begin, i - 1), pars, 1);
-				expanded = ft_strjoinn(expanded, dollar_expanded);
+				dlr_exp = expand_it(make_word(word, begin, i - 1), pars, 1);
+				expanded = ft_strjoinn(expanded, dlr_exp);
 			}
 		}
 		else
 		{
 			begin = i;
+			if (word[i - 1] == '$')
+				begin = i - 1;
 			while (word[i] && word[i] != '$')
 				i++;
 			expanded = ft_strjoinn(expanded, make_word(word, begin, i - 1));

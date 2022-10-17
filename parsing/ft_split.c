@@ -36,10 +36,9 @@ char	*sp(const char *s, int e, int b)
 	int		i;
 	char	*sp;
 
-	if (!(sp = (char *)malloc(sizeof(char) * (e - b + 1))))
-	{
+	sp = (char *)malloc(sizeof(char) * (e - b + 1));
+	if (!sp)
 		return (NULL);
-	}
 		i = 0;
 	while (b < e)
 	{

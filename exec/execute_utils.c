@@ -131,14 +131,12 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 		}
 		else if (!ft_builtin(command, 0))
 		{
-			fprintf(stderr, "++++++++++fgsdfg\n");
 			if (execve(command->path, command->spl_str, en) == -1)
 			{
 				puts("Error: Command cannot execute");
 				exit(127);
 			}
 		}
-		fprintf(stderr, "uuuuuuuuuufgsdfg\n");
 		if (command->path != NULL)
 			free(command->path);
 		exit(0);

@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:37:55 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 18:39:42 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:25:28 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void	make_struct(char *commands, t_pars	*pars)
 			others(commands, pars);
 	}
 	free(commands);
+	pars->error = 0;
+	pars->index = 0;
 	make_struct_to_execute(pars);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_things.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 00:06:42 by aerrazik          #+#    #+#             */
+/*   Updated: 2022/10/17 00:39:54 by aerrazik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	struct_free(t_mcmd *command)
@@ -28,28 +40,24 @@ void	ft_free(char **str)
 
 void	p_free(t_mcmd *command)
 {
-	int i;
+	int	i;
 
+	fprintf(stderr, "<<<<%p>>>>\n", command->pars.args_array->next);
 	while (command->pars.args_array)
 	{
 		i = 0;
-		fprintf(stderr, "qqqqqqqqqqqq\n");
-		while(command->pars.args_array->args[i])
+		while (command->pars.args_array->args[i])
 		{
-			fprintf(stderr, "%p\n",command->pars.args_array->args[i]);
-			fprintf(stderr, "rrrrrrrrrrrrr\n");
 			free(command->pars.args_array->args[i]);
 			command->pars.args_array->args[i] = NULL;
 			i++;
 		}
-		fprintf(stderr, "aaaa\n");
 		free(command->pars.args_array->args);
 		command->pars.args_array->args = NULL;
 		command->pars.args_array = command->pars.args_array->next;
-		fprintf(stderr, "vvvvvvvvvvvv\n");
 	}
-	free(command->pars.args_array);
-	command->pars.args_array = NULL;
+	// free(command->pars.args_array);
+	// command->pars.args_array = NULL;
 }
 
 void	pars_free(t_pars *p)

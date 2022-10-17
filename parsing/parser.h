@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:30:26 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 20:49:04 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:55:44 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ typedef struct s_pars
 	struct s_pars	*next;
 }	t_pars;
 
+typedef struct s_mstruct
+{
+	char	**sp;
+	int		j;
+	int		cmd_nmb;
+	char	**args;
+	t_pars	*crea_node;
+}	t_mst;
+
+typedef struct s_bfs
+{
+	char	**sp;
+	char	*cont;
+	int		i;
+}	t_bfs;
+
 /*****************************************************************************/
 /*	Functions for expanding													 */
 /*****************************************************************************/
@@ -115,9 +131,9 @@ void	befor_make_struct(char *line, t_pars *pars);
 
 void	error_exit(char *str, t_pars *pars);
 int		check_pipe_error(char *line);
-int		error_pipe();
-int		error_newline();
-int		error_red();
+int		error_pipe(void);
+int		error_newline(void);
+int		error_red(void);
 int		check_check(char *line, t_pars *pars);
 
 /* Outils functions */
@@ -147,6 +163,8 @@ int		check_stach_here_doc(char *line);
 int		check_hd(char *line, int i);
 int		check_first(char *line, t_pars *pars);
 char	*ft_strdupp(char *s1);
+void	free_it(t_pars *crea, char **sp);
+void	free_cont(char *cont, t_pars *pars);
 
 /*********************/
 
