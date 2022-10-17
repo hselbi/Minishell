@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 21:34:25 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/17 00:24:39 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	make_struct_to_execute(t_pars *pars)
 		else if (sp[pars->index][0] == '<')
 			make_infile(sp, pars);
 		else
-			args[j++] = sp[pars->index++];
+			args[j++] = ft_strdupl(sp[pars->index++]);
 	}
 	args[j] = NULL;
 	crea_node = new_lst(args, pars);

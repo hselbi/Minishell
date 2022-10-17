@@ -110,16 +110,21 @@ int	ft_exec(t_mcmd *command)
 	{
 		flag = 0;
 		command->av = cmd.args_array->args;
+		printf("in while 0 %p \n", cmd.args_array->args);
 		command->spl_str = cmd.args_array->args;
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 			return (0);
+		printf("in while 1 %p \n", cmd.args_array->args);
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
+		printf("in while 2 %p \n", cmd.args_array->args);
 		if (command->index == 1 && is_built(command->av[0]))
 		{
 			flag = 1;
+			printf(">>>>>>>>>>>>%p\n", command->pars.args_array);
 			ft_builtin(command, flag);
+			printf("in while 3 %p \n", cmd.args_array->args);
 		}
 		else
 			exec(command, cmd.args_array->args[0], command->en);

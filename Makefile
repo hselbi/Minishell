@@ -34,7 +34,7 @@ RFLAGS = -lreadline -I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readlin
 
 FLAGS = -Wall -Wextra -Werror
 
-FSA_ADD = -g -fsanitize=address 
+FSA_ADD = -g -fsanitize=address -fno-omit-frame-pointer
 
 # -fno-omit-frame-pointer : a nice stack traces in error messages
 

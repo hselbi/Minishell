@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 17:01:43 by hselbi            #+#    #+#             */
-/*   Updated: 2021/11/23 15:15:29 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/16 23:43:49 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	process(tab, lwrd, (char *)s, c);
 	return (tab);
-	free(tab);
 }

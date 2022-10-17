@@ -16,7 +16,7 @@ void	ft_free(char **str)
 	int	i;
 
 	i = 0;
-	while (!str[i])
+	while (str[i])
 	{
 		free(str[i]);
 		str[i] = NULL;
@@ -30,9 +30,14 @@ void	p_free(t_mcmd *command)
 {
 	int	i;
 
+	printf("args_arr %p \n", command->pars.args_array);
 	while (command->pars.args_array)
 	{
 		i = 0;
+		printf("test jad\n");
+		printf("1st %p \n", command->pars.args_array->args);
+		fprintf(stderr, "1st %p \n", command->pars.args_array->args[0]);
+		fprintf(stderr, "2nd %p \n", command->pars.args_array->args[1]);
 		while (command->pars.args_array->args[i])
 		{
 			free(command->pars.args_array->args[i]);

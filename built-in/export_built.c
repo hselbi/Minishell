@@ -158,6 +158,7 @@ void	valid_exp(t_mcmd *command, int i)
 		free(str[0]);
 		str[0] = NULL;
 		free(str);
+		str = NULL;
 	}
 	else
 		not_many_eq(command, i);

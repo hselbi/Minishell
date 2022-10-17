@@ -27,7 +27,9 @@ int	buildin_cmd(t_mcmd *command, int i, int fd)
 {
 	if (!ft_strcmp(command->av[0], "export"))
 	{
+		printf("before: built %p \n", command->pars.args_array->args);
 		new_export(command, fd);
+		printf("after: built %p \n", command->pars.args_array->args);
 		return (1);
 	}
 	else if (!is_valid(command->av[0], "ENV"))
@@ -64,7 +66,6 @@ int	ft_builtin(t_mcmd *command, int fd)
 	if (!is_valid(command->av[0], "CD"))
 	{
 		init_cd(command, 0);
-		fprintf(stderr, "---------fgsdfg\n");
 		return (1);
 	}
 	else if (!is_valid(command->av[0], "PWD"))
