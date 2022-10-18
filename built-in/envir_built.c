@@ -7,7 +7,6 @@
 t_list	*ft_env(char **en)
 {
 	t_list	*tmp_en;
-	char	*str;
 	int		len;
 	int		i;
 
@@ -15,13 +14,12 @@ t_list	*ft_env(char **en)
 	i = 0;
 	while (en[len])
 		len++;
-	str = ft_strdup(en[i]);
-	tmp_en = ft_lstnew(str);
-	i++;
 	while (i < len)
 	{
-		str = ft_strdup(en[i]);
-		ft_lstadd_back(&tmp_en, ft_lstnew(str));
+		if (!i)
+			tmp_en = ft_lstnew(en[i]);
+		else
+			ft_lstadd_back(&tmp_en, ft_lstnew(en[i]));
 		i++;
 	}
 	return (tmp_en);

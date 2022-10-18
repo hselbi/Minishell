@@ -20,6 +20,8 @@ void    args_pars(t_pars pars)
 		fprintf(stderr, "%d\n", ac);
 		while (tmp->args_array->args[i])
 		{
+			fprintf(stderr, "add %p\n", tmp->args_array->args);
+			fprintf(stderr, "add %p\n", tmp->args_array->args[i]);
 			if (!i)
 				printf("└──%s\n", tmp->args_array->args[i]);
 			else if (i + 1 == ac)

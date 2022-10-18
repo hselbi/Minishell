@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
+#    By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/28 14:47:37 by aerrazik          #+#    #+#              #
-#    Updated: 2022/10/16 23:16:30 by hselbi           ###   ########.fr        #
+#    Updated: 2022/10/16 18:52:47 by aerrazik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-GCF = -Wall -Wextra -Werror -g3 -g -fsanitize=address
+GCF = -Wall -Wextra -Werror -g3 #-g -fsanitize=address
 
 NAME = parse.a
 

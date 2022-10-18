@@ -30,16 +30,13 @@ void	p_free(t_mcmd *command)
 {
 	int	i;
 
-	printf("args_arr %p \n", command->pars.args_array);
+	i = 0;
 	while (command->pars.args_array)
 	{
 		i = 0;
-		printf("test jad\n");
-		printf("1st %p \n", command->pars.args_array->args);
-		fprintf(stderr, "1st %p \n", command->pars.args_array->args[0]);
-		fprintf(stderr, "2nd %p \n", command->pars.args_array->args[1]);
 		while (command->pars.args_array->args[i])
 		{
+			puts("hellos worlds\n");
 			free(command->pars.args_array->args[i]);
 			command->pars.args_array->args[i] = NULL;
 			i++;

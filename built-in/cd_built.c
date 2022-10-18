@@ -6,12 +6,12 @@
 
 void	adding_newpath(t_mcmd *command, char *new_path)
 {
+	// free_two(command->av, 0);
 	command->av = (char **)malloc(sizeof(char *) * 3);
 	command->av[0] = ft_strdup("export");
 	command->av[1] = ft_strjoin("PWD=", new_path);
 	command->av[2] = NULL;
 	new_export(command, 1);
-	// free_two(command->av, 0);
 }
 
 /******************************************************
@@ -25,7 +25,6 @@ void	adding_oldpath(t_mcmd *command, char *ori_path)
 	command->av[1] = ft_strjoin("OLDPWD=", ori_path);
 	command->av[2] = NULL;
 	new_export(command, 1);
-	printf("hellos **\n");
 	// free_two(command->av, 0);
 }
 
@@ -87,7 +86,6 @@ char	*my_getenv(t_list *env, int i)
 	return (str);
 }
 
-
 /******************************************************
 *  			*	process of cd function	 *
 ******************************************************/
@@ -123,6 +121,7 @@ void	my_cd(t_mcmd *command, int ac)
 	if (check_var("PWD", command->en))
 	{
 		adding_oldpath(command, ori_path);
+		// free_two(command->av, 0);
 		adding_newpath(command, buffer);
 		// free_two(command->av, 0);
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+         #
+#    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 11:45:14 by hselbi            #+#    #+#              #
-#    Updated: 2022/10/16 18:52:30 by aerrazik         ###   ########.fr        #
+#    Updated: 2022/10/17 22:32:34 by hselbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =	libft.a
 
 CC = gcc
 
-FLAG = -Wall -Wextra -Werror  -g3 #-fsanitize=address -g
+FLAG = -Wall -Wextra -Werror  #-fsanitize=address -g
 
 SRCS = 	ft_atoi.c\
 		ft_bzero.c\
@@ -49,7 +49,7 @@ OBJS_SRCS := ${SRCS:%.c=%.o}
 all: ${NAME} 
 
 ${NAME} : ${OBJS_SRCS} $(SRCS)
-	@ar -rcs ${NAME} *.o
+	ar -rcs ${NAME} *.o
 	@rm -f *.o
 
 %.o : %.c

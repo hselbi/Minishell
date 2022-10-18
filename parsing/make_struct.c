@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/17 00:24:39 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/18 00:43:37 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,57 @@
 
 void	make_struct_to_execute(t_pars *pars)
 {
-	char	**sp;
-	int		j;
-	int		cmd_nmb;
-	char	**args;
-	t_pars	*crea_node;
+	t_mst	mst;
 
-	pars->error = 0;
 	if (!pars->for_struct)
 		return ;
-	sp = ft_spliti(pars->for_struct, '	');
+	mst.sp = ft_spliti(pars->for_struct, '	');
 	free(pars->for_struct);
-	cmd_nmb = count_commands(sp);
-	args = (char **)malloc(sizeof(char *) * (cmd_nmb + 1));
-	if (!args)
+	mst.cmd_nmb = count_commands(mst.sp);
+	mst.args = (char **)malloc(sizeof(char *) * (mst.cmd_nmb + 1));
+	if (!mst.args)
 		return ;
-	pars->index = 0;
-	j = 0;
-	while (sp[pars->index])
+	mst.j = 0;
+	while (mst.sp[pars->index])
 	{
 		if (pars->error)
 			break ;
-		if (sp[pars->index][0] == '>')
-			outfile_and_append(sp, pars);
-		else if (sp[pars->index][0] == '<')
-			make_infile(sp, pars);
+		if (mst.sp[pars->index][0] == '>')
+			outfile_and_append(mst.sp, pars);
+		else if (mst.sp[pars->index][0] == '<')
+			make_infile(mst.sp, pars);
 		else
-			args[j++] = ft_strdupl(sp[pars->index++]);
+			mst.args[mst.j++] = ft_strdupl(mst.sp[pars->index++]);
 	}
-	args[j] = NULL;
-	crea_node = new_lst(args, pars);
-	back_lstadd(&pars->args_array, crea_node);
-	free(crea_node);
-	free(sp);
+	mst.args[mst.j] = NULL;
+	back_lstadd(&pars->args_array, new_lst(mst.args, pars));
+	// free(mst.sp);
+}
+
+int	check_check(char *line, t_pars *pars)
+{
+	int	syntax_error;
+
+	syntax_error = check_error(line, pars);
+	pars->i = 0;
+	if (syntax_error)
+	{
+		while (line[pars->i])
+		{
+			if (line[pars->i] == '<' && line[pars->i + 1] == '<')
+			{
+				while (line[pars->i] <= 32)
+					pars->i++;
+				if (line[pars->i] == '<' || line[pars->i] == '>'
+					|| line[pars->i] == '|')
+					break ;
+				for_here_doc(line, pars);
+				close(pars->hold_input);
+			}
+			else
+				pars->i++;
+		}
+		return (5);
+	}
+	return (0);
 }

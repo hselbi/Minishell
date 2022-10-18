@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:56 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 20:38:55 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:01:02 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* error_pipe syntax error unexpected token `|'								 */
 /*****************************************************************************/
 
-int	error_pipe()
+int	error_pipe(void)
 {
 	perror("syntax error near unexpected token `|'\n");
 	return (5);
@@ -26,7 +26,7 @@ int	error_pipe()
 /* error_newline syntax error unexpected token `newline'					 */
 /*****************************************************************************/
 
-int	error_newline()
+int	error_newline(void)
 {
 	perror("syntax error near unexpected token `newline'\n");
 	return (5);
@@ -36,7 +36,7 @@ int	error_newline()
 /* error_pipe syntax error unexpected token `<'								 */
 /*****************************************************************************/
 
-int	error_red()
+int	error_red(void)
 {
 	perror("syntax error near unexpected token `<'\n");
 	return (5);

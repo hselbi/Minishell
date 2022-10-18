@@ -37,8 +37,10 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 	{
 		if (command->fd[0] != -1 && (close(command->fd[0]) == -1))
 			perror("failed in reading");
+		printf("out %d\nint %d\n", command->out, command->in);
 		dup2(command->out, 1);
 		dup2(command->in, 0);
+		printf("out %d\nint %d\n", command->out, command->in);
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		if (command->in != 0 && close(command->in) == -1)
@@ -56,14 +58,14 @@ void	redirect(t_pars *arr, t_mcmd *command)
 		if (command->in != 0 && close(command->in) == -1)
 			perror("fd: in");
 		command->in = arr->fd_input;
-		close(arr->fd_input);
+		// close(arr->fd_input); 
 	}
 	if (arr->fd_output != 1)
 	{
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		command->out = arr->fd_output;
-		close(arr->fd_output);
+		// close(arr->fd_output);
 	}
 }
 
@@ -104,27 +106,26 @@ int	ft_exec(t_mcmd *command)
 	t_pars	cmd;
 	int		flag;
 
+	command->in = 0;
+	command->out = 1;
+	command->index = 0;
+	command->pid = 0;
 	cmd = command->pars;
-	init_exec(command);
+	// init_exec(command);
 	while (++command->index < command->ac)
 	{
 		flag = 0;
 		command->av = cmd.args_array->args;
-		printf("in while 0 %p \n", cmd.args_array->args);
 		command->spl_str = cmd.args_array->args;
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 			return (0);
-		printf("in while 1 %p \n", cmd.args_array->args);
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
-		printf("in while 2 %p \n", cmd.args_array->args);
 		if (command->index == 1 && is_built(command->av[0]))
 		{
 			flag = 1;
-			printf(">>>>>>>>>>>>%p\n", command->pars.args_array);
 			ft_builtin(command, flag);
-			printf("in while 3 %p \n", cmd.args_array->args);
 		}
 		else
 			exec(command, cmd.args_array->args[0], command->en);

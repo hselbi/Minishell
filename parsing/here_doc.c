@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 20:26:23 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:01:44 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	make_input(t_pars *pars)
 	if (pid == 0)
 		child_here_doc(fd, pars);
 	close(fd[1]);
-	// close(fd[0]);
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
 	waitpid(pid, NULL, 0);

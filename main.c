@@ -85,10 +85,10 @@ void	mini_action(t_mish ms, t_mcmd command)
 			command.ac++;
 			tmp.args_array = tmp.args_array->next;
 		}
-		printf("before before %p \n", command.pars.args_array->args);
+		// printf("before before %p \n", command.pars.args_array->args);
 		ft_exec(&command);
-		printf("before %p \n", command.pars.args_array->args);
-		// p_free(&command);
+		p_free(&command);
+		// printf("before %p \n", command÷÷.pars.args_array->args);
 	}
 	free(ms.line);
 }
