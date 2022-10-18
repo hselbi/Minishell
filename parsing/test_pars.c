@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_pars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 19:07:20 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/17 00:15:32 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:28:54 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	count_commands(char **sp)
 void	befor_make_struct(char *line, t_pars *pars)
 {
 	t_bfs	bfs;
-
+	
 	bfs.sp = ft_split_with_pipe(line, '|', pars);
 	bfs.i = 0;
 	bfs.cont = bfs.sp[bfs.i];
@@ -81,6 +81,7 @@ void	befor_make_struct(char *line, t_pars *pars)
 		if (pars->trigger)
 			break ;
 		make_struct(bfs.cont, pars);
+
 		if (pars->check == 0)
 			bfs.cont = bfs.sp[bfs.i +1];
 		bfs.i++;

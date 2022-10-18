@@ -21,8 +21,7 @@ char	*with_equal(char *str, char **spl_str)
 	tmp = NULL;
 	free(str);
 	str = NULL;
-	free(spl_str[0]);
-	free(spl_str);
+	// free_two(spl_str, 0);
 	return (out);
 }
 
@@ -44,7 +43,7 @@ char	*without_equal(int i, char *arr, char **spl_str)
 		out = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	ft_free(spl_str);
+	// free_two(spl_str, 0);
 	return (out);
 }
 
@@ -78,6 +77,34 @@ char	**make_env(int i, char *lst)
 	return (str_spl);
 }
 
+
+void	free_spl(char **str_spl, int i)
+{
+	if (i == 1)
+	{
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl);
+		str_spl = NULL;
+	}
+	else if (i > 1)
+	{
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl[1]);
+		str_spl[1] = NULL;
+		free(str_spl);
+		str_spl = NULL;
+	}
+	else
+	{
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl);
+		str_spl = NULL;
+	}
+}
+
 /******************************************************
 *			*  print after process check *
 ******************************************************/
@@ -105,7 +132,7 @@ void	assemebly_str(char *lst, int fd, int flag)
 	}
 	else
 		printf("%s\n", out);
-	// ft_free(str_spl);
+	free_spl(str_spl, i);
 	free(out);
 }
 

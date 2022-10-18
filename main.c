@@ -87,7 +87,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 		}
 		// printf("before before %p \n", command.pars.args_array->args);
 		ft_exec(&command);
-		p_free(&command);
+		// p_free(&command);
 		// printf("before %p \n", command÷÷.pars.args_array->args);
 	}
 	free(ms.line);
@@ -96,6 +96,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 /************************************************************************
 * 		*			main minishell handling inputs			*
 ************************************************************************/
+
 
 int	main(int argc, char *argv[], char *envp[])
 {

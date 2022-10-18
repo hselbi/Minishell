@@ -19,11 +19,11 @@ void	ft_free(char **str)
 	while (str[i])
 	{
 		free(str[i]);
-		str[i] = NULL;
+		// str[i] = NULL;
 		i++;
 	}
 	free(str);
-	str = NULL;
+	// str = NULL;
 }
 
 void	p_free(t_mcmd *command)
@@ -36,7 +36,6 @@ void	p_free(t_mcmd *command)
 		i = 0;
 		while (command->pars.args_array->args[i])
 		{
-			puts("hellos worlds\n");
 			free(command->pars.args_array->args[i]);
 			command->pars.args_array->args[i] = NULL;
 			i++;

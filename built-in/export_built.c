@@ -92,7 +92,7 @@ int	check_av(char *av)
 			k = char_valid(str[0][i]);
 			if (k > 0)
 			{
-				free_two(str, 1);
+				// free_two(str, 1);
 				return (k);
 			}
 			else
