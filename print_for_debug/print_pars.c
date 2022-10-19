@@ -31,10 +31,10 @@ void    args_pars(t_pars pars)
 				printf("   ├── %s\n", tmp->args_array->args[i]);
 			i++;
 		}
-		// printf("%p ==> in\n└──%d\n", &tmp->args_array->fd_input,
-		// 	tmp->args_array->fd_input);
-		// printf("%p ==> out\n└──%d\n", &tmp->args_array->fd_output,
-		// 	tmp->args_array->fd_output);
+		printf("%p ==> in\n└──%d\n", &tmp->args_array->fd_input,
+			tmp->args_array->fd_input);
+		printf("%p ==> out\n└──%d\n", &tmp->args_array->fd_output,
+			tmp->args_array->fd_output);
 		tmp->args_array = tmp->args_array->next;
 	}
 }

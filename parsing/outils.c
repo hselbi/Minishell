@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:37:29 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/17 00:21:00 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:04:35 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	back_lstadd(t_pars **alst, t_pars *new)
 	if (! *alst)
 	{
 		*alst = new;
-		free(new);
+		// free÷(new);
 		return ;
 	}
 	last_lst(*alst)->next = new;
-	free(new);
+	// free(new);
 }
 
 int	cmp_limiter(char *str1, char *str2)

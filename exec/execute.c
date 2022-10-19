@@ -37,10 +37,8 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 	{
 		if (command->fd[0] != -1 && (close(command->fd[0]) == -1))
 			perror("failed in reading");
-		printf("out %d\nint %d\n", command->out, command->in);
 		dup2(command->out, 1);
 		dup2(command->in, 0);
-		printf("out %d\nint %d\n", command->out, command->in);
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		if (command->in != 0 && close(command->in) == -1)
@@ -111,7 +109,6 @@ int	ft_exec(t_mcmd *command)
 	command->index = 0;
 	command->pid = 0;
 	cmd = command->pars;
-	// init_exec(command);
 	while (++command->index < command->ac)
 	{
 		flag = 0;

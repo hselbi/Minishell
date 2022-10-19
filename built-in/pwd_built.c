@@ -4,6 +4,10 @@
 *				*	main of pwd		*
 ******************************************************/
 
+
+/*
+* make an value active then we 
+*/
 int	ft_pwd(t_mcmd *command, int fd)
 {
 	char	buff[1024];

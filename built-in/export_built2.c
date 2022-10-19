@@ -67,9 +67,8 @@ char	**make_env(int i, char *lst)
 		str_spl = (char **)malloc(sizeof(char *) * 3);
 		if (!str_spl)
 			return (NULL);
-		str_spl[0] = ft_strdup(ft_substr(lst, 0, check_eq(lst)));
-		str_spl[1] = ft_strdup(
-				ft_substr(lst, check_eq(lst) + 1, ft_strlen(lst)));
+		str_spl[0] = ft_substr(lst, 0, check_eq(lst));
+		str_spl[1] = ft_substr(lst, check_eq(lst) + 1, ft_strlen(lst));
 		str_spl[2] = NULL;
 	}
 	else

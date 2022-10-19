@@ -36,7 +36,7 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 {
 	char	*s;
 
-	if (!ft_strcmp(command->av[i + 1], "."))
+	if (!ft_strncmp(command->av[i + 1], ".", 1))
 	{
 		s = getcwd(NULL, 0);
 		if (!s)
