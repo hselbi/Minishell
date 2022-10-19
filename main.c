@@ -87,6 +87,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 		}
 		// printf("before before %p \n", command.pars.args_array->args);
 		ft_exec(&command);
+		// free_all(&command);
 		// p_free(&command);
 		// printf("before %p \n", command÷÷.pars.args_array->args);
 	}

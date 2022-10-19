@@ -1,3 +1,24 @@
+
+override CFLAGS += -Wall -D_FILE_OFFSET_BITS=64
+override LDFLAGS += -lm
+UNAME := $(shell uname)
+PKG_CONFIG ?= pkg-config
+ifeq ($(UNAME), Linux)
+    ifeq (, $(shell which $(PKG_CONFIG) 2> /dev/null))
+    $(error "pkg-config command not found")
+    endif
+    ifeq (, $(shell $(PKG_CONFIG) ncursesw --libs 2> /dev/null))
+    $(error "ncurses package not found")
+    endif
+    override LDFLAGS += $(shell $(PKG_CONFIG) ncursesw --libs)
+endif
+ifeq ($(UNAME), Darwin)
+    override LDFLAGS += -lncurses
+endif
+ifeq ($(UNAME), FreeBSD)
+    override LDFLAGS += -lncurses -lprocstat
+endif
+
 .PHONY = all clean fclean re
 
 EXEC = $(addprefix exec/, execute.c execute_utils.c waitpid.c)
@@ -46,14 +67,18 @@ NAME = minishell
 all: ${NAME}
 
 $(NAME): $(OBJ) $(SRC)
+	@echo "\033[0;93mMake $(NAME) ..."
 	@$(MAKE) -C Libft
 	@$(CC) $(FLAG) $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@echo "\033[1;92m$(NAME) is Done\033[0m"
 
 clean:
 	@$(RM) $(OBJ)
 	@$(MAKE) -C Libft clean
+	@echo "\033[1;91mclean *.o is Done\033[0m"
 
 fclean: clean
 	@$(RM) $(NAME) $(LIBFT)
+	@echo "\033[1;91mclean is Done\033[0m"
 
 re: fclean all

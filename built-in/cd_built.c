@@ -6,7 +6,7 @@
 
 void	adding_newpath(t_mcmd *command, char *new_path)
 {
-	// free_two(command->av, 0);
+	ft_free(command->av);
 	command->av = (char **)malloc(sizeof(char *) * 3);
 	command->av[0] = ft_strdup("export");
 	command->av[1] = ft_strjoin("PWD=", new_path);
@@ -72,7 +72,7 @@ char	*my_getenv(t_list *env, int i)
 	tmp = env;
 	while (i-- > 1)
 		tmp = tmp->next;
-	spl = ft_split(tmp->content, ' ');
+	spl = ft_split(tmp->content, '=');
 	if (!spl[1])
 	{
 		str = ft_strdup(".");
@@ -115,14 +115,15 @@ void	my_cd(t_mcmd *command, int ac)
 			g_status = 1;
 			printf("cd: HOME not set\n");
 		}
-		free(buf);
 		getcwd(buffer, sizeof(buffer));
 	}
+	free(buf);
 	if (check_var("PWD", command->en))
 	{
 		adding_oldpath(command, ori_path);
 		// free_two(command->av, 0);
 		adding_newpath(command, buffer);
+		ft_free(command->av);
 		// free_two(command->av, 0);
 	}
 	free(ori_path);

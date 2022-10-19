@@ -8,7 +8,6 @@ void    args_pars(t_pars pars)
 	int     ac;
 
 	i = 0;
-	int j = 0;
 	ac = 1;
 	tmp = &pars;
 	lst = &pars;
@@ -19,10 +18,8 @@ void    args_pars(t_pars pars)
 		while (lst->args_array->args[ac])
 			ac++;
 		fprintf(stderr, "%d\n", ac);
-		printf("@@@@@@@@@@@@@@@@@@@@@@@@@@ %d\n", j++);
 		while (tmp->args_array->args[i])
 		{
-		printf("========================> %d/%d\n", i, ac);
 			if (!i)
 				printf("└──%s\n", tmp->args_array->args[i]);
 			else if (i + 1 == ac)

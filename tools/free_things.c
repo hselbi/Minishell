@@ -89,3 +89,17 @@ void	free_two(char **str, int i)
 		}
 	}
 }
+
+
+void	free_all(t_mcmd *command)
+{
+	int	i = 0;
+	while (command->av[i])
+	{
+		free(command->av[i]);
+		command->av[i] = NULL;
+		i++;
+	}
+	free(command->av);
+	command->av = NULL;
+}

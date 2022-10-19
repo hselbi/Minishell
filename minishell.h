@@ -151,7 +151,8 @@ int		status_child(int pid);
 
 int		check_char(char c1, char c2);
 void	ft_free(char **str);
-void	list_free(t_list *command);
+// void	free_all(t_li÷st *command);
+void	free_all(t_mcmd *command);
 
 void	free_two(char **str, int i);
 void	sig_handler(int sig);

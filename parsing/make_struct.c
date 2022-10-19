@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/18 00:43:37 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/19 21:12:42 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	make_struct_to_execute(t_pars *pars)
 	if (!pars->for_struct)
 		return ;
 	mst.sp = ft_spliti(pars->for_struct, '	');
+	// fprintf(stderr, "1/ %s\n2/ %s\n", mst.sp[0], mst.sp[1]);÷
 	free(pars->for_struct);
 	mst.cmd_nmb = count_commands(mst.sp);
 	mst.args = (char **)malloc(sizeof(char *) * (mst.cmd_nmb + 1));
@@ -40,9 +41,9 @@ void	make_struct_to_execute(t_pars *pars)
 		else
 			mst.args[mst.j++] = ft_strdupl(mst.sp[pars->index++]);
 	}
+	
 	mst.args[mst.j] = NULL;
 	back_lstadd(&pars->args_array, new_lst(mst.args, pars));
-	// free(mst.sp);
 }
 
 int	check_check(char *line, t_pars *pars)

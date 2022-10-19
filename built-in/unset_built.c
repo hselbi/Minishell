@@ -19,11 +19,11 @@ int	check_var(char *str, t_list *en)
 		s = ft_split(tmp->content, '=');
 		if (!ft_strcmp(str, s[0]))
 		{
-			free_two(s, 0);
+			free_two(s, 1);
 			return (i);
 		}
 		i++;
-		free_two(s, 1);
+		free_two(s, 0);
 		tmp = tmp->next;
 	}
 	return (0);
