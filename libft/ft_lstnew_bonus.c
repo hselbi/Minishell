@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 11:49:41 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/12 19:03:32 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/22 00:40:56 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(void *content)
 	nwnode = malloc(sizeof(t_list));
 	if (!nwnode)
 		return (NULL);
-	nwnode->content = content;
+	nwnode->content = ft_strdup(content);
 	nwnode->next = NULL;
 	return (nwnode);
 }

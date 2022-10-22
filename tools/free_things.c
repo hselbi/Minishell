@@ -1,16 +1,5 @@
 #include "../minishell.h"
 
-void	struct_free(t_mcmd *command)
-{
-	if (command)
-	{
-		ft_lstclear(&command->en, free);
-		ft_lstclear(&command->exp_en, free);
-		ft_free(command->spl_str);
-		free(command->home);
-	}
-}
-
 void	ft_free(char **str)
 {
 	int	i;
@@ -19,11 +8,11 @@ void	ft_free(char **str)
 	while (str[i])
 	{
 		free(str[i]);
-		// str[i] = NULL;
+		str[i] = NULL;
 		i++;
 	}
 	free(str);
-	// str = NULL;
+	str = NULL;
 }
 
 void	p_free(t_mcmd *command)
@@ -46,23 +35,6 @@ void	p_free(t_mcmd *command)
 	}
 	free(command->pars.args_array);
 	command->pars.args_array = NULL;
-}
-
-void	pars_free(t_pars *p)
-{
-	int		i;
-	t_pars	*tmp;
-
-	i = 0;
-	tmp = p->args_array;
-	if (!tmp)
-		return ;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		ft_free(p->args_array->args);
-		p->args_array = tmp;
-	}
 }
 
 void	free_two(char **str, int i)
@@ -90,10 +62,11 @@ void	free_two(char **str, int i)
 	}
 }
 
-
 void	free_all(t_mcmd *command)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while (command->av[i])
 	{
 		free(command->av[i]);
@@ -102,4 +75,10 @@ void	free_all(t_mcmd *command)
 	}
 	free(command->av);
 	command->av = NULL;
+}
+
+void	exit_error(int code, char *error)
+{
+	puts(error);
+	exit(code);
 }

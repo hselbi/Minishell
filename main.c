@@ -62,6 +62,8 @@ void	init_minishell(t_mcmd *command, char **envp)
 		ft_lstadd_back(&command->exp_en, ft_lstnew("OLDPWD"));
 	}
 	save_home(command);
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 /************************************************************************
@@ -85,19 +87,16 @@ void	mini_action(t_mish ms, t_mcmd command)
 			command.ac++;
 			tmp.args_array = tmp.args_array->next;
 		}
-		// printf("before before %p \n", command.pars.args_array->args);
 		ft_exec(&command);
-		// free_all(&command);
-		// p_free(&command);
-		// printf("before %p \n", command÷÷.pars.args_array->args);
 	}
 	free(ms.line);
+	printf("$$$$$$$$$$$$$$$ ==> %p\n", &command.en);
+	printf("$$$$$$$$$$$$$$$ ==> %p\n", command.en);
 }
 
 /************************************************************************
 * 		*			main minishell handling inputs			*
 ************************************************************************/
-
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -110,8 +109,6 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argc;
 	init_minishell(&command, envp);
 	pars.env = command.en;
-	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		ms.line = readline("\033[1;36mminishell-1.0$ \033[0m");
@@ -134,7 +131,9 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (ms.line)
 			mini_action(ms, command);
-		system("leaks minishell");
+		printf("%%%%%%%%%%%%%%%%%%%%%% ==> %p\n", &command.en);
+		printf("%%%%%%%%%%%%%%%%%%%%%% ==> %p\n", command.en);
+		// system("leaks minishell");
 	}
 	return (0);
 }

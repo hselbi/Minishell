@@ -6,7 +6,7 @@
 #    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 11:45:14 by hselbi            #+#    #+#              #
-#    Updated: 2022/10/19 21:02:23 by hselbi           ###   ########.fr        #
+#    Updated: 2022/10/22 02:41:25 by hselbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRCS = 	ft_atoi.c\
 
 
 # bz
-OBJS_SRCS := ${SRCS:%.c=%.o}
+OBJS_SRCS = ${SRCS:%.c=%.o}
 
 all: ${NAME} 
 

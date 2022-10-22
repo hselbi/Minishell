@@ -1,5 +1,9 @@
 #include "../minishell.h"
 
+/************************************************************************
+*		*		convert envp(linked list) to env(2d arr)		*
+************************************************************************/
+
 char	**en_conv(t_list *envp)
 {
 	char	**en;
@@ -20,6 +24,43 @@ char	**en_conv(t_list *envp)
 	en[i] = NULL;
 	return (en);
 }
+
+/************************************************************************
+*		*			starting action for execusion			*
+************************************************************************/
+
+void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
+{
+	int	i;
+
+	i = 0;
+	(void)cmd;
+	while (command->spl_str[i++] != NULL)
+		command->ac_spl++;
+	if (!ft_strncmp(ft_strchr(command->spl_str[0], '/'), "/", 1))
+		is_cmd_path(command->spl_str, command->spl_str[0], en);
+	else
+	{
+		command->path = make_path(command->spl_str[0], en);
+		if (!(command->path) && !is_built(command->spl_str[0]))
+		{
+			free(command->path);
+			exit_error(127, "Error: Command not found");
+		}
+		else if (!ft_builtin(command, 0))
+		{
+			if (execve(command->path, command->spl_str, en) == -1)
+				exit_error(127, "Error: Command cannot execute");
+		}
+		if (command->path != NULL)
+			free(command->path);
+		exit(0);
+	}
+}
+
+/************************************************************************
+*		*		forking and duplicate for execusion			*
+************************************************************************/
 
 void	exec(t_mcmd *command, char *str, t_list *en)
 {
@@ -47,89 +88,4 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 		ft_excusion(str, command, envp);
 		ft_free(envp);
 	}
-}
-
-void	redirect(t_pars *arr, t_mcmd *command)
-{
-	if (arr->fd_input != 0)
-	{
-		if (command->in != 0 && close(command->in) == -1)
-			perror("fd: in");
-		command->in = arr->fd_input;
-		// close(arr->fd_input); 
-	}
-	if (arr->fd_output != 1)
-	{
-		if (command->out != 1 && close(command->out) == -1)
-			perror("fd: out");
-		command->out = arr->fd_output;
-		// close(arr->fd_output);
-	}
-}
-
-void	fd_pipe(t_mcmd *command)
-{
-	if (command->ac == 2 || command->index + 1 == command->ac)
-	{
-		command->fd[0] = -1;
-		command->fd[1] = 1;
-		command->out = 1;
-	}
-	else
-	{
-		if (pipe(command->fd))
-			perror("PIPE");
-		command->out = command->fd[1];
-	}
-}
-
-void	close_fd(t_mcmd *command)
-{
-	if (command->out != 1 && close(command->out) == -1)
-		perror("fd: out");
-	if (command->in != 0 && close(command->in) == -1)
-		perror("fd: in");
-}
-
-void	init_exec(t_mcmd *command)
-{
-	command->in = 0;
-	command->out = 1;
-	command->index = 0;
-	command->pid = 0;
-}
-
-int	ft_exec(t_mcmd *command)
-{
-	t_pars	cmd;
-	int		flag;
-
-	command->in = 0;
-	command->out = 1;
-	command->index = 0;
-	command->pid = 0;
-	cmd = command->pars;
-	while (++command->index < command->ac)
-	{
-		flag = 0;
-		command->av = cmd.args_array->args;
-		command->spl_str = cmd.args_array->args;
-		if (!command->av[0] || \
-			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
-			return (0);
-		fd_pipe(command);
-		redirect(cmd.args_array, command);
-		if (command->index == 1 && is_built(command->av[0]))
-		{
-			flag = 1;
-			ft_builtin(command, flag);
-		}
-		else
-			exec(command, cmd.args_array->args[0], command->en);
-		close_fd(command);
-		command->in = command->fd[0];
-		cmd.args_array = cmd.args_array->next;
-	}
-	ft_waitpid(command);
-	return (0);
 }
