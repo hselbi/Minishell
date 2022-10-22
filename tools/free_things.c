@@ -79,6 +79,8 @@ void	free_all(t_mcmd *command)
 
 void	exit_error(int code, char *error)
 {
-	puts(error);
+	// puts(error);
+	write(2, error, ft_strlen(error));
+	write(2, "\n", 1);
 	exit(code);
 }

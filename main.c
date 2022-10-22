@@ -63,7 +63,7 @@ void	init_minishell(t_mcmd *command, char **envp)
 	}
 	save_home(command);
 	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 /************************************************************************
@@ -80,7 +80,7 @@ void	mini_action(t_mish ms, t_mcmd *command)
 		&& !check_stach_here_doc(ms.line))
 	{
 		befor_make_struct(ms.line, &command->pars);
-		args_pars(command->pars);
+		// args_pars(command->pars);
 		tmp = command->pars;
 		while (tmp.args_array)
 		{
@@ -88,6 +88,23 @@ void	mini_action(t_mish ms, t_mcmd *command)
 			tmp.args_array = tmp.args_array->next;
 		}
 		ft_exec(command);
+	}
+
+	int i = -1;
+	char **arr;
+
+	t_pars *tmp2;
+
+	while (command->pars.args_array)
+	{
+		tmp2 = command->pars.args_array->next;
+		arr = command->pars.args_array->args;
+		i = -1;
+		while (arr[++i])
+			free (arr[i]);
+		free(arr);
+		free (command->pars.args_array);
+		command->pars.args_array = tmp2;
 	}
 	free(ms.line);
 }
@@ -108,8 +125,8 @@ int	main(int argc, char *argv[], char *envp[])
 	pars.env = command.en;
 	while (1)
 	{
-		ms.line = readline("\033[1;36mminishell-1.0$ \033[0m");
-		if (ms.line)
+		ms.line = readline("minishell-1.0$ ");
+		if (ms.line && *ms.line)
 			add_history(ms.line);
 		command.pars = pars;
 		command.ac = 1;
@@ -127,7 +144,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (ms.line)
 			mini_action(ms, &command);
-		system("leaks minishell");
+		// system("leaks minishell");
 	}
 	return (0);
 }

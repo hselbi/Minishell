@@ -6,26 +6,20 @@
 
 char	*cd_arg(t_mcmd *command, int i, char *buf)
 {
-	char	*s;
-
 	if (!ft_strcmp(command->av[i + 1], "."))
 	{
-		s = getcwd(NULL, 0);
-		if (!s)
+		buf = getcwd(NULL, 0);
+		if (!buf)
 		{
 			printf("cd: error retrieving current directory: getcwd: cannot");
 			printf(" access parent directories: No such file or directory\n");
-			free(s);
 		}
-		free(s);
 		return (buf);
 	}
 	else
 	{
 		if (chdir(command->av[i + 1]) == -1)
-		{
 			printf("cd: %s: No such file or directory\n", command->av[i + 1]);
-		}
 		buf = getcwd(NULL, 0);
 		return (buf);
 	}

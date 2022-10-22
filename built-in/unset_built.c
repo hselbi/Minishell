@@ -55,7 +55,7 @@ t_list	*my_unset(int ac, char **av, t_list **en)
 			tmp = NULL;
 			tmp_en = *en;
 			en = &(tmp_en->next);
-			free(tmp_en);
+			ft_lstdelone(tmp_en, free);
 		}
 		else if (l > 1)
 		{

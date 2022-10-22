@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/19 21:12:42 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/22 22:14:00 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	make_struct_to_execute(t_pars *pars)
 		else
 			mst.args[mst.j++] = ft_strdupl(mst.sp[pars->index++]);
 	}
-	
 	mst.args[mst.j] = NULL;
+	int i = -1;
+	while (mst.sp[++i])
+		free (mst.sp[i]);
+	free(mst.sp);
 	back_lstadd(&pars->args_array, new_lst(mst.args, pars));
 }
 
