@@ -63,7 +63,7 @@ void	init_minishell(t_mcmd *command, char **envp)
 	}
 	save_home(command);
 	signal(SIGINT, sig_handler);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, sig_handler);
 }
 
 /************************************************************************

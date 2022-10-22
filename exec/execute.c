@@ -76,6 +76,7 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 	}
 	else if (command->pid == 0)
 	{
+		signal(SIGQUIT, handler);
 		if (command->fd[0] != -1 && (close(command->fd[0]) == -1))
 			perror("failed in reading");
 		dup2(command->out, 1);
