@@ -48,8 +48,6 @@ void	exp_envp(t_list *list, int fd, int flag)
 	t_list	*tmp;
 
 	tmp = list;
-	printf("*********** head  ==> %p\n", &list);
-	printf("***********  ==> %p\n", list);
 	while (tmp != NULL)
 	{
 		if (!tmp->content)

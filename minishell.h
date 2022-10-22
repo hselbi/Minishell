@@ -109,7 +109,7 @@ void	print_echo(char *str, int flag, int fd, int type);
 int		init_cd(t_mcmd *command, int i);
 void	my_cd(t_mcmd *command, int i);
 char	*cd_arg(t_mcmd *command, int i, char *buf);
-void	cd_only(t_mcmd *command, char *buf);
+void	cd_only(t_mcmd *command, char **buf);
 char	*my_getenv(t_list *env, int i);
 void	adding_oldpath(t_mcmd *command, char *ori_path);
 
@@ -160,6 +160,7 @@ void	free_all(t_mcmd *command);
 
 void	free_two(char **str, int i);
 void	sig_handler(int sig);
+void	handler(int sig);
 
 int		ft_strcmp(char *s1, char *s2);
 

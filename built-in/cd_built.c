@@ -8,7 +8,7 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 {
 	char	*s;
 
-	if (!ft_strncmp(command->av[i + 1], ".", 1))
+	if (!ft_strcmp(command->av[i + 1], "."))
 	{
 		s = getcwd(NULL, 0);
 		if (!s)
@@ -62,16 +62,16 @@ char	*my_getenv(t_list *env, int i)
 *  			*	only cd without args	 *
 ******************************************************/
 
-void	cd_only(t_mcmd *command, char *buf)
+void	cd_only(t_mcmd *command, char **buf)
 {
 	int	i;
 
 	i = check_var("HOME", command->en);
 	if (i > 0)
-		buf = my_getenv(command->en, i);
+		*buf = my_getenv(command->en, i);
 	else
-		buf = NULL;
-	if (chdir(buf) == -1)
+		*buf = NULL;
+	if (chdir(*buf) == -1)
 	{
 		g_status = 1;
 		printf("cd: HOME not set\n");
@@ -94,18 +94,14 @@ void	my_cd(t_mcmd *command, int ac)
 	if (ac >= 3)
 		buf = cd_arg(command, 0, buf);
 	else if (ac == 2)
-	{
-		cd_only(command, buf);
-		getcwd(buffer, sizeof(buffer));
-	}
-	if (!buf)
-		free(buf);
+		cd_only(command, &buf);
 	if (check_var("PWD", command->en))
 	{
 		adding_oldpath(command, ori_path);
-		adding_newpath(command, buffer);
-		ft_free(command->av);
+		adding_newpath(command, buf);
 	}
+	if (buf)
+		free(buf);
 	free(ori_path);
 }
 

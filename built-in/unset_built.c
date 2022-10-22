@@ -19,11 +19,12 @@ int	check_var(char *str, t_list *en)
 		s = ft_split(tmp->content, '=');
 		if (!ft_strcmp(str, s[0]))
 		{
-			free_two(s, 1);
+			ft_free(s);
 			return (i);
 		}
+		else
+			ft_free(s);
 		i++;
-		free_two(s, 0);
 		tmp = tmp->next;
 	}
 	return (0);
@@ -54,7 +55,7 @@ t_list	*my_unset(int ac, char **av, t_list **en)
 			tmp = NULL;
 			tmp_en = *en;
 			en = &(tmp_en->next);
-			ft_lstdelone(tmp_en, free);
+			free(tmp_en);
 		}
 		else if (l > 1)
 		{

@@ -12,6 +12,7 @@ void	adding_newpath(t_mcmd *command, char *new_path)
 	command->av[1] = ft_strjoin("PWD=", new_path);
 	command->av[2] = NULL;
 	new_export(command, 1);
+	ft_free(command->av);
 }
 
 /******************************************************
