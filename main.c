@@ -70,28 +70,26 @@ void	init_minishell(t_mcmd *command, char **envp)
 * 		*			wildcard + parsing + execusion			*
 ************************************************************************/
 
-void	mini_action(t_mish ms, t_mcmd command)
+void	mini_action(t_mish ms, t_mcmd *command)
 {
 	t_pars	tmp;
 
 	ms.line = wc_handle(ms.line);
 	if (!check_pipe_error(ms.line)
-		&& !check_check(ms.line, &command.pars)
+		&& !check_check(ms.line, &command->pars)
 		&& !check_stach_here_doc(ms.line))
 	{
-		befor_make_struct(ms.line, &command.pars);
-		args_pars(command.pars);
-		tmp = command.pars;
+		befor_make_struct(ms.line, &command->pars);
+		args_pars(command->pars);
+		tmp = command->pars;
 		while (tmp.args_array)
 		{
-			command.ac++;
+			command->ac++;
 			tmp.args_array = tmp.args_array->next;
 		}
-		ft_exec(&command);
+		ft_exec(command);
 	}
 	free(ms.line);
-	printf("$$$$$$$$$$$$$$$ ==> %p\n", &command.en);
-	printf("$$$$$$$$$$$$$$$ ==> %p\n", command.en);
 }
 
 /************************************************************************
@@ -103,7 +101,6 @@ int	main(int argc, char *argv[], char *envp[])
 	t_mish	ms;
 	t_mcmd	command;
 	t_pars	pars;
-	int		i;
 
 	(void)argv;
 	(void)argc;
@@ -115,7 +112,6 @@ int	main(int argc, char *argv[], char *envp[])
 		if (ms.line)
 			add_history(ms.line);
 		command.pars = pars;
-		i = 0;
 		command.ac = 1;
 		if (ms.line == NULL || ms.line[0] == '\0' || isspaces(ms.line) == 1)
 		{
@@ -130,9 +126,7 @@ int	main(int argc, char *argv[], char *envp[])
 			continue ;
 		}
 		if (ms.line)
-			mini_action(ms, command);
-		printf("%%%%%%%%%%%%%%%%%%%%%% ==> %p\n", &command.en);
-		printf("%%%%%%%%%%%%%%%%%%%%%% ==> %p\n", command.en);
+			mini_action(ms, &command);
 		// system("leaks minishell");
 	}
 	return (0);

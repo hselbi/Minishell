@@ -84,8 +84,4 @@ void	init_unset(t_mcmd *command)
 		i++;
 	command->en = my_unset(i + 1, command->av, &command->en);
 	command->exp_en = my_unset(i + 1, command->av, &command->exp_en);
-	// printf("@@ head export ==> %p\n", &command->exp_en);
-	// printf("\t\t## head env ==> %p\n", &command->en);
-	// printf("@@ export ==> %p\n", command->exp_en);
-	// printf("\t\t## env ==> %p\n", command->en);
 }

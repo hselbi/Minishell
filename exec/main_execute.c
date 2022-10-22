@@ -89,14 +89,10 @@ int	ft_exec(t_mcmd *command)
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
 		exec_action(command, cmd.args_array->args, flag);
-		// printf("$$$$$$$$$$$$$$$ ==> %p\n", &command->en);
-		// printf("$$$$$$$$$$$$$$$ ==> %p\n", command->en);
 		close_fd(command);
 		command->in = command->fd[0];
 		cmd.args_array = cmd.args_array->next;
 	}
 	ft_waitpid(command);
-	printf("$$$#######$$$$$ ==> %p\n", &command->en);
-	printf("$$$#######$$$$$ ==> %p\n", command->en);
 	return (0);
 }
