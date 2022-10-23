@@ -15,28 +15,6 @@ void	ft_free(char **str)
 	str = NULL;
 }
 
-void	p_free(t_mcmd *command)
-{
-	int	i;
-
-	i = 0;
-	while (command->pars.args_array)
-	{
-		i = 0;
-		while (command->pars.args_array->args[i])
-		{
-			free(command->pars.args_array->args[i]);
-			command->pars.args_array->args[i] = NULL;
-			i++;
-		}
-		free(command->pars.args_array->args);
-		command->pars.args_array->args = NULL;
-		command->pars.args_array = command->pars.args_array->next;
-	}
-	free(command->pars.args_array);
-	command->pars.args_array = NULL;
-}
-
 void	free_two(char **str, int i)
 {
 	if (i == 0)
@@ -62,25 +40,51 @@ void	free_two(char **str, int i)
 	}
 }
 
-void	free_all(t_mcmd *command)
+void	free_spl(char **str_spl, int i)
 {
-	int	i;
-
-	i = 0;
-	while (command->av[i])
+	if (i == 1)
 	{
-		free(command->av[i]);
-		command->av[i] = NULL;
-		i++;
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl);
+		str_spl = NULL;
 	}
-	free(command->av);
-	command->av = NULL;
+	else if (i > 1)
+	{
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl[1]);
+		str_spl[1] = NULL;
+		free(str_spl);
+		str_spl = NULL;
+	}
+	else
+	{
+		free(str_spl[0]);
+		str_spl[0] = NULL;
+		free(str_spl);
+		str_spl = NULL;
+	}
 }
 
-void	exit_error(int code, char *error)
+void	free_args_array(t_mcmd *command)
 {
-	// puts(error);
-	write(2, error, ft_strlen(error));
-	write(2, "\n", 1);
-	exit(code);
+	char	**arr;
+	t_pars	*tmp2;
+	int		i;
+
+	i = -1;
+	while (command->pars.args_array)
+	{
+		tmp2 = command->pars.args_array->next;
+		arr = command->pars.args_array->args;
+		i = -1;
+		while (arr[++i])
+		{
+			free (arr[i]);
+		}
+		free(arr);
+		free (command->pars.args_array);
+		command->pars.args_array = tmp2;
+	}
 }

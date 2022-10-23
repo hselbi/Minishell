@@ -58,7 +58,7 @@ void	init_exec(t_mcmd *command)
 
 void	exec_action(t_mcmd *command, char **args, int flag)
 {
-	if (command->index == 1 && is_built(command->av[0]))
+	if (command->ac == 2 && is_built(command->av[0]))
 	{
 		flag = 1;
 		ft_builtin(command, flag);

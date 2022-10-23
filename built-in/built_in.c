@@ -39,7 +39,7 @@ int	buildin_cmd(t_mcmd *command, int i, int fd)
 	{
 		while (command->av[i])
 			i++;
-		my_exit(i + 1, command->av);
+		my_exit(command->ac, i + 1, command->av);
 		return (1);
 	}
 	else if (!ft_strcmp(command->av[0], "unset"))

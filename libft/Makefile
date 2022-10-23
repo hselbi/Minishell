@@ -6,7 +6,7 @@
 #    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 11:45:14 by hselbi            #+#    #+#              #
-#    Updated: 2022/10/22 02:41:25 by hselbi           ###   ########.fr        #
+#    Updated: 2022/10/23 15:16:17 by hselbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS = 	ft_atoi.c\
 		ft_strlen.c\
 		ft_strmapi.c\
 		ft_substr.c\
+		ft_putstr_fd.c\
 	   	ft_lstadd_back_bonus.c\
 		ft_lstdelone_bonus.c\
 		ft_lstclear_bonus.c\

@@ -11,15 +11,20 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 		buf = getcwd(NULL, 0);
 		if (!buf)
 		{
-			printf("cd: error retrieving current directory: getcwd: cannot");
-			printf(" access parent directories: No such file or directory\n");
+			ft_putstr_fd("cd: error retrieving current directory: getcwd: ", 2);
+			ft_putstr_fd("cannot access parent directories: No such file ", 2);
+			ft_putstr_fd("or directory\n", 2);
 		}
 		return (buf);
 	}
 	else
 	{
 		if (chdir(command->av[i + 1]) == -1)
-			printf("cd: %s: No such file or directory\n", command->av[i + 1]);
+		{
+			ft_putstr_fd("cd: ", 2);
+			ft_putstr_fd(command->av[i + 1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+		}
 		buf = getcwd(NULL, 0);
 		return (buf);
 	}
@@ -68,7 +73,7 @@ void	cd_only(t_mcmd *command, char **buf)
 	if (chdir(*buf) == -1)
 	{
 		g_status = 1;
-		printf("cd: HOME not set\n");
+		ft_putstr_fd("cd: HOME not set\n", 2);
 	}
 }
 
@@ -92,7 +97,9 @@ void	my_cd(t_mcmd *command, int ac)
 	if (check_var("PWD", command->en))
 	{
 		adding_oldpath(command, ori_path);
+		ft_free(command->av);
 		adding_newpath(command, buf);
+		ft_free(command->av);
 	}
 	if (buf)
 		free(buf);

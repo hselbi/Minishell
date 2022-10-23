@@ -1,21 +1,6 @@
 #include "minishell.h"
 
 /************************************************************************
-*		 		*			path home back-up			*
-************************************************************************/
-void	save_home(t_mcmd *command)
-{
-	int		i;
-	t_list	*arr;
-
-	i = 0;
-	arr = command->en;
-	while (arr->content != NULL && ft_strncmp("HOME=", arr->content, 5) != 0)
-		arr = arr->next;
-	command->home = ft_strdup(arr->content);
-}
-
-/************************************************************************
 * 		*			check is variable is already in env			*
 ************************************************************************/
 
@@ -80,7 +65,6 @@ void	mini_action(t_mish ms, t_mcmd *command)
 		&& !check_stach_here_doc(ms.line))
 	{
 		befor_make_struct(ms.line, &command->pars);
-		// args_pars(command->pars);
 		tmp = command->pars;
 		while (tmp.args_array)
 		{
@@ -89,29 +73,30 @@ void	mini_action(t_mish ms, t_mcmd *command)
 		}
 		ft_exec(command);
 	}
-
-	int i = -1;
-	char **arr;
-
-	t_pars *tmp2;
-
-	while (command->pars.args_array)
-	{
-		tmp2 = command->pars.args_array->next;
-		arr = command->pars.args_array->args;
-		i = -1;
-		while (arr[++i])
-			free (arr[i]);
-		free(arr);
-		free (command->pars.args_array);
-		command->pars.args_array = tmp2;
-	}
+	free_args_array(command);
 	free(ms.line);
 }
 
 /************************************************************************
 * 		*			main minishell handling inputs			*
 ************************************************************************/
+
+int	h_main(t_mish ms)
+{
+	if (ms.line == NULL || ms.line[0] == '\0' || isspaces(ms.line) == 1)
+	{
+		if (ms.line == NULL)
+		{
+			write(2, "exit\n", 5);
+			free(ms.line);
+			ms.line = NULL;
+			exit(1);
+		}
+		free(ms.line);
+		return (1);
+	}
+	return (0);
+}
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -130,21 +115,10 @@ int	main(int argc, char *argv[], char *envp[])
 			add_history(ms.line);
 		command.pars = pars;
 		command.ac = 1;
-		if (ms.line == NULL || ms.line[0] == '\0' || isspaces(ms.line) == 1)
-		{
-			if (ms.line == NULL)
-			{
-				write(2, "exit\n", 5);
-				free(ms.line);
-				ms.line = NULL;
-				exit(1);
-			}
-			free(ms.line);
+		if (h_main(ms))
 			continue ;
-		}
 		if (ms.line)
 			mini_action(ms, &command);
-		// system("leaks minishell");
 	}
 	return (0);
 }

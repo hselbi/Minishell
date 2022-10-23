@@ -21,7 +21,6 @@ char	*with_equal(char *str, char **spl_str)
 	tmp = NULL;
 	free(str);
 	str = NULL;
-	// free_two(spl_str, 0);
 	return (out);
 }
 
@@ -43,7 +42,6 @@ char	*without_equal(int i, char *arr, char **spl_str)
 		out = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	// free_two(spl_str, 0);
 	return (out);
 }
 
@@ -74,34 +72,6 @@ char	**make_env(int i, char *lst)
 	else
 		str_spl = ft_split(lst, ' ');
 	return (str_spl);
-}
-
-
-void	free_spl(char **str_spl, int i)
-{
-	if (i == 1)
-	{
-		free(str_spl[0]);
-		str_spl[0] = NULL;
-		free(str_spl);
-		str_spl = NULL;
-	}
-	else if (i > 1)
-	{
-		free(str_spl[0]);
-		str_spl[0] = NULL;
-		free(str_spl[1]);
-		str_spl[1] = NULL;
-		free(str_spl);
-		str_spl = NULL;
-	}
-	else
-	{
-		free(str_spl[0]);
-		str_spl[0] = NULL;
-		free(str_spl);
-		str_spl = NULL;
-	}
 }
 
 /******************************************************

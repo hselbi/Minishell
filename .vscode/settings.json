@@ -4,6 +4,7 @@
     "lldb.dereferencePointers": true,
     "lldb.consoleMode": "evaluate",
     "files.associations": {
-        "parser.h": "c"
+        "parser.h": "c",
+        "stdlib.h": "c"
     }
 }

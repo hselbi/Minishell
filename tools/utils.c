@@ -64,3 +64,18 @@ int	spaces_check(char *str)
 		return (1);
 	return (0);
 }
+
+/************************************************************************
+*		 		*			path home back-up			*
+************************************************************************/
+void	save_home(t_mcmd *command)
+{
+	int		i;
+	t_list	*arr;
+
+	i = 0;
+	arr = command->en;
+	while (arr->content != NULL && ft_strncmp("HOME=", arr->content, 5) != 0)
+		arr = arr->next;
+	command->home = ft_strdup(arr->content);
+}

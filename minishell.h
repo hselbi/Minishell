@@ -27,7 +27,7 @@
 int			g_status;
 /******************************/
 
-/*		i dont think that i need this one		*/
+/*		for readline		*/
 
 typedef struct s_mish
 {
@@ -90,12 +90,16 @@ char	**make_env(int i, char *lst);
 void	exp_sorting(t_list *en, int fd, int flag);
 void	new_export(t_mcmd *command, int fd);
 void	sel_env(char *s, t_list **en);
-int		check_av(char *av);
 int		char_valid(char c);
+void	not_many_eq(t_mcmd *command, int i);
+
+int		check_av(char *av);
+int		h_check_av(char **str, int k);
+int		h_check_av2(char **str, int i);
 
 //	exit
-void	my_exit(int ac, char **av);
-void	exit_args(int ac, char *av[], int status);
+void	my_exit(int flag, int ac, char **av);
+void	exit_args(int flag, int ac, char *av[], int status);
 int		is_digit(char *str);
 
 // echo
@@ -116,7 +120,7 @@ void	adding_oldpath(t_mcmd *command, char *ori_path);
 // unset
 void	init_unset(t_mcmd *command);
 int		check_var(char *str, t_list *en);
-t_list	*my_unset(int ac, char **av, t_list **en);
+t_list	*my_unset(char *str, t_list **en);
 
 // pwd
 int		ft_pwd(t_mcmd *command, int fd);
@@ -154,7 +158,8 @@ int		status_child(int pid);
 
 int		check_char(char c1, char c2);
 void	ft_free(char **str);
-// void	free_all(t_li÷st *command);
+void	free_spl(char **str_spl, int i);
+void	free_args_array(t_mcmd *command);
 void	exit_error(int code, char *error);
 void	free_all(t_mcmd *command);
 
@@ -168,6 +173,7 @@ int		spaces_check(char *str);
 void	ft_print_pars(t_pars *pars);
 
 int		isspaces(char *str);
+void	save_home(t_mcmd *command);
 
 /**************************************************************************
 * 				*		printing for debuging		*
@@ -182,11 +188,7 @@ void	args_pars(t_pars pars);
 * 					*          parsing			*							  
 ***************************************************************************/
 
-void	pars_free(t_pars *p);
-void	p_free(t_mcmd *command);
-void	struct_free(t_mcmd *command);
 void	print_struct(t_mcmd *commmad);
-void	lst_clear(t_mcmd **lst, void (*del)(void*));
 
 /**************************************************************************
 * 					*          wildcard		      *					
