@@ -147,10 +147,7 @@ void	valid_exp(t_mcmd *command, int i)
 		free(str[1]);
 		str[1] = ft_strchr(command->av[i], '=');
 		str[1]++;
-		str[1]++;
-		printf("gggggggg1\n");
 		j = check_var(str[0], command->en);
-		printf("gggggggg2\n");
 		k = check_var(str[0], command->exp_en);
 		if (j)
 			sel_env(str[0], &command->en);
@@ -161,6 +158,7 @@ void	valid_exp(t_mcmd *command, int i)
 		free(str[0]);
 		str[0] = NULL;
 		free(str);
+		str = NULL;
 	}
 	else
 		not_many_eq(command, i);

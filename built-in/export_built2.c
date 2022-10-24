@@ -21,7 +21,8 @@ char	*with_equal(char *str, char **spl_str)
 	tmp = NULL;
 	free(str);
 	str = NULL;
-	ft_free(spl_str);
+	free(spl_str[0]);
+	free(spl_str);
 	return (out);
 }
 
@@ -104,6 +105,7 @@ void	assemebly_str(char *lst, int fd, int flag)
 	}
 	else
 		printf("%s\n", out);
+	// ft_free(str_spl);
 	free(out);
 }
 

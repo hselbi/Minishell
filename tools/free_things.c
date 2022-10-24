@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 00:06:42 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/17 00:39:54 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/17 02:15:51 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_free(char **str)
 	int	i;
 
 	i = 0;
-	while (!str[i])
+	while (str[i])
 	{
 		free(str[i]);
 		str[i] = NULL;

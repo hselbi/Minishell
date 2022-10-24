@@ -118,10 +118,15 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 	(void)cmd;
 	while (command->spl_str[i++] != NULL)
 		command->ac_spl++;
+	fprintf(stderr, "yesy jhklsdsjk\n");
 	if (!ft_strncmp(ft_strchr(command->spl_str[0], '/'), "/", 1))
+	{
+		fprintf(stderr, "hellos\n");
 		is_cmd_path(command->spl_str, command->spl_str[0], en);
+	}
 	else
 	{
+		fprintf(stderr, "hey im in here %s\n", command->path);
 		command->path = make_path(command->spl_str[0], en);
 		if (!(command->path) && !is_built(command->spl_str[0]))
 		{

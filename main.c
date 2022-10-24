@@ -73,7 +73,9 @@ void	mini_action(t_mish ms, t_mcmd command)
 	t_pars	tmp;
 
 	ms.line = wc_handle(ms.line);
-	if (check_pipe_error(ms.line) == 0 && check_check(ms.line, &command.pars) == 0 && check_stach_here_doc(ms.line) == 0)
+	if (!check_pipe_error(ms.line)
+		&& !check_check(ms.line, &command.pars)
+		&& !check_stach_here_doc(ms.line))
 	{
 		befor_make_struct(ms.line, &command.pars);
 		args_pars(command.pars);
@@ -83,6 +85,7 @@ void	mini_action(t_mish ms, t_mcmd command)
 			command.ac++;
 			tmp.args_array = tmp.args_array->next;
 		}
+		printf("before before %p \n", command.pars.args_array->args);
 		ft_exec(&command);
 		p_free(&command);
 	}
@@ -104,7 +107,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argc;
 	init_minishell(&command, envp);
 	pars.env = command.en;
-	signal(SIGINT, sig_handler);
+	// signal(SIGINT, sig_handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
@@ -128,7 +131,7 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		if (ms.line)
 			mini_action(ms, command);
-		// system("leaks minishell");
+		system("leaks minishell");
 	}
 	return (0);
 }

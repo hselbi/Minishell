@@ -59,6 +59,10 @@ char	*cd_arg(t_mcmd *command, int i, char *buf)
 	}
 }
 
+/******************************************************
+*  				*	get from my env		*
+******************************************************/
+
 char	*my_getenv(t_list *env, int i)
 {
 	char	*str;
@@ -81,6 +85,7 @@ char	*my_getenv(t_list *env, int i)
 	}
 	return (str);
 }
+
 
 /******************************************************
 *  			*	process of cd function	 *
