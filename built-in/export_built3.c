@@ -68,7 +68,6 @@ void	not_many_eq(t_mcmd *command, int i)
 	int	j;
 	int	k;
 
-	printf("test hafid\n");
 	k = check_var(command->av[i], command->en);
 	j = check_var(command->av[i], command->exp_en);
 	if (k)

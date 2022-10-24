@@ -22,11 +22,9 @@ int	status_child(int pid)
 		g_status = WEXITSTATUS(pid);
 	if (WIFSIGNALED(pid))
 	{
+		fprintf(stderr, "=> %d\n", pid);
 		if (pid == 3)
 			write(1, "Quit: 3\n", 8);
-		g_status = WTERMSIG(pid);
-		if (g_status != 131)
-			g_status += 128;
 	}
 	return (g_status);
 }

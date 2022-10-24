@@ -57,7 +57,6 @@ int	check_av(char *av)
 		return (1);
 	}	
 	i = h_check_av(str, k);
-	printf("test %d\n", i);
 	if (i)
 		return (i);
 	ft_free(str);

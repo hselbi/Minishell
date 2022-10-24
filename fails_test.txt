@@ -37,6 +37,8 @@
 * 			           Erreurs A renvoyer          						*
 ************************************************************************/
 
-//add 
-<< l >o ls | >< | pwd
+/*
+*   need to fix the problem of "cat | ls" ==> echo $? = 0 not 130
+*   need to fix the problem of "sleep 3 | ls" ==> echo $? = 0 not 130
+*/
 

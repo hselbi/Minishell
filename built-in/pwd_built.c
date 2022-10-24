@@ -12,8 +12,11 @@ int	ft_pwd(t_mcmd *command, int fd)
 	fd = (int)fd;
 	s1 = "PWD";
 	getcwd(buff, sizeof(buff));
-	if (!check_var(s1, command->en))
+	if (check_var(s1, command->en))
+	{
+		ft_free(command->av);
 		adding_newpath(command, buff);
+	}
 	if (fd == 1)
 	{
 		write(command->out, buff, ft_strlen(buff));

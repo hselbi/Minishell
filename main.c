@@ -119,6 +119,7 @@ int	main(int argc, char *argv[], char *envp[])
 			continue ;
 		if (ms.line)
 			mini_action(ms, &command);
+		// system("leaks minishell");
 	}
 	return (0);
 }
