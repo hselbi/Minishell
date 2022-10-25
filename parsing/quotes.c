@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 09:01:59 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 15:27:13 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 23:44:25 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ void	take_word(char *commands, t_pars *pars, int i)
 	j = 0;
 	if (commands[i] == '"')
 	{
-		pars->i++;
-		pars->i++;
+		pars->i += 2;
 		pars->for_struct = ft_strjoinn(pars->for_struct, space(" "));
 	}
 	else
