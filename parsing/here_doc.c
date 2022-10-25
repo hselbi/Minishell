@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 03:28:14 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:29:13 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	child_here_doc(int *fd, t_pars *pars)
 {
 	char	*line;
 
+	signal(SIGINT, SIG_DFL);
 	if (!pars->limiter)
 		error_exit("syntax error near unexpected token `newline'", pars);
 	line = get_next_line(0);
