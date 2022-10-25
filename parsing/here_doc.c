@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 18:43:49 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 21:17:17 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	child_here_doc(int *fd, t_pars *pars)
 {
 	char	*line;
 
+	signal(SIGINT, SIG_DFL);
 	if (!pars->limiter)
 		error_exit("syntax error near unexpected token `newline'", pars);
 	line = get_next_line(0);
@@ -51,7 +52,10 @@ void	make_input(t_pars *pars)
 	close(fd[1]);
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
+	signal(SIGINT, SIG_IGN);
 	waitpid(pid, NULL, 0);
+	signal(SIGINT, handler);
+	free(pars->limiter);
 }
 
 /*****************************************************************************/

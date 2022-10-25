@@ -10,7 +10,6 @@ void	ft_waitpid(t_mcmd *command)
 	i = 0;
 	while (++i < command->ac)
 	{
-		// printf("&&++> %d\n", g_status);
 		waitpid(-1, &stat, 0);
 		status_child(stat, i);
 	}
@@ -22,22 +21,17 @@ int	status_child(int pid, int index)
 	int	c_stat;
 
 	c_stat = 0;
-	// printf("g_status 0 %d\n", g_status);
 	if (WIFEXITED(pid))
 	{
 		c_stat = WEXITSTATUS(pid);
-		// printf("c_stat 1 %d\n", c_stat);
 	}
 	else if (WIFSIGNALED(pid))
 	{
-		// fprintf(stderr, "=> %d\n", pid);
 		if (pid == 3)
 			write(1, "Quit: 3\n", 8);
-		// printf("c_stat 2 %d\n", c_stat);
 		c_stat = WTERMSIG(pid);
 		if (c_stat != 131)
 			c_stat += 128;
-		// printf("c_stat 3 %d\n", c_stat);
 	}
 	if (index == 1)
 		g_status =  c_stat;

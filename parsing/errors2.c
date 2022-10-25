@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:56 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 23:01:02 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 03:25:08 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	check_hd(char *line, int i)
 
 int	check_first(char *line, t_pars *pars)
 {
+	pars->i = 0;
 	while (line[pars->i] <= 32)
 		pars->i++;
 	if (line[pars->i] == '|')

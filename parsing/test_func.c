@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:37:55 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/22 22:08:01 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/24 23:23:45 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	others(char *commands, t_pars *pars)
 /* make_struct is the main function to pars the string into different struct */
 /* 1- cmd  : a command to execute											 */
 /* 2- args : the arguments that follows cmd	ended by NULL					 */
-/* 3- here_doc_limiter : if there is a here_doc it take his limiter 		 */
+/* 3- here_doc_limiter : if there is a here_doc it takes his limiter 		 */
 /* 4- infile  : takes the name of the file redirected to as input			 */
 /* 5- outfile : takes the name of the file redirected to as output			 */
 /*****************************************************************************/
@@ -109,9 +109,9 @@ void	make_struct(char *commands, t_pars	*pars)
 			take_word_2(commands, pars, pars->i + 1);
 		else if (commands[pars->i] == '<' && commands[pars->i + 1] == '<')
 			for_here_doc(commands, pars);
-		else if (commands[pars->i] == '\\' && commands[pars->i + 1] == '$')
+		else if (commands[pars->i] == '\\' && commands[pars->i +1] == '$')
 			pars->i++;
-		else if (commands[pars->i] == '$')
+		else if (commands[pars->i] == '$' && commands[pars->i -1] != '\\')
 			check_valid_dollar(commands, pars);
 		else
 			others(commands, pars);

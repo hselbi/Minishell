@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:22:58 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 23:01:34 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:36:34 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ char	*split_it(char *cont)
 
 char	*expand_it(char	*to_expand, t_pars *pars, int trig)
 {
-	int		i;
 	int		begin;
 	int		end;
 	char	*cont;
 
-	i = 0;
 	if (!to_expand)
 		return (NULL);
 	if (!cmp(to_expand, "?"))
@@ -100,43 +98,25 @@ char	*take_what_to_expand(char *sentance, t_pars *pars)
 
 char	*check_dollar(char *word, t_pars *pars)
 {
-	int		i;
-	int		begin;
-	char	*expanded;
-	char	*dlr_exp;
+	t_dlr	dlr;
 
-	i = 0;
-	expanded = NULL;
-	while (word[i])
+	dlr.i = 0;
+	dlr.expd = NULL;
+	while (word[dlr.i])
 	{
-		if (word[i] == '$')
+		if (word[dlr.i] == '$')
 		{
-			begin = ++i;
-			if (word[begin] == '?')
-			{
-				expanded = ft_strjoinn(expanded, expand_it("?\0", pars, 1));
-				i++;
-			}
+			dlr.begin = ++dlr.i;
+			if (word[dlr.begin] == '?')
+				check_exit(&dlr, pars);
 			else
-			{
-				while (!ft_isalnum_dyali(word[i]) && word[i])
-					i++;
-				dlr_exp = expand_it(make_word(word, begin, i - 1), pars, 1);
-				expanded = ft_strjoinn(expanded, dlr_exp);
-			}
+				normal_expand(&dlr, pars, word);
 		}
 		else
-		{
-			begin = i;
-			if (word[i - 1] == '$')
-				begin = i - 1;
-			while (word[i] && word[i] != '$')
-				i++;
-			expanded = ft_strjoinn(expanded, make_word(word, begin, i - 1));
-		}
+			join_to_expanded(&dlr, word);
 	}
 	free(word);
-	return (expanded);
+	return (dlr.expd);
 }
 
 /*****************************************************************************/

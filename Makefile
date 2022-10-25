@@ -1,4 +1,3 @@
-
 .PHONY = all clean fclean re
 
 EXEC = $(addprefix exec/, main_execute.c execute.c execute_utils.c waitpid.c)
@@ -9,7 +8,7 @@ PATH_BUILTIN = built-in/
 
 BUILDIN = cd_built.c cd_built2.c envir_built.c export_built.c export_built2.c export_built3.c export_helper.c pwd_built.c unset_built.c echo_built.c exit_built.c built_in.c
 
-PARSE = $(addprefix parsing/, errors.c errors2.c expand.c ft_iitoa.c ft_split.c ft_strjoin.c get_next_line.c get_next_line_utils.c here_doc.c make_struct.c outils.c quotes.c redirection.c redirection2.c test_func.c test_pars.c)
+PARSE = $(addprefix parsing/, an_other_file.c errors.c errors2.c expand.c ft_iitoa.c ft_split.c ft_strjoin.c get_next_line.c get_next_line_utils.c here_doc.c make_struct.c outils.c quotes.c redirection.c redirection2.c test_func.c test_pars.c)
 
 PATH_PRINT = $(addprefix print_for_debug/, print_pars.c)
 
@@ -49,7 +48,7 @@ all: ${NAME}
 $(NAME): $(OBJ) $(SRC)
 	@echo "\033[0;93mMake $(NAME) ..."
 	@$(MAKE) -C Libft
-	@$(CC) $(FLAG) $(RFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(FLAG) $(RFLAGS)  $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "\033[1;92m$(NAME) is Done\033[0m"
 
 clean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/22 22:14:00 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/24 22:27:36 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	make_struct_to_execute(t_pars *pars)
 	if (!pars->for_struct)
 		return ;
 	mst.sp = ft_spliti(pars->for_struct, '	');
-	// fprintf(stderr, "1/ %s\n2/ %s\n", mst.sp[0], mst.sp[1]);÷
 	free(pars->for_struct);
 	mst.cmd_nmb = count_commands(mst.sp);
 	mst.args = (char **)malloc(sizeof(char *) * (mst.cmd_nmb + 1));
@@ -42,11 +41,18 @@ void	make_struct_to_execute(t_pars *pars)
 			mst.args[mst.j++] = ft_strdupl(mst.sp[pars->index++]);
 	}
 	mst.args[mst.j] = NULL;
-	int i = -1;
-	while (mst.sp[++i])
-		free (mst.sp[i]);
-	free(mst.sp);
+	free_sp(mst.sp);
 	back_lstadd(&pars->args_array, new_lst(mst.args, pars));
+}
+
+void	free_sp(char **sp)
+{
+	int	i;
+
+	i = -1;
+	while (sp[++i])
+		free (sp[i]);
+	free(sp);
 }
 
 int	check_check(char *line, t_pars *pars)
