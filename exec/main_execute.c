@@ -67,19 +67,6 @@ void	exec_action(t_mcmd *command, char **args, int flag)
 		exec(command, args[0], command->en);
 }
 
-void	cpy_args(t_mcmd *command, t_pars *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd->args_array->args[i])
-	{
-		command->av[i] = ft_strdup(cmd->args_array->args[i]);
-		i++;
-	}
-	command->av[i] = NULL;
-}
-
 /************************************************************************
 *			*			main in for execute/built-in			*
 ************************************************************************/
@@ -98,7 +85,10 @@ int	ft_exec(t_mcmd *command)
 		command->spl_str = cmd.args_array->args;
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
+		{
+			g_status = 258;
 			return (0);
+		}
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
 		exec_action(command, cmd.args_array->args, flag);

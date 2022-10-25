@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/24 22:06:45 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 18:43:49 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ void	make_input(t_pars *pars)
 	close(fd[1]);
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
-	signal(SIGINT, SIG_IGN);
 	waitpid(pid, NULL, 0);
-	signal(SIGINT, sig_handler);
 }
 
 /*****************************************************************************/

@@ -150,7 +150,7 @@ void	exec_action(t_mcmd *command, char **args, int flag);
 
 //	waitpid.c
 void	ft_waitpid(t_mcmd *command);
-int		status_child(int pid);
+int		status_child(int pid, int index);
 
 /**************************************************************************
 * 						*		tools		*
