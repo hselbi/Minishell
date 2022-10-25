@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:29:44 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/22 22:12:45 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 22:39:35 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
+#include"../minishell.h"
 
 /*****************************************************************************/
 /* it checks if there is a space between redirection and the infile name	 */
@@ -61,7 +62,7 @@ void	open_infile(char *sp, t_pars *pars)
 				close(pars->hold_input);
 			pars->hold_input = open(sp, O_RDONLY);
 			if (pars->hold_input < 0)
-				error_exit("Error in making outfile!", pars);
+				error_exit("Error in making infile!", pars);
 		}
 		pars->index++;
 	}
@@ -82,7 +83,7 @@ void	open_infile2(char *sp, t_pars *pars)
 			close(pars->hold_input);
 		pars->hold_input = open(sp, O_RDONLY);
 		if (pars->hold_input < 0)
-			error_exit("Error in making outfile!", pars);
+			error_exit("Error in making infile!", pars);
 	}
 	pars->index++;
 }

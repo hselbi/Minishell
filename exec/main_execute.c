@@ -85,7 +85,10 @@ int	ft_exec(t_mcmd *command)
 		command->spl_str = cmd.args_array->args;
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
+		{
+			g_status = 258;
 			return (0);
+		}
 		fd_pipe(command);
 		redirect(cmd.args_array, command);
 		exec_action(command, cmd.args_array->args, flag);

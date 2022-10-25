@@ -9,7 +9,7 @@ int	is_valid(char *check, char *mesure)
 	int	i;
 
 	i = 0;
-	while (check[i])
+	while (mesure[i])
 	{
 		if (check_char(check[i], mesure[i]) != 0
 			&& check_char(check[i], mesure[i]) != 32)

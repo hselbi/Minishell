@@ -51,6 +51,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 		{
 			if (execve(command->path, command->spl_str, en) == -1)
 				exit_error(127, "Error: Command cannot execute");
+			g_status = 0;
 		}
 		if (command->path != NULL)
 			free(command->path);

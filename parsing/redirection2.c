@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   redirection2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:29:57 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/23 15:24:54 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 22:40:02 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
+#include"../minishell.h"
 
 /*****************************************************************************/
 /* it opens the outfile2 and return it's file descriptor					 */

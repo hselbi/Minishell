@@ -6,11 +6,12 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:56 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 03:25:08 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:18:28 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
+#include"../minishell.h"
 
 /*****************************************************************************/
 /* error_pipe syntax error unexpected token `|'								 */
@@ -19,6 +20,7 @@
 int	error_pipe(void)
 {
 	perror("syntax error near unexpected token `|'\n");
+	g_status = 258;
 	return (5);
 }
 
@@ -29,6 +31,7 @@ int	error_pipe(void)
 int	error_newline(void)
 {
 	perror("syntax error near unexpected token `newline'\n");
+	g_status = 258;
 	return (5);
 }
 
@@ -39,6 +42,7 @@ int	error_newline(void)
 int	error_red(void)
 {
 	perror("syntax error near unexpected token `<'\n");
+	g_status = 258;
 	return (5);
 }
 

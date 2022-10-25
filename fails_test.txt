@@ -40,9 +40,47 @@
 /*
 *   need to fix the problem of "cat | ls" ==> echo $? = 0 not 130
 *   need to fix the problem of "sleep 3 | ls" ==> echo $? = 0 not 130
+*   need to fix the problem of "echo test <|" ==> echo $? = 258 not 0
+*   need to fix the problem of "echo test <|" ==> echo $? = 258 not 0
+    syntax error ==> 258
 */
 
+<<<<<<< HEAD
+
+
+#define EX_BADSYNTAX	257	/* shell syntax error */
+#define EX_USAGE	258	/* syntax error in usage */
+#define EX_REDIRFAIL	259	/* redirection failed */
+#define EX_BADASSIGN	260	/* variable assignment error */
+#define EX_EXPFAIL	261	/* word expansion failed */
+#define EX_DISKFALLBACK	262	/* fall back to disk command from builtin */
+
+g_status = (executing_builtin && parse_and_execute_level) ? EX_BADSYNTAX : EX_BADUSAGE;
+
+
+Exit Code Number	Meaning	Example	Comments
+1	Catchall for general errors	let "var1 = 1/0"	Miscellaneous errors, such as "divide by zero" and other impermissible operations
+2	Misuse of shell builtins (according to Bash documentation)	empty_function() {}	Missing keyword or command, or permission problem (and diff return code on a failed binary file comparison).
+126	Command invoked cannot execute	/dev/null	Permission problem or command is not an executable
+127	"command not found"	illegal_command	Possible problem with $PATH or a typo
+128	Invalid argument to exit	exit 3.14159	exit takes only integer args in the range 0 - 255 (see first footnote)
+128+n	Fatal error signal "n"	kill -9 $PPID of script	$? returns 137 (128 + 9)
+130	Script terminated by Control-C	Ctl-C	Control-C is fatal error signal 2, (130 = 128 + 2, see above)
+255*	Exit status out of range	exit -1	exit takes only integer args in the range 0 - 255
+
+
+| Exit Code Number  | Meaning                                                        | Example                      | Comments                 |
+| 1                 | Catchall for general errors                                    | "var1 = 1/0"                 | Miscellaneous errors, such as "divide by zero" and other impermissible operations                           |
+| 2                 | Misuse of shell builtins (according to Bash documentation)     | empty_function() {}          | Missing keyword or command, or permission problem (and diff return code on a failed binary file comparison).|
+| 126               | Command invoked cannot execute                                 | /dev/null                    | Permission problem or command is not an executable                                                          |
+| 127               | "command not found"                                            | illegal_command	            | Possible problem with $PATH or a typo                                                                       |
+| 128+n             | Invalid argument to exit                                       | exit 3.14159                 ||
+| 128+n             | Fatal error signal "n"                                         | kill -9 $PPID of script      ||
+| 130               | Script terminated by Control-C                                 | Ctl-C                        ||
+| 255               | Exit status out of range                                       | exit -1                      ||
+=======
 ls >> 
 ls >
 
 while 1; sleep 1; do leaks minishell; done
+>>>>>>> origin/ayoub
