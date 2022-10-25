@@ -86,6 +86,7 @@ int	ft_exec(t_mcmd *command)
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 		{
+			printf("test 0\n");
 			g_status = 258;
 			return (0);
 		}

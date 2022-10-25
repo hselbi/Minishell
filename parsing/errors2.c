@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:56 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 03:25:08 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:21:27 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
+#include "../minishell.h"
 
 /*****************************************************************************/
 /* error_pipe syntax error unexpected token `|'								 */
@@ -19,6 +20,7 @@
 int	error_pipe(void)
 {
 	perror("syntax error near unexpected token `|'\n");
+	g_status = 258;
 	return (5);
 }
 
@@ -29,6 +31,7 @@ int	error_pipe(void)
 int	error_newline(void)
 {
 	perror("syntax error near unexpected token `newline'\n");
+	g_status = 258;
 	return (5);
 }
 
