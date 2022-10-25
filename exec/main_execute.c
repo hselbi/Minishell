@@ -67,6 +67,19 @@ void	exec_action(t_mcmd *command, char **args, int flag)
 		exec(command, args[0], command->en);
 }
 
+void	cpy_args(t_mcmd *command, t_pars *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd->args_array->args[i])
+	{
+		command->av[i] = ft_strdup(cmd->args_array->args[i]);
+		i++;
+	}
+	command->av[i] = NULL;
+}
+
 /************************************************************************
 *			*			main in for execute/built-in			*
 ************************************************************************/

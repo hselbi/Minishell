@@ -14,8 +14,8 @@ int	ft_pwd(t_mcmd *command, int fd)
 	getcwd(buff, sizeof(buff));
 	if (check_var(s1, command->en))
 	{
-		ft_free(command->av);
 		adding_newpath(command, buff);
+		ft_free(command->av);
 	}
 	if (fd == 1)
 	{
