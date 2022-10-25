@@ -7,7 +7,6 @@
 t_list	*ft_env(char **en)
 {
 	t_list	*tmp_en;
-	char	*str;
 	int		len;
 	int		i;
 
@@ -15,13 +14,12 @@ t_list	*ft_env(char **en)
 	i = 0;
 	while (en[len])
 		len++;
-	str = ft_strdup(en[i]);
-	tmp_en = ft_lstnew(str);
-	i++;
 	while (i < len)
 	{
-		str = ft_strdup(en[i]);
-		ft_lstadd_back(&tmp_en, ft_lstnew(str));
+		if (!i)
+			tmp_en = ft_lstnew(en[i]);
+		else
+			ft_lstadd_back(&tmp_en, ft_lstnew(en[i]));
 		i++;
 	}
 	return (tmp_en);
@@ -33,10 +31,14 @@ t_list	*ft_env(char **en)
 void	my_env(t_mcmd *command)
 {
 	if (ft_strlen(command->av[0]) != 3)
-		printf("%s: command not found\n", command->av[0]);
+	{
+		write(2, command->av[0], ft_strlen(command->av[0]));
+		write(2, ": Command not found\n", 18);
+	}
 	else
 	{
-		printf("%s: No such file or directory\n", command->av[0]);
+		write(2, command->av[0], ft_strlen(command->av[0]));
+		write(2, ": No such file or directory\n", 28);
 		g_status = 1;
 	}
 }

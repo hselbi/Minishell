@@ -27,7 +27,7 @@
 int			g_status;
 /******************************/
 
-/*		i dont think that i need this one		*/
+/*		for readline		*/
 
 typedef struct s_mish
 {
@@ -77,9 +77,7 @@ int		ft_builtin(t_mcmd *command, int fd);
 
 // envp
 t_list	*ft_env(char **en);
-//check if first arg is "env" or "env "
 void	my_env(t_mcmd *command);
-//check if numbers of args is more then one or not
 
 //	export
 char	*with_equal(char *str, char **spl_str);
@@ -92,12 +90,16 @@ char	**make_env(int i, char *lst);
 void	exp_sorting(t_list *en, int fd, int flag);
 void	new_export(t_mcmd *command, int fd);
 void	sel_env(char *s, t_list **en);
-int		check_av(char *av);
 int		char_valid(char c);
+void	not_many_eq(t_mcmd *command, int i);
+
+int		check_av(char *av);
+int		h_check_av(char **str, int k);
+int		h_check_av2(char **str, int i);
 
 //	exit
-void	my_exit(int ac, char **av);
-void	exit_args(int ac, char *av[], int status);
+void	my_exit(int flag, int ac, char **av);
+void	exit_args(int flag, int ac, char *av[], int status);
 int		is_digit(char *str);
 
 // echo
@@ -111,13 +113,14 @@ void	print_echo(char *str, int flag, int fd, int type);
 int		init_cd(t_mcmd *command, int i);
 void	my_cd(t_mcmd *command, int i);
 char	*cd_arg(t_mcmd *command, int i, char *buf);
-int		ft_check_cd(char *av);
-int		check_ch(char c1, char c2);
+void	cd_only(t_mcmd *command, char **buf);
+char	*my_getenv(t_list *env, int i);
+void	adding_oldpath(t_mcmd *command, char *ori_path);
 
 // unset
 void	init_unset(t_mcmd *command);
 int		check_var(char *str, t_list *en);
-t_list	*my_unset(int ac, char **av, t_list *en);
+t_list	*my_unset(char *str, t_list **en);
 
 // pwd
 int		ft_pwd(t_mcmd *command, int fd);
@@ -126,22 +129,26 @@ void	adding_newpath(t_mcmd *command, char *new_path);
 /**************************************************************************
 *						*		execution		*
 ***************************************************************************/
-// execute_utils.c
 
+// execute_utils.c
 void	is_cmd_path(char **path, char *cmd, char *en[]);
 char	*correct_one(char **paths, char *cmd);
 char	*make_path(char *cmd, char *en[]);
-void	ft_excusion(char *cmd, t_mcmd *command, char *en[]);
+int		ft_exec(t_mcmd *command);
 
 // execute.c
-
-void	exec(t_mcmd *command, char *str, t_list *en);
-int		ft_exec(t_mcmd *command);
 char	**en_conv(t_list *envp);
+void	ft_excusion(char *cmd, t_mcmd *command, char *en[]);
+void	exec(t_mcmd *command, char *str, t_list *en);
+
+// main_execute
 void	redirect(t_pars *arr, t_mcmd *command);
+void	fd_pipe(t_mcmd *command);
+void	close_fd(t_mcmd *command);
+void	init_exec(t_mcmd *command);
+void	exec_action(t_mcmd *command, char **args, int flag);
 
 //	waitpid.c
-
 void	ft_waitpid(t_mcmd *command);
 int		status_child(int pid);
 
@@ -151,10 +158,14 @@ int		status_child(int pid);
 
 int		check_char(char c1, char c2);
 void	ft_free(char **str);
-void	list_free(t_list *command);
+void	free_spl(char **str_spl, int i);
+void	free_args_array(t_mcmd *command);
+void	exit_error(int code, char *error);
+void	free_all(t_mcmd *command);
 
 void	free_two(char **str, int i);
 void	sig_handler(int sig);
+void	handler(int sig);
 
 int		ft_strcmp(char *s1, char *s2);
 
@@ -162,6 +173,7 @@ int		spaces_check(char *str);
 void	ft_print_pars(t_pars *pars);
 
 int		isspaces(char *str);
+void	save_home(t_mcmd *command);
 
 /**************************************************************************
 * 				*		printing for debuging		*
@@ -176,11 +188,7 @@ void	args_pars(t_pars pars);
 * 					*          parsing			*							  
 ***************************************************************************/
 
-void	pars_free(t_pars *p);
-void	p_free(t_mcmd *command);
-void	struct_free(t_mcmd *command);
 void	print_struct(t_mcmd *commmad);
-void	lst_clear(t_mcmd **lst, void (*del)(void*));
 
 /**************************************************************************
 * 					*          wildcard		      *					

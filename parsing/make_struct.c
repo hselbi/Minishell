@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:38:06 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/17 02:15:38 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:27:36 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,21 @@ void	make_struct_to_execute(t_pars *pars)
 		else if (mst.sp[pars->index][0] == '<')
 			make_infile(mst.sp, pars);
 		else
-			mst.args[mst.j++] = mst.sp[pars->index++];
+			mst.args[mst.j++] = ft_strdupl(mst.sp[pars->index++]);
 	}
 	mst.args[mst.j] = NULL;
+	free_sp(mst.sp);
 	back_lstadd(&pars->args_array, new_lst(mst.args, pars));
-	free(mst.sp);
+}
+
+void	free_sp(char **sp)
+{
+	int	i;
+
+	i = -1;
+	while (sp[++i])
+		free (sp[i]);
+	free(sp);
 }
 
 int	check_check(char *line, t_pars *pars)

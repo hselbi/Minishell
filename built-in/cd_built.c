@@ -1,58 +1,29 @@
 #include "../minishell.h"
 
 /******************************************************
-*  			*  adding new path in PWD  *
-******************************************************/
-
-void	adding_newpath(t_mcmd *command, char *new_path)
-{
-	command->av = (char **)malloc(sizeof(char *) * 3);
-	command->av[0] = ft_strdup("export");
-	command->av[1] = ft_strjoin("PWD=", new_path);
-	command->av[2] = NULL;
-	new_export(command, 1);
-	// free_two(command->av, 0);
-}
-
-/******************************************************
-*  		*  adding previous path in OLDPWD  *
-******************************************************/
-
-void	adding_oldpath(t_mcmd *command, char *ori_path)
-{
-	command->av = (char **)malloc(sizeof(char *) * 3);
-	command->av[0] = ft_strdup("export");
-	command->av[1] = ft_strjoin("OLDPWD=", ori_path);
-	command->av[2] = NULL;
-	new_export(command, 1);
-	// free_two(command->av, 0);
-}
-
-/******************************************************
 *  		*  print error if it's not there  *
 ******************************************************/
 
 char	*cd_arg(t_mcmd *command, int i, char *buf)
 {
-	char	*s;
-
 	if (!ft_strcmp(command->av[i + 1], "."))
 	{
-		s = getcwd(NULL, 0);
-		if (!s)
+		buf = getcwd(NULL, 0);
+		if (!buf)
 		{
-			printf("cd: error retrieving current directory: getcwd: cannot");
-			printf(" access parent directories: No such file or directory\n");
-			free(s);
+			ft_putstr_fd("cd: error retrieving current directory: getcwd: ", 2);
+			ft_putstr_fd("cannot access parent directories: No such file ", 2);
+			ft_putstr_fd("or directory\n", 2);
 		}
-		free(s);
 		return (buf);
 	}
 	else
 	{
 		if (chdir(command->av[i + 1]) == -1)
 		{
-			printf("cd: %s: No such file or directory\n", command->av[i + 1]);
+			ft_putstr_fd("cd: ", 2);
+			ft_putstr_fd(command->av[i + 1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
 		}
 		buf = getcwd(NULL, 0);
 		return (buf);
@@ -72,7 +43,7 @@ char	*my_getenv(t_list *env, int i)
 	tmp = env;
 	while (i-- > 1)
 		tmp = tmp->next;
-	spl = ft_split(tmp->content, ' ');
+	spl = ft_split(tmp->content, '=');
 	if (!spl[1])
 	{
 		str = ft_strdup(".");
@@ -86,6 +57,25 @@ char	*my_getenv(t_list *env, int i)
 	return (str);
 }
 
+/******************************************************
+*  			*	only cd without args	 *
+******************************************************/
+
+void	cd_only(t_mcmd *command, char **buf)
+{
+	int	i;
+
+	i = check_var("HOME", command->en);
+	if (i > 0)
+		*buf = my_getenv(command->en, i);
+	else
+		*buf = NULL;
+	if (chdir(*buf) == -1)
+	{
+		g_status = 1;
+		ft_putstr_fd("cd: HOME not set\n", 2);
+	}
+}
 
 /******************************************************
 *  			*	process of cd function	 *
@@ -96,35 +86,24 @@ void	my_cd(t_mcmd *command, int ac)
 	char	buffer[1024];
 	char	*buf;
 	char	*ori_path;
-	int		i;
 
 	getcwd(buffer, sizeof(buffer));
 	buf = buffer;
 	ori_path = ft_strdup(buffer);
-	printf("%d\n", ac);
 	if (ac >= 3)
 		buf = cd_arg(command, 0, buf);
 	else if (ac == 2)
-	{
-		i = check_var("HOME", command->en);
-		if (i > 0)
-			buf = my_getenv(command->en, i);
-		else
-			buf = NULL;
-		if (chdir(buf) == -1)
-		{
-			g_status = 1;
-			printf("cd: HOME not set\n");
-		}
-		free(buf);
-		getcwd(buffer, sizeof(buffer));
-	}
+		cd_only(command, &buf);
 	if (check_var("PWD", command->en))
 	{
 		adding_oldpath(command, ori_path);
-		adding_newpath(command, buffer);
+		ft_free(command->av);
+		adding_newpath(command, buf);
+		ft_free(command->av);
 	}
-	// free(ori_path);
+	if (buf)
+		free(buf);
+	free(ori_path);
 }
 
 /******************************************************

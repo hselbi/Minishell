@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:49:14 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/09/29 21:18:45 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/24 22:33:39 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,14 @@ char	*sp(const char *s, int e, int b)
 
 char	**ft_split_with_pipe(char *s, char c, t_pars *pars)
 {
-	t_sp splt;
+	t_sp	splt;
 
 	if (!s)
 		return (NULL);
-	if (!(splt.spl = (char **)malloc(sizeof(char *) * (count(s, c) + 1))))
+	splt.spl = (char **)malloc(sizeof(char *) * (count(s, c) + 1));
+	if (!splt.spl)
 		return (NULL);
-	splt.i = -1;
-	splt.j = 0;
-	splt.b = -1;
+	splt_init(&splt);
 	while (++splt.i <= (int)ft_strleng(s))
 	{
 		if (s[splt.i] != c && s[splt.i] && splt.b == -1)
@@ -69,15 +68,22 @@ char	**ft_split_with_pipe(char *s, char c, t_pars *pars)
 		{
 			splt.spl[splt.j++] = sp(s, splt.i, splt.b);
 			splt.b = -1;
-			if (s[splt.i] && s[splt.i+1] == c)
+			if (s[splt.i] && s[splt.i +1] == c)
 			{
 				error_exit("Error multiple consecutive pipes !\n", pars);
-				break;
+				break ;
 			}
 		}
 	}
 	splt.spl[splt.j] = 0;
 	return (splt.spl);
+}
+
+void	splt_init(t_sp *splt)
+{
+	splt->i = -1;
+	splt->j = 0;
+	splt->b = -1;
 }
 
 char	**ft_spliti(char *s, char c)

@@ -58,3 +58,21 @@ int	char_valid(char c)
 		return (3);
 	return (0);
 }
+
+/******************************************************
+*  				*  main cd function  *
+******************************************************/
+
+void	not_many_eq(t_mcmd *command, int i)
+{
+	int	j;
+	int	k;
+
+	k = check_var(command->av[i], command->en);
+	j = check_var(command->av[i], command->exp_en);
+	if (k)
+		sel_env(command->av[i], &command->exp_en);
+	if (j)
+		sel_env(command->av[i], &command->en);
+	ft_lstadd_back(&command->exp_en, ft_lstnew(command->av[i]));
+}

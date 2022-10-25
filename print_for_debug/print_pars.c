@@ -13,7 +13,7 @@ void    args_pars(t_pars pars)
 	lst = &pars;
 	while (tmp->args_array)
 	{
-		ac = 0;
+		ac = 1;
 		i = 0;
 		while (lst->args_array->args[ac])
 			ac++;

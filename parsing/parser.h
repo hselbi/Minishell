@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:30:26 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 23:55:44 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 00:17:10 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_mstruct
 {
 	char	**sp;
 	int		j;
+	int		i;
 	int		cmd_nmb;
 	char	**args;
 	t_pars	*crea_node;
@@ -85,6 +86,14 @@ typedef struct s_bfs
 	char	*cont;
 	int		i;
 }	t_bfs;
+
+typedef struct s_cdlr
+{
+	int		i;
+	int		begin;
+	char	*expd;
+	char	*dlr_exp;
+}	t_dlr;
 
 /*****************************************************************************/
 /*	Functions for expanding													 */
@@ -165,6 +174,12 @@ int		check_first(char *line, t_pars *pars);
 char	*ft_strdupp(char *s1);
 void	free_it(t_pars *crea, char **sp);
 void	free_cont(char *cont, t_pars *pars);
+void	free_sp(char **sp);
+void	splt_init(t_sp *splt);
+void	check_exit(t_dlr *dlr, t_pars *pars);
+void	normal_expand(t_dlr *dlr, t_pars *pars, char *word);
+void	join_to_expanded(t_dlr *dlr, char *word);
+void	init_stuff(t_bfs *bfs, t_pars *pars);
 
 /*********************/
 

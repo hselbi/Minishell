@@ -36,14 +36,12 @@ void	is_cmd_path(char **path, char *cmd, char *en[])
 		if (S_ISREG(stats.st_mode))
 		{
 			if (execve(cmd, path, en) == -1)
-			{
-				puts("Error in exceve");
-				exit(127);
-			}
+				exit_error(127, "Error: Command cannot execute");
 		}
 		else
 		{
-			printf("%s: No such file or directory\n", cmd);
+			ft_putstr_fd(cmd, 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
 			ft_free(path);
 			exit(126);
 		}
@@ -89,10 +87,7 @@ char	*make_path(char *cmd, char *en[])
 	while (en[i] && ft_strncmp("PATH", en[i], 4))
 		i++;
 	if (en[i] == NULL)
-	{
-		puts("Error: Path has been removed");
-		exit(127);
-	}
+		exit_error(127, "Error: Path has been removed");
 	line = ft_strdup(en[i] + 5);
 	paths = ft_split(line, ':');
 	free(line);
@@ -107,43 +102,13 @@ char	*make_path(char *cmd, char *en[])
 }
 
 /************************************************************************
-*		*			starting action for execusion			*
+*				*			closing fds			*
 ************************************************************************/
 
-void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
+void	close_fd(t_mcmd *command)
 {
-	int	i;
-
-	i = 0;
-	(void)cmd;
-	while (command->spl_str[i++] != NULL)
-		command->ac_spl++;
-	fprintf(stderr, "yesy jhklsdsjk\n");
-	if (!ft_strncmp(ft_strchr(command->spl_str[0], '/'), "/", 1))
-	{
-		fprintf(stderr, "hellos\n");
-		is_cmd_path(command->spl_str, command->spl_str[0], en);
-	}
-	else
-	{
-		fprintf(stderr, "hey im in here %s\n", command->path);
-		command->path = make_path(command->spl_str[0], en);
-		if (!(command->path) && !is_built(command->spl_str[0]))
-		{
-			free(command->path);
-			puts("Error: Command not found");
-			exit(127);
-		}
-		else if (!ft_builtin(command, 0))
-		{
-			if (execve(command->path, command->spl_str, en) == -1)
-			{
-				puts("Error: Command cannot execute");
-				exit(127);
-			}
-		}
-		if (command->path != NULL)
-			free(command->path);
-		exit(0);
-	}
+	if (command->out != 1 && close(command->out) == -1)
+		perror("fd: out");
+	if (command->in != 0 && close(command->in) == -1)
+		perror("fd: in");
 }

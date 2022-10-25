@@ -1,21 +1,6 @@
 #include "minishell.h"
 
 /************************************************************************
-*		 		*			path home back-up			*
-************************************************************************/
-void	save_home(t_mcmd *command)
-{
-	int		i;
-	t_list	*arr;
-
-	i = 0;
-	arr = command->en;
-	while (arr->content != NULL && ft_strncmp("HOME=", arr->content, 5) != 0)
-		arr = arr->next;
-	command->home = ft_strdup(arr->content);
-}
-
-/************************************************************************
 * 		*			check is variable is already in env			*
 ************************************************************************/
 
@@ -62,33 +47,33 @@ void	init_minishell(t_mcmd *command, char **envp)
 		ft_lstadd_back(&command->exp_en, ft_lstnew("OLDPWD"));
 	}
 	save_home(command);
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 /************************************************************************
 * 		*			wildcard + parsing + execusion			*
 ************************************************************************/
 
-void	mini_action(t_mish ms, t_mcmd command)
+void	mini_action(t_mish ms, t_mcmd *command)
 {
 	t_pars	tmp;
 
 	ms.line = wc_handle(ms.line);
 	if (!check_pipe_error(ms.line)
-		&& !check_check(ms.line, &command.pars)
+		&& !check_check(ms.line, &command->pars)
 		&& !check_stach_here_doc(ms.line))
 	{
-		befor_make_struct(ms.line, &command.pars);
-		args_pars(command.pars);
-		tmp = command.pars;
+		befor_make_struct(ms.line, &command->pars);
+		tmp = command->pars;
 		while (tmp.args_array)
 		{
-			command.ac++;
+			command->ac++;
 			tmp.args_array = tmp.args_array->next;
 		}
-		printf("before before %p \n", command.pars.args_array->args);
-		ft_exec(&command);
-		p_free(&command);
+		ft_exec(command);
 	}
+	free_args_array(command);
 	free(ms.line);
 }
 
@@ -96,42 +81,45 @@ void	mini_action(t_mish ms, t_mcmd command)
 * 		*			main minishell handling inputs			*
 ************************************************************************/
 
+int	h_main(t_mish ms)
+{
+	if (ms.line == NULL || ms.line[0] == '\0' || isspaces(ms.line) == 1)
+	{
+		if (ms.line == NULL)
+		{
+			write(2, "exit\n", 5);
+			free(ms.line);
+			ms.line = NULL;
+			exit(1);
+		}
+		free(ms.line);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_mish	ms;
 	t_mcmd	command;
 	t_pars	pars;
-	int		i;
 
 	(void)argv;
 	(void)argc;
 	init_minishell(&command, envp);
 	pars.env = command.en;
-	// signal(SIGINT, sig_handler);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		ms.line = readline("\033[1;36mminishell-1.0$ \033[0m");
-		if (ms.line)
+		ms.line = readline("minishell-1.0$ ");
+		if (ms.line && *ms.line)
 			add_history(ms.line);
 		command.pars = pars;
-		i = 0;
 		command.ac = 1;
-		if (ms.line == NULL || ms.line[0] == '\0' || isspaces(ms.line) == 1)
-		{
-			if (ms.line == NULL)
-			{
-				write(2, "exit\n", 5);
-				free(ms.line);
-				ms.line = NULL;
-				exit(1);
-			}
-			free(ms.line);
+		if (h_main(ms))
 			continue ;
-		}
 		if (ms.line)
-			mini_action(ms, command);
-		system("leaks minishell");
+			mini_action(ms, &command);
+		// system("leaks minishell");
 	}
 	return (0);
 }

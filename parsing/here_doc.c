@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 23:01:44 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 03:28:14 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	make_input(t_pars *pars)
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
 	waitpid(pid, NULL, 0);
+	free(pars->limiter);
 }
 
 /*****************************************************************************/

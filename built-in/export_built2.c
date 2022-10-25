@@ -21,8 +21,6 @@ char	*with_equal(char *str, char **spl_str)
 	tmp = NULL;
 	free(str);
 	str = NULL;
-	free(spl_str[0]);
-	free(spl_str);
 	return (out);
 }
 
@@ -44,7 +42,6 @@ char	*without_equal(int i, char *arr, char **spl_str)
 		out = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	ft_free(spl_str);
 	return (out);
 }
 
@@ -68,9 +65,8 @@ char	**make_env(int i, char *lst)
 		str_spl = (char **)malloc(sizeof(char *) * 3);
 		if (!str_spl)
 			return (NULL);
-		str_spl[0] = ft_strdup(ft_substr(lst, 0, check_eq(lst)));
-		str_spl[1] = ft_strdup(
-				ft_substr(lst, check_eq(lst) + 1, ft_strlen(lst)));
+		str_spl[0] = ft_substr(lst, 0, check_eq(lst));
+		str_spl[1] = ft_substr(lst, check_eq(lst) + 1, ft_strlen(lst));
 		str_spl[2] = NULL;
 	}
 	else
@@ -105,7 +101,7 @@ void	assemebly_str(char *lst, int fd, int flag)
 	}
 	else
 		printf("%s\n", out);
-	// ft_free(str_spl);
+	free_spl(str_spl, i);
 	free(out);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:27:10 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/16 23:00:32 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 03:30:22 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ int	check_left_red(char *line, t_pars *pars)
 
 int	check_error(char *line, t_pars *pars)
 {
-	pars->i = 0;
 	if (check_first(line, pars))
 		return (5);
 	while (line[pars->i])
 	{
-		if (line[pars->i +1] && line[pars->i] == '>' && line[pars->i +1] != '>')
+		if ((!line[pars->i +1] && line[pars->i] == '>') || (line[pars->i +1]
+				&& line[pars->i] == '>' && line[pars->i +1] != '>'))
 		{
 			if (check_right_red(line, pars))
 				return (5);
