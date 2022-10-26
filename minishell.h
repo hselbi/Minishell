@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 01:23:53 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 10:38:17 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ char	*cd_arg(t_mcmd *command, int i, char *buf);
 void	cd_only(t_mcmd *command, char **buf);
 char	*my_getenv(t_list *env, int i);
 void	adding_oldpath(t_mcmd *command, char *ori_path);
+void	pwd_oldpwd(t_mcmd *command, char *ori_path, char *buf);
+void	adding_newpath(t_mcmd *command, char *new_path);
 
 // unset
 void	init_unset(t_mcmd *command);
@@ -136,7 +138,6 @@ t_list	*my_unset(char *str, t_list **en);
 
 // pwd
 int		ft_pwd(t_mcmd *command, int fd);
-void	adding_newpath(t_mcmd *command, char *new_path);
 
 /**************************************************************************
 *						*		execution		*

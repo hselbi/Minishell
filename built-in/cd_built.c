@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:12 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 02:14:21 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 10:39:05 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,7 @@ void	my_cd(t_mcmd *command, int ac)
 		buf = cd_arg(command, 0, buf);
 	else if (ac == 2)
 		cd_only(command, &buf);
-	if (check_var("PWD", command->en))
-	{
-		adding_oldpath(command, ori_path);
-		ft_free(command->av);
-		adding_newpath(command, buf);
-		ft_free(command->av);
-	}
-	else
-	{
-		adding_newpath(command, buf);
-		ft_free(command->av);
-	}
+	pwd_oldpwd(command, ori_path, buf);
 	if (buf)
 		free(buf);
 	free(ori_path);

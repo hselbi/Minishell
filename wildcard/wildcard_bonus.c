@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wildcard.c                                         :+:      :+:    :+:   */
+/*   wildcard_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:38 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/25 22:54:39 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 11:47:37 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,12 @@ char	*ast_replace(char *line, int i)
 char	*wc_handle(char *line)
 {
 	int	i;
+	int	len;
+	char	*line_orig;
 
 	i = 0;
+	line_orig = ft_strdup(line);
+	len = ft_strlen(line);
 	while (*(line + i))
 	{
 		if (*(line + i) == '*')
@@ -120,5 +124,7 @@ char	*wc_handle(char *line)
 		else
 			i++;
 	}
+	if (len > (int)ft_strlen(line))
+		return (line_orig);
 	return (line);
 }
