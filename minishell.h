@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 21:49:14 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 22:06:25 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int			g_status;
 typedef struct s_mish
 {
 	char	*line;
-
 }	t_mish;
 
 /*		main structs that need to pass everything		*/
@@ -82,16 +81,12 @@ void	init_minishell(t_mcmd *command, char **envp);
 * 					*          built-ins      *							  
 ***************************************************************************/
 
-//	main check for the building
-
 int		buildin_cmd(t_mcmd *command, int i, int fd);
 int		ft_builtin(t_mcmd *command, int fd);
 
-// envp
 t_list	*ft_env(char **en);
 void	my_env(t_mcmd *command);
 
-//	export
 char	*with_equal(char *str, char **spl_str);
 char	*without_equal(int i, char *arr, char **spl_str);
 void	assemebly_str(char *lst, int fd, int flag);
@@ -109,19 +104,16 @@ int		check_av(char *av);
 int		h_check_av(char **str, int k);
 int		h_check_av2(char **str, int i);
 
-//	exit
 void	my_exit(int flag, int ac, char **av);
 void	exit_args(int flag, int ac, char *av[], unsigned int status);
 int		is_digit(char *str);
 
-// echo
 void	my_echo(char *str[], int fd, int flag);
 int		check_option(char *str);
 void	without_option(int fd, char *str[], int i, int flag);
 void	with_option(int fd, char *str[], int i, int flag);
 void	print_echo(char *str, int flag, int fd, int type);
 
-// cd
 int		init_cd(t_mcmd *command, int i);
 void	my_cd(t_mcmd *command, int i);
 char	*cd_arg(t_mcmd *command, int i, char *buf);
@@ -131,38 +123,32 @@ void	adding_oldpath(t_mcmd *command, char *ori_path);
 void	pwd_oldpwd(t_mcmd *command, char *ori_path, char *buf);
 void	adding_newpath(t_mcmd *command, char *new_path);
 
-// unset
 void	init_unset(t_mcmd *command);
 int		check_var(char *str, t_list *en);
 t_list	*my_unset(char *str, t_list **en);
 
-// pwd
 int		ft_pwd(t_mcmd *command, int fd);
 
 /**************************************************************************
 *						*		execution		*
 ***************************************************************************/
 
-// execute_utils.c
 void	is_cmd_path(char **path, char *cmd, char *en[]);
 char	*correct_one(char **paths, char *cmd);
 char	*make_path(char *cmd, char *en[]);
 int		ft_exec(t_mcmd *command);
 void	arg_inout(t_mcmd *command, int in, int out);
 
-// execute.c
 char	**en_conv(t_list *envp);
 void	ft_excusion(char *cmd, t_mcmd *command, char *en[]);
 void	exec(t_mcmd *command, char *str, t_list *en);
 
-// main_execute
 int		redirect(t_pars *arr, t_mcmd *command);
 void	fd_pipe(t_mcmd *command);
 void	close_fd(t_mcmd *command);
 void	init_exec(t_mcmd *command);
 void	exec_action(t_mcmd *command, char **args, int flag);
 
-//	waitpid.c
 void	ft_waitpid(t_mcmd *command);
 int		status_child(int pid, int index);
 
@@ -223,4 +209,4 @@ char	*strjoin_free(char *s1, char const *s2);
 char	*wc_parser(char *str, int i, char *out, char **arr);
 void	free_ast(char *pre, char *su, char **arr);
 
-#endif // MINISHELL_H
+#endif
