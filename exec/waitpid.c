@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:50 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 13:58:14 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 22:04:07 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	status_child(int pid, int index)
 			c_stat += 128;
 	}
 	if (index == 1 && !g_status)
-		g_status =  c_stat;
+		g_status = c_stat;
 	return (c_stat);
 }

@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:48 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 21:48:55 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 22:03:48 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,18 +115,4 @@ int	ft_exec(t_mcmd *command)
 	}
 	ft_waitpid(command);
 	return (0);
-}
-
-/************************************************************************
-*			*			main in for execute/built-in			*
-************************************************************************/
-
-void	arg_inout(t_mcmd *command, int in, int out)
-{
-	if (!command->av[0] || \
-			in == -1 || out == -1)
-	{
-		g_status = 1;
-		command->d = -1;
-	}
 }

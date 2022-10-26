@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:45 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 21:01:31 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 22:03:39 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,19 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 		signal(SIGQUIT, SIG_DFL);
 		ft_excusion(str, command, envp);
 		ft_free(envp);
+	}
+}
+
+/************************************************************************
+*		*			check if there's any failure in fd			*
+************************************************************************/
+
+void	arg_inout(t_mcmd *command, int in, int out)
+{
+	if (!command->av[0] || \
+			in == -1 || out == -1)
+	{
+		g_status = 0;
+		command->d = -1;
 	}
 }
