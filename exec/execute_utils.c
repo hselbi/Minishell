@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:42 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 01:59:04 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:03:05 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	is_built(char **str, int i)
 		i++;
 	if (!ft_strcmp(str[0], "export"))
 		return (1);
-	else if (i == 1 && !is_valid(str[0], "ENV"))
+	else if (i == 1 && !ft_strcmp(str[0], "env"))
 		return (1);
 	else if (!ft_strcmp(str[0], "exit"))
 		return (1);
 	else if (!ft_strcmp(str[0], "unset"))
 		return (1);
-	else if (!is_valid(str[0], "CD"))
+	else if (!ft_strcmp(str[0], "cd"))
 		return (1);
-	else if (!is_valid(str[0], "PWD"))
+	else if (!ft_strcmp(str[0], "pwd"))
 		return (1);
-	else if (!is_valid(str[0], "ECHO"))
+	else if (!ft_strcmp(str[0], "echo"))
 		return (1);
 	return (0);
 }
@@ -56,7 +56,7 @@ void	is_cmd_path(char **path, char *cmd, char *en[])
 		else
 		{
 			ft_putstr_fd(cmd, 2);
-			ft_putstr_fd(": No such file or directory\n", 2);
+			ft_putstr_fd(": is a directory\n", 2);
 			ft_free(path);
 			exit(126);
 		}
@@ -87,7 +87,7 @@ char	*correct_one(char **paths, char *cmd)
 		str = ft_strjoin(paths[i], "/");
 		command = ft_strjoin(str, cmd);
 		free(str);
-		if (access(command, F_OK) == 0)
+		if (!access(command, F_OK) && !access(command, X_OK))
 			return (command);
 		free(command);
 		i++;

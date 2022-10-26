@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:45 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 11:59:35 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:28:24 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 	else
 	{
 		command->path = make_path(command->spl_str[0], en);
-		printf("test haid\n");
 		if (!(command->path) && !is_built(command->spl_str, i))
 		{
 			free(command->path);
 			exit_error(127, "Error: Command not found");
 		}
-		else if (is_built(command->av, command->ac_spl) && !ft_builtin(command, 0))
+		else if (is_built_child(command->av, i) && !ft_builtin(command, 0))
 		{
-			// check this for env handling
 			if (execve(command->path, command->spl_str, en) == -1)
 				exit_error(127, "Error: Command cannot execute");
 		}
@@ -100,7 +98,6 @@ void	exec(t_mcmd *command, char *str, t_list *en)
 			perror("fd: in");
 		envp = en_conv(en);
 		signal(SIGQUIT, SIG_DFL);
-		printf("test 0\n");
 		ft_excusion(str, command, envp);
 		ft_free(envp);
 	}

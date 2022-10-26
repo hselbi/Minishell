@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:04 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 01:22:05 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 18:57:03 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	buildin_cmd(t_mcmd *command, int i, int fd)
 		new_export(command, fd);
 		return (1);
 	}
-	else if (!is_valid(command->av[0], "ENV"))
+	else if (!ft_strcmp(command->av[0], "env") && !command->av[1])
 	{
 		exp_envp(command->en, command->out, fd);
 		return (1);
@@ -73,17 +73,17 @@ int	ft_builtin(t_mcmd *command, int fd)
 	i = 0;
 	if (buildin_cmd(command, i, fd))
 		return (1);
-	if (!is_valid(command->av[0], "CD"))
+	if (!ft_strcmp(command->av[0], "cd"))
 	{
 		init_cd(command, 0);
 		return (1);
 	}
-	else if (!is_valid(command->av[0], "PWD"))
+	else if (!ft_strcmp(command->av[0], "pwd"))
 	{
 		ft_pwd(command, fd);
 		return (1);
 	}
-	else if (!is_valid(command->av[0], "ECHO"))
+	else if (!ft_strcmp(command->av[0], "echo"))
 	{
 		my_echo(command->av, command->out, fd);
 		return (1);

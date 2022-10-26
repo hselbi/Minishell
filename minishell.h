@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 10:38:17 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:41:51 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void	save_home(t_mcmd *command);
 
 void	exp_envp(t_list *list, int fd, int flag);
 int		is_built(char **str, int i);
+int		is_built_child(char **str, int i);
 int		is_valid(char *check, char *mesure);
 void	args_pars(t_pars pars);
 

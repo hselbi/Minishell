@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 23:51:31 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:36:16 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	child_here_doc(int *fd, t_pars *pars)
 	line = get_next_line(0);
 	while (cmp_limiter(pars->limiter, line))
 	{
+		if (!line)
+			break ;
 		if (pars->exp == 0)
 			line = check_dollar(line, pars);
 		write(fd[1], line, ft_strleng(line));
@@ -41,9 +43,11 @@ void	make_input(t_pars *pars)
 {
 	int		fd[2];
 	int		pid;
+	int		status;
 
 	if (pipe(fd) == -1)
 		error_exit("Pipe problem!", pars);
+	signal(SIGINT, SIG_IGN);
 	pid = fork();
 	if (pid == -1)
 		error_exit("Fork problem!", pars);
@@ -52,8 +56,14 @@ void	make_input(t_pars *pars)
 	close(fd[1]);
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
-	// signal(SIGINT, SIG_IGN);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, &status, 0);
+	if (WIFSIGNALED(status) && WTERMSIG(status))
+	{
+		g_status = 1;
+		write(1, "\n", 1);
+	}
+	else
+		g_status = 0;
 	signal(SIGINT, handler);
 	free(pars->limiter);
 }

@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:38 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 11:47:37 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 18:42:56 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ char	*ast_replace(char *line, int i)
 
 char	*wc_handle(char *line)
 {
-	int	i;
-	int	len;
 	char	*line_orig;
+	int		i;
+	int		len;
 
 	i = 0;
 	line_orig = ft_strdup(line);

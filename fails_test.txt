@@ -45,7 +45,6 @@
     syntax error ==> 258
 */
 
-<<<<<<< HEAD
 
 
 #define EX_BADSYNTAX	257	/* shell syntax error */
@@ -78,9 +77,44 @@ Exit Code Number	Meaning	Example	Comments
 | 128+n             | Fatal error signal "n"                                         | kill -9 $PPID of script      ||
 | 130               | Script terminated by Control-C                                 | Ctl-C                        ||
 | 255               | Exit status out of range                                       | exit -1                      ||
-=======
-ls >> 
-ls >
 
-while 1; sleep 1; do leaks minishell; done
->>>>>>> origin/ayoub
+
+/*
+
+> $ll | pwd
+
+us:
+syntax error near unexpected token `newline: Undefined error: 0
+
+them:
+
+bash: $ll: ambiguous redirect
+/Users/hselbi/Desktop/Minishell
+
+
+*****************************
+command:
+< ls | pwd
+
+us:
+
+Error in making infile!: Permission denied
+
+them:
+
+bash: ls: Permission denied
+/Users/hselbi/Desktop/Minishell
+
+************************
+command:
+ls    | >o1 < hjgls >o2 <<l | pwd | cat
+
+us:
+Error in making infile!: No such file or directory
+
+them:
+bash: jkhjkls: No such file or directory
+/Users/hselbi/Desktop/Minishell
+
+
+*/
