@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 13:41:51 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 21:49:14 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	is_cmd_path(char **path, char *cmd, char *en[]);
 char	*correct_one(char **paths, char *cmd);
 char	*make_path(char *cmd, char *en[]);
 int		ft_exec(t_mcmd *command);
+void	arg_inout(t_mcmd *command, int in, int out);
 
 // execute.c
 char	**en_conv(t_list *envp);
@@ -155,7 +156,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[]);
 void	exec(t_mcmd *command, char *str, t_list *en);
 
 // main_execute
-void	redirect(t_pars *arr, t_mcmd *command);
+int		redirect(t_pars *arr, t_mcmd *command);
 void	fd_pipe(t_mcmd *command);
 void	close_fd(t_mcmd *command);
 void	init_exec(t_mcmd *command);

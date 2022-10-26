@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:45 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 19:28:24 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 21:01:31 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 			free(command->path);
 			exit_error(127, "Error: Command not found");
 		}
-		else if (is_built_child(command->av, i) && !ft_builtin(command, 0))
+		else if (!ft_builtin(command, 0))
 		{
 			if (execve(command->path, command->spl_str, en) == -1)
 				exit_error(127, "Error: Command cannot execute");

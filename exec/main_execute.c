@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:48 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 11:47:31 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 21:48:55 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@
 *		*		redirect fds for output/input/appending/heredoc		*
 ************************************************************************/
 
-void	redirect(t_pars *arr, t_mcmd *command)
+int	redirect(t_pars *arr, t_mcmd *command)
 {
-	if (arr->fd_input != 0)
+	command->d = 0;
+	if (arr->fd_input != 0 && arr->fd_input != -1)
 	{
 		if (command->in != 0 && close(command->in) == -1)
 			perror("fd: in");
 		command->in = arr->fd_input;
+		command->d = 1;
 	}
-	if (arr->fd_output != 1)
+	if (arr->fd_output != 1 && arr->fd_output != -1)
 	{
 		if (command->out != 1 && close(command->out) == -1)
 			perror("fd: out");
 		command->out = arr->fd_output;
+		command->d = 1;
 	}
+	return (command->d);
 }
 
 /************************************************************************
@@ -98,19 +102,31 @@ int	ft_exec(t_mcmd *command)
 		flag = 0;
 		command->av = cmd.args_array->args;
 		command->spl_str = cmd.args_array->args;
-		if (!command->av[0] || \
-			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
-		{
-			g_status = 1;
-			return (0);
-		}
+		arg_inout(command, cmd.args_array->fd_input, cmd.args_array->fd_output);
 		fd_pipe(command);
-		redirect(cmd.args_array, command);
-		exec_action(command, cmd.args_array->args, flag);
-		close_fd(command);
+		command->d = redirect(cmd.args_array, command);
+		if (command->d != -1)
+		{
+			exec_action(command, cmd.args_array->args, flag);
+			close_fd(command);
+		}
 		command->in = command->fd[0];
 		cmd.args_array = cmd.args_array->next;
 	}
 	ft_waitpid(command);
 	return (0);
+}
+
+/************************************************************************
+*			*			main in for execute/built-in			*
+************************************************************************/
+
+void	arg_inout(t_mcmd *command, int in, int out)
+{
+	if (!command->av[0] || \
+			in == -1 || out == -1)
+	{
+		g_status = 1;
+		command->d = -1;
+	}
 }
