@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:33:02 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 22:01:27 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 23:51:31 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	make_input(t_pars *pars)
 	close(fd[1]);
 	pars->hold_input = fd[0];
 	pars->nmb_of_hd++;
-	signal(SIGINT, SIG_IGN);
+	// signal(SIGINT, SIG_IGN);
 	waitpid(pid, NULL, 0);
 	signal(SIGINT, handler);
 	free(pars->limiter);

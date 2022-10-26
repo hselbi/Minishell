@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:53:12 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/25 22:53:13 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 02:14:21 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ void	my_cd(t_mcmd *command, int ac)
 	{
 		adding_oldpath(command, ori_path);
 		ft_free(command->av);
+		adding_newpath(command, buf);
+		ft_free(command->av);
+	}
+	else
+	{
 		adding_newpath(command, buf);
 		ft_free(command->av);
 	}

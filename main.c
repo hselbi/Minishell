@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:47 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/25 23:09:06 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 02:18:11 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,3 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	return (0);
 }
-
-
-/*
-
-cat | cat | cat |e
-s >> dd
-ls << dd
-
-*/

@@ -6,7 +6,7 @@
 /*   By: aerrazik <aerrazik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:27:10 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 22:29:13 by aerrazik         ###   ########.fr       */
+/*   Updated: 2022/10/25 23:26:46 by aerrazik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_pipe_error(char *line)
 		else if (trigger == 5 && !((line[i] && line[i] >= 9
 					&& line[i] <= 13) || line[i] == ' '))
 			trigger = 0;
-		if (line[i])
+		else if (line[i])
 			i++;
 	}
 	if (trigger == 5)
@@ -120,26 +120,26 @@ int	check_left_red(char *line, t_pars *pars)
 /* Check_error find out if syntax error										 */
 /*****************************************************************************/
 
-int	check_error(char *line, t_pars *pars)
+int	check_error(char *li, t_pars *pars)
 {
-	if (check_first(line, pars))
+	if (check_first(li, pars))
 		return (5);
-	while (line[pars->i])
+	while (li[pars->i])
 	{
-		if (line[pars->i] == '>' || (line[pars->i +1]
-				&& line[pars->i] == '>' && line[pars->i +1] != '>'))
+		if ((!li[pars->i +1] && li[pars->i] == '>') || (li[pars->i +1]
+				&& li[pars->i] == '>' && li[pars->i +1] != '>'))
 		{
-			if (check_right_red(line, pars))
+			if (check_right_red(li, pars))
 				return (5);
 		}
-		else if (line[pars->i] == '<' || (line[pars->i +1]
-				&& line[pars->i] == '<' && line[pars->i +1] != '<'))
+		else if ((!li[pars->i +1] && li[pars->i] == '<') || (li[pars->i +1]
+				&& li[pars->i] == '<' && li[pars->i +1] != '<'))
 		{
-			if (check_left_red(line, pars))
+			if (check_left_red(li, pars))
 				return (5);
 		}
-		else if (line[pars->i +1] && line[pars->i] == '|'
-			&& line[pars->i +1] == '|')
+		else if (li[pars->i +1] && li[pars->i] == '|'
+			&& li[pars->i +1] == '|')
 		{
 			write(2, "Error multiple consecutive pipes !\n", 35);
 			return (5);
