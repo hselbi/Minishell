@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:23:53 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -99,7 +111,7 @@ int		h_check_av2(char **str, int i);
 
 //	exit
 void	my_exit(int flag, int ac, char **av);
-void	exit_args(int flag, int ac, char *av[], int status);
+void	exit_args(int flag, int ac, char *av[], unsigned int status);
 int		is_digit(char *str);
 
 // echo
@@ -180,7 +192,7 @@ void	save_home(t_mcmd *command);
 ***************************************************************************/
 
 void	exp_envp(t_list *list, int fd, int flag);
-int		is_built(char *str);
+int		is_built(char **str, int i);
 int		is_valid(char *check, char *mesure);
 void	args_pars(t_pars pars);
 

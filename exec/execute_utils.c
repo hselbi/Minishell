@@ -1,24 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:53:42 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:59:04 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /************************************************************************
 * 	*						check is a built-in						*
 ************************************************************************/
 
-int	is_built(char *str)
+int	is_built(char **str, int i)
 {
-	if (!ft_strcmp(str, "export"))
+	i = 0;
+	while (str[i])
+		i++;
+	if (!ft_strcmp(str[0], "export"))
 		return (1);
-	else if (!is_valid(str, "ENV"))
+	else if (i == 1 && !is_valid(str[0], "ENV"))
 		return (1);
-	else if (!ft_strcmp(str, "exit"))
+	else if (!ft_strcmp(str[0], "exit"))
 		return (1);
-	else if (!ft_strcmp(str, "unset"))
+	else if (!ft_strcmp(str[0], "unset"))
 		return (1);
-	else if (!is_valid(str, "CD"))
+	else if (!is_valid(str[0], "CD"))
 		return (1);
-	else if (!is_valid(str, "PWD"))
+	else if (!is_valid(str[0], "PWD"))
 		return (1);
-	else if (!is_valid(str, "ECHO"))
+	else if (!is_valid(str[0], "ECHO"))
 		return (1);
 	return (0);
 }
@@ -46,6 +61,12 @@ void	is_cmd_path(char **path, char *cmd, char *en[])
 			exit(126);
 		}
 	}
+	else
+	{
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": Not a directory\n", 18);
+		exit(126);
+	}
 }
 
 /************************************************************************
@@ -61,6 +82,8 @@ char	*correct_one(char **paths, char *cmd)
 	i = 0;
 	while (paths[i])
 	{
+		if (!i && (paths[i][0] != '/'))
+			return (NULL);
 		str = ft_strjoin(paths[i], "/");
 		command = ft_strjoin(str, cmd);
 		free(str);
@@ -69,7 +92,7 @@ char	*correct_one(char **paths, char *cmd)
 		free(command);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 /************************************************************************

@@ -1,0 +1,194 @@
+-rw-r--r--  1 hselbi  2019   2510 Oct 25 23:38 Makefile
+-rw-r--r--  1 hselbi  2019    453 Oct 25 19:08 README.md
+-rw-r--r--  1 hselbi  2019   5063 Oct 25 19:58 fails_test.txt
+-rw-r--r--  1 hselbi  2019      0 Oct 25 23:49 l
+-rw-r--r--  1 hselbi  2019   3568 Oct 25 23:09 main.c
+-rw-r--r--  1 hselbi  2019   3168 Oct 25 23:42 main.o
+-rwxr-xr-x  1 hselbi  2019  59432 Oct 25 23:42 minishell
+-rw-r--r--  1 hselbi  2019   6827 Oct 25 22:54 minishell.h
+-rw-r--r--  1 hselbi  2019  13953 Oct 23 21:44 test_minishell.txt
+
+built-in:
+total 192
+drwxr-xr-x  26 hselbi  2019   884 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019   646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019  2464 Oct 25 22:53 built_in.c
+-rw-r--r--   1 hselbi  2019  2188 Oct 25 23:42 built_in.o
+-rw-r--r--   1 hselbi  2019  3382 Oct 25 22:53 cd_built.c
+-rw-r--r--   1 hselbi  2019  3152 Oct 25 23:42 cd_built.o
+-rw-r--r--   1 hselbi  2019  1716 Oct 25 22:53 cd_built2.c
+-rw-r--r--   1 hselbi  2019  1304 Oct 25 23:42 cd_built2.o
+-rw-r--r--   1 hselbi  2019  3124 Oct 25 22:53 echo_built.c
+-rw-r--r--   1 hselbi  2019  2708 Oct 25 23:42 echo_built.o
+-rw-r--r--   1 hselbi  2019  2265 Oct 25 22:53 envir_built.c
+-rw-r--r--   1 hselbi  2019  1860 Oct 25 23:42 envir_built.o
+-rw-r--r--   1 hselbi  2019  2153 Oct 25 22:53 exit_built.c
+-rw-r--r--   1 hselbi  2019  1820 Oct 25 23:42 exit_built.o
+-rw-r--r--   1 hselbi  2019  3729 Oct 25 22:53 export_built.c
+-rw-r--r--   1 hselbi  2019  3248 Oct 25 23:42 export_built.o
+-rw-r--r--   1 hselbi  2019  3492 Oct 25 22:53 export_built2.c
+-rw-r--r--   1 hselbi  2019  2940 Oct 25 23:42 export_built2.o
+-rw-r--r--   1 hselbi  2019  2544 Oct 25 22:53 export_built3.c
+-rw-r--r--   1 hselbi  2019  1816 Oct 25 23:42 export_built3.o
+-rw-r--r--   1 hselbi  2019  2562 Oct 25 22:53 export_helper.c
+-rw-r--r--   1 hselbi  2019  2396 Oct 25 23:42 export_helper.o
+-rw-r--r--   1 hselbi  2019  1418 Oct 25 22:53 pwd_built.c
+-rw-r--r--   1 hselbi  2019  1432 Oct 25 23:42 pwd_built.o
+-rw-r--r--   1 hselbi  2019  2623 Oct 25 22:53 unset_built.c
+-rw-r--r--   1 hselbi  2019  2188 Oct 25 23:42 unset_built.o
+
+exec:
+total 64
+drwxr-xr-x  10 hselbi  2019   340 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019   646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019  3126 Oct 25 22:56 execute.c
+-rw-r--r--   1 hselbi  2019  2764 Oct 25 23:42 execute.o
+-rw-r--r--   1 hselbi  2019  3475 Oct 25 22:53 execute_utils.c
+-rw-r--r--   1 hselbi  2019  3156 Oct 25 23:42 execute_utils.o
+-rw-r--r--   1 hselbi  2019  3390 Oct 25 22:53 main_execute.c
+-rw-r--r--   1 hselbi  2019  2364 Oct 25 23:42 main_execute.o
+-rw-r--r--   1 hselbi  2019  1456 Oct 25 22:53 waitpid.c
+-rw-r--r--   1 hselbi  2019  1328 Oct 25 23:42 waitpid.o
+
+libft:
+total 624
+drwxr-xr-x  75 hselbi  2019   2550 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019    646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019   1630 Oct 23 15:16 Makefile
+-rw-r--r--   1 hselbi  2019   1450 Sep 28 12:47 ft_atoi.c
+-rw-r--r--   1 hselbi  2019   1132 Oct 25 23:42 ft_atoi.o
+-rw-r--r--   1 hselbi  2019   1030 Sep 28 12:47 ft_bzero.c
+-rw-r--r--   1 hselbi  2019    684 Oct 25 23:42 ft_bzero.o
+-rw-r--r--   1 hselbi  2019   1118 Sep 28 12:47 ft_calloc.c
+-rw-r--r--   1 hselbi  2019    784 Oct 25 23:42 ft_calloc.o
+-rw-r--r--   1 hselbi  2019   1002 Sep 28 12:47 ft_isalnum.c
+-rw-r--r--   1 hselbi  2019    760 Oct 25 23:42 ft_isalnum.o
+-rw-r--r--   1 hselbi  2019   1020 Sep 28 12:47 ft_isalpha.c
+-rw-r--r--   1 hselbi  2019    680 Oct 25 23:42 ft_isalpha.o
+-rw-r--r--   1 hselbi  2019    990 Sep 28 12:47 ft_isascii.c
+-rw-r--r--   1 hselbi  2019    990 Sep 28 12:47 ft_isdigit.c
+-rw-r--r--   1 hselbi  2019    664 Oct 25 23:42 ft_isdigit.o
+-rw-r--r--   1 hselbi  2019    992 Sep 28 12:47 ft_isprint.c
+-rw-r--r--   1 hselbi  2019    664 Oct 25 23:42 ft_isprint.o
+-rw-r--r--   1 hselbi  2019   1457 Sep 28 12:47 ft_itoa.c
+-rw-r--r--   1 hselbi  2019   1165 Sep 28 12:47 ft_lstadd_back_bonus.c
+-rw-r--r--   1 hselbi  2019    756 Oct 25 23:42 ft_lstadd_back_bonus.o
+-rw-r--r--   1 hselbi  2019   1080 Sep 28 12:47 ft_lstadd_front_bonus.c
+-rw-r--r--   1 hselbi  2019   1102 Oct 11 08:45 ft_lstclear_bonus.c
+-rw-r--r--   1 hselbi  2019    780 Oct 25 23:42 ft_lstclear_bonus.o
+-rw-r--r--   1 hselbi  2019   1017 Sep 28 12:47 ft_lstdelone_bonus.c
+-rw-r--r--   1 hselbi  2019    712 Oct 25 23:42 ft_lstdelone_bonus.o
+-rw-r--r--   1 hselbi  2019   1021 Sep 28 12:47 ft_lstiter_bonus.c
+-rw-r--r--   1 hselbi  2019   1043 Sep 28 12:47 ft_lstlast_bonus.c
+-rw-r--r--   1 hselbi  2019    688 Oct 25 23:42 ft_lstlast_bonus.o
+-rw-r--r--   1 hselbi  2019   1255 Sep 28 12:47 ft_lstmap_bonus.c
+-rw-r--r--   1 hselbi  2019   1137 Oct 22 22:32 ft_lstnew_bonus.c
+-rw-r--r--   1 hselbi  2019    796 Oct 25 23:42 ft_lstnew_bonus.o
+-rw-r--r--   1 hselbi  2019   1087 Sep 28 12:47 ft_lstsize_bonus.c
+-rw-r--r--   1 hselbi  2019    680 Oct 25 23:42 ft_lstsize_bonus.o
+-rw-r--r--   1 hselbi  2019   1133 Sep 28 12:47 ft_memchr.c
+-rw-r--r--   1 hselbi  2019   1199 Sep 28 12:47 ft_memcmp.c
+-rw-r--r--   1 hselbi  2019   1219 Sep 28 12:47 ft_memcpy.c
+-rw-r--r--   1 hselbi  2019   1260 Sep 28 12:47 ft_memmove.c
+-rw-r--r--   1 hselbi  2019   1125 Sep 28 12:47 ft_memset.c
+-rw-r--r--   1 hselbi  2019    970 Sep 28 12:47 ft_putchar_fd.c
+-rw-r--r--   1 hselbi  2019   1020 Sep 28 12:47 ft_putendl_fd.c
+-rw-r--r--   1 hselbi  2019   1194 Sep 28 12:47 ft_putnbr_fd.c
+-rw-r--r--   1 hselbi  2019   1093 Sep 28 12:47 ft_putstr_fd.c
+-rw-r--r--   1 hselbi  2019    860 Oct 25 23:42 ft_putstr_fd.o
+-rw-r--r--   1 hselbi  2019   2093 Oct 16 23:43 ft_split.c
+-rw-r--r--   1 hselbi  2019   2276 Oct 25 23:42 ft_split.o
+-rw-r--r--   1 hselbi  2019   1124 Oct 11 08:45 ft_strcat.c
+-rw-r--r--   1 hselbi  2019    768 Oct 25 23:42 ft_strcat.o
+-rw-r--r--   1 hselbi  2019   1085 Sep 28 12:47 ft_strchr.c
+-rw-r--r--   1 hselbi  2019    716 Oct 25 23:42 ft_strchr.o
+-rw-r--r--   1 hselbi  2019   1084 Oct 11 08:45 ft_strcpy.c
+-rw-r--r--   1 hselbi  2019    700 Oct 25 23:42 ft_strcpy.o
+-rw-r--r--   1 hselbi  2019   1212 Sep 28 12:47 ft_strdup.c
+-rw-r--r--   1 hselbi  2019    912 Oct 25 23:42 ft_strdup.o
+-rw-r--r--   1 hselbi  2019   1062 Sep 28 12:47 ft_striteri.c
+-rw-r--r--   1 hselbi  2019    720 Oct 25 23:42 ft_striteri.o
+-rw-r--r--   1 hselbi  2019   1669 Sep 28 12:47 ft_strjoin.c
+-rw-r--r--   1 hselbi  2019   1456 Oct 25 23:42 ft_strjoin.o
+-rw-r--r--   1 hselbi  2019   1276 Sep 28 12:47 ft_strlcat.c
+-rw-r--r--   1 hselbi  2019   1175 Sep 28 12:47 ft_strlcpy.c
+-rw-r--r--   1 hselbi  2019   1008 Sep 28 12:47 ft_strlen.c
+-rw-r--r--   1 hselbi  2019    668 Oct 25 23:42 ft_strlen.o
+-rw-r--r--   1 hselbi  2019   1211 Sep 28 12:47 ft_strmapi.c
+-rw-r--r--   1 hselbi  2019    876 Oct 25 23:42 ft_strmapi.o
+-rw-r--r--   1 hselbi  2019   1272 Oct 16 21:26 ft_strncmp.c
+-rw-r--r--   1 hselbi  2019    864 Oct 25 23:42 ft_strncmp.o
+-rw-r--r--   1 hselbi  2019   1316 Sep 28 12:47 ft_strnstr.c
+-rw-r--r--   1 hselbi  2019   1112 Sep 28 12:47 ft_strrchr.c
+-rw-r--r--   1 hselbi  2019   1564 Oct 16 21:08 ft_strtrim.c
+-rw-r--r--   1 hselbi  2019   1376 Sep 28 12:47 ft_substr.c
+-rw-r--r--   1 hselbi  2019   1204 Oct 25 23:42 ft_substr.o
+-rw-r--r--   1 hselbi  2019    970 Sep 28 12:47 ft_tolower.c
+-rw-r--r--   1 hselbi  2019    971 Sep 28 12:47 ft_toupper.c
+-rw-r--r--   1 hselbi  2019  24488 Oct 25 23:42 libft.a
+-rw-r--r--   1 hselbi  2019   3003 Oct 11 08:45 libft.h
+
+parsing:
+total 320
+drwxr-xr-x@ 38 hselbi  2019  1292 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019   646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019  2280 Oct 25 19:58 an_other_file.c
+-rw-r--r--   1 hselbi  2019  1668 Oct 25 23:42 an_other_file.o
+-rwxr-xr-x   1 hselbi  2019  4182 Oct 25 22:44 errors.c
+-rw-r--r--   1 hselbi  2019  3332 Oct 25 23:42 errors.o
+-rwxr-xr-x   1 hselbi  2019  3174 Oct 25 22:48 errors2.c
+-rw-r--r--   1 hselbi  2019  2256 Oct 25 23:42 errors2.o
+-rwxr-xr-x   1 hselbi  2019  4017 Oct 25 19:58 expand.c
+-rw-r--r--   1 hselbi  2019  3128 Oct 25 23:42 expand.o
+-rwxr-xr-x@  1 hselbi  2019  1445 Oct 16 18:11 ft_iitoa.c
+-rw-r--r--   1 hselbi  2019  1104 Oct 25 23:42 ft_iitoa.o
+-rwxr-xr-x   1 hselbi  2019  2544 Oct 25 19:58 ft_split.c
+-rw-r--r--   1 hselbi  2019  2608 Oct 25 23:42 ft_split.o
+-rwxr-xr-x@  1 hselbi  2019  2228 Oct 16 18:11 ft_strjoin.c
+-rw-r--r--   1 hselbi  2019  2420 Oct 25 23:42 ft_strjoin.o
+-rwxr-xr-x@  1 hselbi  2019  2031 Oct 16 18:11 get_next_line.c
+-rwxr-xr-x@  1 hselbi  2019  1221 Oct 16 18:11 get_next_line.h
+-rw-r--r--   1 hselbi  2019  2192 Oct 25 23:42 get_next_line.o
+-rwxr-xr-x   1 hselbi  2019  2019 Oct 25 19:58 get_next_line_utils.c
+-rw-r--r--   1 hselbi  2019  2080 Oct 25 23:42 get_next_line_utils.o
+-rwxr-xr-x   1 hselbi  2019  3261 Oct 25 22:44 here_doc.c
+-rw-r--r--   1 hselbi  2019  3196 Oct 25 23:42 here_doc.o
+-rwxr-xr-x   1 hselbi  2019  2406 Oct 25 19:58 make_struct.c
+-rw-r--r--   1 hselbi  2019  2120 Oct 25 23:42 make_struct.o
+-rwxr-xr-x   1 hselbi  2019  1840 Oct 25 19:58 outils.c
+-rw-r--r--   1 hselbi  2019  1840 Oct 25 23:42 outils.o
+-rwxr-xr-x   1 hselbi  2019  5492 Oct 25 19:58 parser.h
+-rwxr-xr-x@  1 hselbi  2019  3387 Oct 16 18:11 quotes.c
+-rw-r--r--   1 hselbi  2019  2552 Oct 25 23:42 quotes.o
+-rwxr-xr-x   1 hselbi  2019  4289 Oct 25 22:44 redirection.c
+-rw-r--r--   1 hselbi  2019  3032 Oct 25 23:42 redirection.o
+-rwxr-xr-x   1 hselbi  2019  3049 Oct 25 22:52 redirection2.c
+-rw-r--r--   1 hselbi  2019  2016 Oct 25 23:42 redirection2.o
+-rwxr-xr-x   1 hselbi  2019  4670 Oct 25 22:44 test_func.c
+-rw-r--r--   1 hselbi  2019  2804 Oct 25 23:42 test_func.o
+-rwxr-xr-x   1 hselbi  2019  2988 Oct 25 19:58 test_pars.c
+-rw-r--r--   1 hselbi  2019  2236 Oct 25 23:42 test_pars.o
+
+tools:
+total 64
+drwxr-xr-x  10 hselbi  2019   340 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019   646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019  1031 Oct 25 22:54 errors.c
+-rw-r--r--   1 hselbi  2019   920 Oct 25 23:42 errors.o
+-rw-r--r--   1 hselbi  2019  2026 Oct 25 19:58 free_things.c
+-rw-r--r--   1 hselbi  2019  1820 Oct 25 23:42 free_things.o
+-rw-r--r--   1 hselbi  2019  1352 Oct 25 22:57 signals.c
+-rw-r--r--   1 hselbi  2019  1328 Oct 25 23:42 signals.o
+-rw-r--r--   1 hselbi  2019  2642 Oct 25 22:54 utils.c
+-rw-r--r--   1 hselbi  2019  1904 Oct 25 23:42 utils.o
+
+wildcard:
+total 48
+drwxr-xr-x   8 hselbi  2019   272 Oct 25 23:42 .
+drwxr-xr-x  19 hselbi  2019   646 Oct 25 23:47 ..
+-rw-r--r--   1 hselbi  2019  3516 Oct 25 22:54 wildcard_bonus.c
+-rw-r--r--   1 hselbi  2019  3092 Oct 25 23:42 wildcard_bonus.o
+-rw-r--r--   1 hselbi  2019  3716 Oct 25 22:54 wildcard_utils1_bonus.c
+-rw-r--r--   1 hselbi  2019  2716 Oct 25 23:42 wildcard_utils1_bonus.o
+-rw-r--r--   1 hselbi  2019  1800 Oct 25 22:54 wildcard_utils2_bonus.c
+-rw-r--r--   1 hselbi  2019  1676 Oct 25 23:42 wildcard_utils2_bonus.o

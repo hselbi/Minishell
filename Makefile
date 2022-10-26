@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/10/25 22:54:55 by hselbi            #+#    #+#              #
+#    Updated: 2022/10/25 23:38:11 by hselbi           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 .PHONY = all clean fclean re
 
 EXEC = $(addprefix exec/, main_execute.c execute.c execute_utils.c waitpid.c)
@@ -10,17 +22,14 @@ BUILDIN = cd_built.c cd_built2.c envir_built.c export_built.c export_built2.c ex
 
 PARSE = $(addprefix parsing/, an_other_file.c errors.c errors2.c expand.c ft_iitoa.c ft_split.c ft_strjoin.c get_next_line.c get_next_line_utils.c here_doc.c make_struct.c outils.c quotes.c redirection.c redirection2.c test_func.c test_pars.c)
 
-PATH_PRINT = $(addprefix print_for_debug/, print_pars.c)
-
-WD = wildcard/wildcard.c wildcard/wildcard_utils1.c wildcard/wildcard_utils2.c
+WD = wildcard/wildcard_bonus.c wildcard/wildcard_utils1_bonus.c wildcard/wildcard_utils2_bonus.c
 
 # /************************************************************/
-SRC = main.c $(addprefix $(PATH_BUILTIN), $(BUILDIN)) $(PARSE) $(PATH_PRINT) $(TOOLS) $(EXEC) $(WD) 
+SRC = main.c $(addprefix $(PATH_BUILTIN), $(BUILDIN)) $(PARSE) $(TOOLS) $(EXEC) $(WD) 
 
 LIBFT = libft/libft.a
 
 OBJ = $(SRC:%.c=%.o)
-
 
 ## work
 
@@ -35,8 +44,6 @@ RFLAGS = -lreadline -I /Users/hselbi/.brew/Cellar/readline/8.1.2/include/readlin
 FLAGS = -Wall -Wextra -Werror
 
 FSA_ADD = -g -fsanitize=address
-
-# -fno-omit-frame-pointer : a nice stack traces in error messages
 
 NAME = minishell
 

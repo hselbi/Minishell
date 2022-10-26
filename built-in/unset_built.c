@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset_built.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:53:40 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:12:01 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /******************************************************
@@ -88,6 +100,7 @@ void	init_unset(t_mcmd *command)
 			ft_putstr_fd("export: `", 2);
 			ft_putstr_fd(command->av[i], 2);
 			ft_putstr_fd("': not a valid identifier\n", 2);
+			g_status = 1;
 		}
 		else
 			command->en = my_unset(command->av[i], &command->en);

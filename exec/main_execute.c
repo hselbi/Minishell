@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_execute.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:53:48 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:36:56 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /************************************************************************
@@ -58,7 +70,10 @@ void	init_exec(t_mcmd *command)
 
 void	exec_action(t_mcmd *command, char **args, int flag)
 {
-	if (command->ac == 2 && is_built(command->av[0]))
+	int	i;
+
+	i = 0;
+	if (command->ac == 2 && is_built(command->av, i))
 	{
 		flag = 1;
 		ft_builtin(command, flag);
@@ -86,8 +101,7 @@ int	ft_exec(t_mcmd *command)
 		if (!command->av[0] || \
 			cmd.args_array->fd_input == -1 || cmd.args_array->fd_output == -1)
 		{
-			printf("test 0\n");
-			g_status = 258;
+			g_status = 1;
 			return (0);
 		}
 		fd_pipe(command);

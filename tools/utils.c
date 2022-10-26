@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:54:29 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:34:58 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /************************************************************************
@@ -75,7 +87,11 @@ void	save_home(t_mcmd *command)
 
 	i = 0;
 	arr = command->en;
-	while (arr->content != NULL && ft_strncmp("HOME=", arr->content, 5) != 0)
-		arr = arr->next;
-	command->home = ft_strdup(arr->content);
+	if (check_var("HOME", arr))
+	{
+		while (arr->content != NULL
+			&& ft_strncmp("HOME=", arr->content, 5) != 0)
+			arr = arr->next;
+		command->home = ft_strdup(arr->content);
+	}
 }

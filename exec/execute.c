@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:53:45 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 01:59:39 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /************************************************************************
@@ -42,7 +54,7 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 	else
 	{
 		command->path = make_path(command->spl_str[0], en);
-		if (!(command->path) && !is_built(command->spl_str[0]))
+		if (!(command->path) && !is_built(command->spl_str, i))
 		{
 			free(command->path);
 			exit_error(127, "Error: Command not found");
@@ -51,7 +63,6 @@ void	ft_excusion(char *cmd, t_mcmd *command, char *en[])
 		{
 			if (execve(command->path, command->spl_str, en) == -1)
 				exit_error(127, "Error: Command cannot execute");
-			g_status = 0;
 		}
 		if (command->path != NULL)
 			free(command->path);

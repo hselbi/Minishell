@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_built.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/25 22:53:23 by hselbi            #+#    #+#             */
+/*   Updated: 2022/10/26 00:15:45 by hselbi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /******************************************************
@@ -9,6 +21,8 @@ int	is_digit(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -21,11 +35,11 @@ int	is_digit(char *str)
 /******************************************************
 *			*  process exit with args  *
 ******************************************************/
-void	exit_args(int flag, int ac, char *av[], int status)
+void	exit_args(int flag, int ac, char *av[], unsigned int status)
 {
 	if (ac == 3 && is_digit(av[1]))
 	{
-		status = ft_atoi(av[1]) % 256;
+		status = (unsigned int)ft_atoi(av[1]) % 256;
 		exit(status);
 	}
 	else if (!is_digit(av[1]))
@@ -53,7 +67,7 @@ void	exit_args(int flag, int ac, char *av[], int status)
 
 void	my_exit(int flag, int ac, char **av)
 {
-	int	status;
+	unsigned int	status;
 
 	status = 0;
 	if (ac == 2)

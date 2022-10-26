@@ -6,11 +6,12 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:29:57 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/23 15:24:54 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 22:52:04 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
+#include"../minishell.h"
 
 /*****************************************************************************/
 /* it opens the outfile2 and return it's file descriptor					 */
@@ -66,7 +67,6 @@ void	open_outfile_append2(char *sp, t_pars *pars)
 {
 	sp++;
 	sp++;
-	printf("----%s---\n", sp);
 	if (*sp == '>')
 		error_exit("syntax error near unexpected token `>'", pars);
 	else if (*sp == '<')

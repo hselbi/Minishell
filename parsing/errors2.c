@@ -6,12 +6,12 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:56 by aerrazik          #+#    #+#             */
-/*   Updated: 2022/10/25 21:21:27 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/25 22:48:56 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"parser.h"
-#include "../minishell.h"
+#include"../minishell.h"
 
 /*****************************************************************************/
 /* error_pipe syntax error unexpected token `|'								 */
@@ -19,7 +19,7 @@
 
 int	error_pipe(void)
 {
-	perror("syntax error near unexpected token `|'\n");
+	write(2, "syntax error near unexpected token `|'\n", 39);
 	g_status = 258;
 	return (5);
 }
@@ -30,7 +30,7 @@ int	error_pipe(void)
 
 int	error_newline(void)
 {
-	perror("syntax error near unexpected token `newline'\n");
+	write(2, "syntax error near unexpected token `newline'\n", 45);
 	g_status = 258;
 	return (5);
 }
@@ -41,7 +41,8 @@ int	error_newline(void)
 
 int	error_red(void)
 {
-	perror("syntax error near unexpected token `<'\n");
+	write(2, "syntax error near unexpected token `<'\n", 39);
+	g_status = 258;
 	return (5);
 }
 
