@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:52 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 22:06:25 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 22:29:25 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,20 +176,13 @@ int		isspaces(char *str);
 void	save_home(t_mcmd *command);
 
 /**************************************************************************
-* 				*		printing for debuging		*
+* 					*		helping functions		*
 ***************************************************************************/
 
 void	exp_envp(t_list *list, int fd, int flag);
 int		is_built(char **str, int i);
 int		is_built_child(char **str, int i);
 int		is_valid(char *check, char *mesure);
-void	args_pars(t_pars pars);
-
-/**************************************************************************
-* 					*          parsing			*							  
-***************************************************************************/
-
-void	print_struct(t_mcmd *commmad);
 
 /**************************************************************************
 * 					*          wildcard		      *					

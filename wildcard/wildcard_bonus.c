@@ -6,7 +6,7 @@
 /*   By: hselbi <hselbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:54:38 by hselbi            #+#    #+#             */
-/*   Updated: 2022/10/26 18:42:56 by hselbi           ###   ########.fr       */
+/*   Updated: 2022/10/26 23:12:03 by hselbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ char	*wc_handle(char *line)
 			i++;
 	}
 	if (len > (int)ft_strlen(line))
+	{
+		free(line);
 		return (line_orig);
+	}
+	free(line_orig);
 	return (line);
 }
